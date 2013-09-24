@@ -2,7 +2,7 @@
 //  BNEvent.m
 //  Bnearby
 //
-//  Created by Tristan on 20/09/13.
+//  Created by Tristan on 25/09/13.
 //  Copyright (c) 2013 Lucas Michael Dilts. All rights reserved.
 //
 
@@ -11,14 +11,19 @@
 
 @implementation BNEvent
 
+@dynamic bannerurl;
+@dynamic date;
+@dynamic source;
 @dynamic idevent;
-@dynamic title;
-@dynamic summary;
-@dynamic location;
+@dynamic address;
 @dynamic phonenumber;
 @dynamic rating;
-@dynamic bannerurl;
-@dynamic eventsource;
 @dynamic sourceurl;
+@dynamic summary;
+@dynamic title;
+@dynamic category;
+@dynamic type;
+@dynamic minprice;
+@dynamic maxprice;
 
 @end

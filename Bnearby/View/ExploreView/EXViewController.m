@@ -121,7 +121,7 @@ static NSString *CellIdentifier = @"CellIdentifier";
     {
         // Get reference to the destination view controller
         DEViewController *vc = [segue destinationViewController];
-        vc.receivedEvent = sender.myEvent;
+        vc.theEvent = sender.myEvent;
     }
 }
 

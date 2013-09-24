@@ -29,7 +29,8 @@
         
         // set all attributes to the event class
         for (id key in attributeDict) {
-            if ([key isEqualToString:@"idevent"] || [key isEqualToString:@"rating"]) {
+            if ([key isEqualToString:@"idevent"] || [key isEqualToString:@"rating"] ||
+                [key isEqualToString:@"minprice"] || [key isEqualToString:@"maxprice"]) {
                 // all integer values need to be converted to NSNumber before set
                 NSNumberFormatter *f = [[NSNumberFormatter alloc] init];
                 [f setNumberStyle:NSNumberFormatterDecimalStyle];

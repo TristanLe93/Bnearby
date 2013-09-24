@@ -6,14 +6,11 @@
 //  Copyright (c) 2013 Lucas Michael Dilts. All rights reserved.
 //
 
-#import "PLViewController.h"
-#import "DEViewController.h"
-#import "ECSlidingViewController.h"
-#import "MenuViewController.h"
+#import "EventSearchViewController.h"
 #import "BnearbyAppDelegate.h"
 #import "BNEvent.h"
 
-@implementation PLViewController
+@implementation EventSearchViewController
 @synthesize fetchedResultsController;
 
 - (void)viewDidLoad {
@@ -22,15 +19,12 @@
     // setup managedcontext
     BnearbyAppDelegate *delegate = [[UIApplication sharedApplication] delegate];
     context = delegate.managedObjectContext;
-
+    
     NSError *error;
     if (![[self fetchedResultsController] performFetch:&error]) {
         NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
         exit(-1);       // fail
     }
-    
-    // side menu setup
-    [self.menuBtn addTarget:self action:@selector(revealMenu:) forControlEvents:UIControlEventTouchUpInside];
 }
 
 - (NSFetchedResultsController *)fetchedResultsController {
@@ -46,10 +40,10 @@
     [fetchRequest setSortDescriptors:[NSArray arrayWithObject:sort]];
     
     NSFetchedResultsController *theFetchedResultsController = [[NSFetchedResultsController alloc]
-                                                            initWithFetchRequest:fetchRequest
-                                                            managedObjectContext:context
-                                                            sectionNameKeyPath:nil
-                                                            cacheName:@"Root"];
+                                                               initWithFetchRequest:fetchRequest
+                                                               managedObjectContext:context
+                                                               sectionNameKeyPath:nil
+                                                               cacheName:@"Root"];
     
     self.fetchedResultsController = theFetchedResultsController;
     return theFetchedResultsController;
@@ -70,7 +64,7 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    static NSString *CellIdentifier = @"PlannedEventCell";
+    static NSString *CellIdentifier = @"EventSearchCell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
     if (cell == nil) {
@@ -79,28 +73,12 @@
     
     // config UI stuff
     BNEvent *event = [fetchedResultsController objectAtIndexPath:indexPath];
-    
-    // set image according to its event type
     UIImageView *imageView = (UIImageView *)[cell viewWithTag:100];
-    UIImage *image;
+    imageView.image = [UIImage imageNamed:@"Entertainment Icons.png"];
     
-    if ([event.type isEqualToString:@"Hotel"]) {
-        image = [UIImage imageNamed:@"Shopping Icons.png"];
-    }
-    else if ([event.type isEqualToString:@"Restaurant"]) {
-        image = [UIImage imageNamed:@"Food Icons.png"];
-    }
-    else if ([event.type isEqualToString:@"Attraction"]) {
-        image = [UIImage imageNamed:@"Entertainment Icons.png"];
-    }
-    
-    imageView.image = image;
-    
-    // set event title
     UILabel *eventTitle = (UILabel *)[cell viewWithTag:101];
     eventTitle.text = event.title;
     
-    // set event address
     UILabel *eventAddress = (UILabel *)[cell viewWithTag:102];
     eventAddress.text = event.address;
     
@@ -109,16 +87,13 @@
 
 // transfers event object to the destination VC
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    if ([segue.identifier isEqualToString:@"showEventDetail"]) {
-        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-        DEViewController *destVC = segue.destinationViewController;
-        
-        destVC.theEvent = [fetchedResultsController objectAtIndexPath:indexPath];
-    }
-}
-
-- (IBAction)revealMenu:(id)sender {
-    [self.slidingViewController anchorTopViewTo:ECRight];
+    /*
+     if ([segue.identifier isEqualToString:@"showEventDetail"]) {
+     NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+     DEViewController *destVC = segue.destinationViewController;
+     
+     destVC.receivedEvent = [plannerEvents objectAtIndex:indexPath.row];
+     }*/
 }
 
 @end

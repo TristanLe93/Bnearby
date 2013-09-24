@@ -6,41 +6,38 @@
 //  Copyright (c) 2013 Lucas Michael Dilts. All rights reserved.
 //
 
-#import "DEViewController.h"
+#import <dispatch/dispatch.h>
 
-@interface DEViewController ()
-@end
+#import "DEViewController.h"
+#import "BNEvent.h"
 
 @implementation DEViewController
-@synthesize theEvent, eventBanner, eventDetails, myTableView, receivedEvent;
+@synthesize theEvent, titleLabel, addressLabel, phoneLable, ratingLabel, typeLabel, priceLabel, sourceLabel, thumbnailImage;
 
 
 - (void)viewDidLoad {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
-    myTableView.dataSource = self;
-    myTableView.delegate = self;
-
-    theEvent = receivedEvent;
+    titleLabel.text = theEvent.title;
+    addressLabel.text = theEvent.address;
+    phoneLable.text = theEvent.phonenumber;
+    ratingLabel.text = [NSString stringWithFormat:@"Rating: %@/5", theEvent.rating];
+    typeLabel.text = theEvent.type;
+    priceLabel.text = [NSString stringWithFormat:@"Price: $%@ - $%@", theEvent.minprice, theEvent.maxprice];
+    sourceLabel.text = [NSString stringWithFormat:@"Source: %@", theEvent.source];
     
-    eventBanner.image = [UIImage imageNamed:theEvent.bannerurl];
-}
-
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return eventDetails.count;
-}
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    static NSString *cellIdentifier = @"eventDetailsCell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-    
-    if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
-    }
-    
-    cell.textLabel.text = [eventDetails objectAtIndex:indexPath.row];
-    return cell;
+    // perform async image download
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        NSURL *url = [NSURL URLWithString:theEvent.bannerurl];
+        NSData *imageData = [NSData dataWithContentsOfURL:url];
+        UIImage *image = [UIImage imageWithData:imageData];
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (image) {
+                thumbnailImage.image = image;
+            }
+        });
+    });
 }
 
 @end

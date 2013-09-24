@@ -8,21 +8,20 @@
 
 #import <UIKit/UIKit.h>
 
-#import "BNEvent.h"
-//#import "MTEvButton.h" // ?
+@class BNEvent;
 
-//<UITableViewDataSource, UITableViewDelegate>
-@interface DEViewController : UIViewController <UITableViewDataSource, UITableViewDelegate> {
-    BNEvent *theEvent;
-    //BNEventButton *button;
-}
+@interface DEViewController : UIViewController
 
 @property (nonatomic, strong) BNEvent *theEvent;
-@property (weak, nonatomic) IBOutlet UIImageView *eventBanner;
-@property (weak, nonatomic) IBOutlet UITableView *myTableView;
-@property (strong, nonatomic) NSMutableArray *eventDetails;
+@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
+@property (weak, nonatomic) IBOutlet UILabel *addressLabel;
+@property (weak, nonatomic) IBOutlet UILabel *phoneLable;
 
-//@property (strong, nonatomic) MTEvButton *recievedButton;
-@property (strong, nonatomic) BNEvent *receivedEvent;
+@property (weak, nonatomic) IBOutlet UILabel *ratingLabel;
+@property (weak, nonatomic) IBOutlet UILabel *categoryLabel;
+@property (weak, nonatomic) IBOutlet UILabel *typeLabel;
+@property (weak, nonatomic) IBOutlet UILabel *priceLabel;
+@property (weak, nonatomic) IBOutlet UILabel *sourceLabel;
+@property (weak, nonatomic) IBOutlet UIImageView *thumbnailImage;
 
 @end

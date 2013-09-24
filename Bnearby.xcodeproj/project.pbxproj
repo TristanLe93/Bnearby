@@ -7,12 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6A12DD6517F207A200382C56 /* eventdata.xml in Resources */ = {isa = PBXBuildFile; fileRef = 6A12DD6417F207A200382C56 /* eventdata.xml */; };
+		6A12DD6817F2088700382C56 /* BNEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A12DD6717F2088700382C56 /* BNEvent.m */; };
 		6A3585F317EC15A700E23CE4 /* BnearbyAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A0D23BDE17E6E27D0020BB6E /* BnearbyAppDelegate.m */; };
 		6A3585F617EC16B000E23CE4 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A3585F517EC16B000E23CE4 /* CoreData.framework */; };
-		6A35860917EC442600E23CE4 /* eventdata.xml in Resources */ = {isa = PBXBuildFile; fileRef = 6A35860817EC442600E23CE4 /* eventdata.xml */; };
 		6A35860C17EC44B600E23CE4 /* XMLParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A35860B17EC44B600E23CE4 /* XMLParser.m */; };
 		6A35860F17EC476B00E23CE4 /* Bnearby.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 6A35860D17EC476B00E23CE4 /* Bnearby.xcdatamodeld */; };
-		6A35861517EC482600E23CE4 /* BNEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A35861417EC482600E23CE4 /* BNEvent.m */; };
+		6AE336E117F182150019E704 /* Entertainment Icons.png in Resources */ = {isa = PBXBuildFile; fileRef = 6AE336DE17F182150019E704 /* Entertainment Icons.png */; };
+		6AE336E217F182150019E704 /* Food Icons.png in Resources */ = {isa = PBXBuildFile; fileRef = 6AE336DF17F182150019E704 /* Food Icons.png */; };
+		6AE336E317F182150019E704 /* Shopping Icons.png in Resources */ = {isa = PBXBuildFile; fileRef = 6AE336E017F182150019E704 /* Shopping Icons.png */; };
+		6AE336F217F194D30019E704 /* EventSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AE336F117F194D30019E704 /* EventSearchViewController.m */; };
 		A0413CBD17EA65B700EBC215 /* 021.png in Resources */ = {isa = PBXBuildFile; fileRef = A0413CB517EA65B700EBC215 /* 021.png */; };
 		A0413CBE17EA65B700EBC215 /* 049.png in Resources */ = {isa = PBXBuildFile; fileRef = A0413CB617EA65B700EBC215 /* 049.png */; };
 		A0413CBF17EA65B700EBC215 /* 155.png in Resources */ = {isa = PBXBuildFile; fileRef = A0413CB717EA65B700EBC215 /* 155.png */; };
@@ -68,13 +72,18 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		6A12DD6417F207A200382C56 /* eventdata.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = eventdata.xml; sourceTree = "<group>"; };
+		6A12DD6617F2088700382C56 /* BNEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BNEvent.h; path = Model/BNEvent.h; sourceTree = "<group>"; };
+		6A12DD6717F2088700382C56 /* BNEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BNEvent.m; path = Model/BNEvent.m; sourceTree = "<group>"; };
 		6A3585F517EC16B000E23CE4 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
-		6A35860817EC442600E23CE4 /* eventdata.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = eventdata.xml; sourceTree = "<group>"; };
 		6A35860A17EC44B600E23CE4 /* XMLParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMLParser.h; sourceTree = "<group>"; };
 		6A35860B17EC44B600E23CE4 /* XMLParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMLParser.m; sourceTree = "<group>"; };
 		6A35860E17EC476B00E23CE4 /* Bnearby.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Bnearby.xcdatamodel; sourceTree = "<group>"; };
-		6A35861317EC482600E23CE4 /* BNEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BNEvent.h; sourceTree = "<group>"; };
-		6A35861417EC482600E23CE4 /* BNEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BNEvent.m; sourceTree = "<group>"; };
+		6AE336DE17F182150019E704 /* Entertainment Icons.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Entertainment Icons.png"; sourceTree = "<group>"; };
+		6AE336DF17F182150019E704 /* Food Icons.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Food Icons.png"; sourceTree = "<group>"; };
+		6AE336E017F182150019E704 /* Shopping Icons.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Shopping Icons.png"; sourceTree = "<group>"; };
+		6AE336F017F194D30019E704 /* EventSearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EventSearchViewController.h; path = View/PlannerView/EventSearchViewController.h; sourceTree = "<group>"; };
+		6AE336F117F194D30019E704 /* EventSearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EventSearchViewController.m; path = View/PlannerView/EventSearchViewController.m; sourceTree = "<group>"; };
 		A0413CB517EA65B700EBC215 /* 021.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = 021.png; path = View/ExploreView/RatingHeader/Images/021.png; sourceTree = "<group>"; };
 		A0413CB617EA65B700EBC215 /* 049.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = 049.png; path = View/ExploreView/RatingHeader/Images/049.png; sourceTree = "<group>"; };
 		A0413CB717EA65B700EBC215 /* 155.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = 155.png; path = View/ExploreView/RatingHeader/Images/155.png; sourceTree = "<group>"; };
@@ -231,6 +240,9 @@
 		A0A77BAE17E70E6200CF91FF /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				6AE336DE17F182150019E704 /* Entertainment Icons.png */,
+				6AE336DF17F182150019E704 /* Food Icons.png */,
+				6AE336E017F182150019E704 /* Shopping Icons.png */,
 				A0A77BE717E70F7100CF91FF /* Art_Gallery_Explore.png */,
 				A0A77BE817E70F7100CF91FF /* Beastie_Burgers_Explore.png */,
 				A0A77BE917E70F7100CF91FF /* Explore_Entertainment.png */,
@@ -280,7 +292,7 @@
 		A0D23BD417E6E27D0020BB6E /* Bnearby */ = {
 			isa = PBXGroup;
 			children = (
-				6A35860817EC442600E23CE4 /* eventdata.xml */,
+				6A12DD6417F207A200382C56 /* eventdata.xml */,
 				A0D23BE617E6E27D0020BB6E /* MainStoryboard.storyboard */,
 				6A35860A17EC44B600E23CE4 /* XMLParser.h */,
 				6A35860B17EC44B600E23CE4 /* XMLParser.m */,
@@ -325,8 +337,8 @@
 			isa = PBXGroup;
 			children = (
 				6A35860D17EC476B00E23CE4 /* Bnearby.xcdatamodeld */,
-				6A35861317EC482600E23CE4 /* BNEvent.h */,
-				6A35861417EC482600E23CE4 /* BNEvent.m */,
+				6A12DD6617F2088700382C56 /* BNEvent.h */,
+				6A12DD6717F2088700382C56 /* BNEvent.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -345,6 +357,8 @@
 			children = (
 				A0EDCD1C17E6FAE400819F49 /* PLViewController.h */,
 				A0A77BA217E70C3300CF91FF /* PLViewController.m */,
+				6AE336F017F194D30019E704 /* EventSearchViewController.h */,
+				6AE336F117F194D30019E704 /* EventSearchViewController.m */,
 			);
 			name = PlannerView;
 			sourceTree = "<group>";
@@ -416,7 +430,7 @@
 			isa = PBXProject;
 			attributes = {
 				CLASSPREFIX = Bnearby;
-				LastUpgradeCheck = 0460;
+				LastUpgradeCheck = 0500;
 				ORGANIZATIONNAME = "Lucas Michael Dilts";
 			};
 			buildConfigurationList = A0D23BC617E6E27D0020BB6E /* Build configuration list for PBXProject "Bnearby" */;
@@ -445,11 +459,11 @@
 				A0D23BE117E6E27D0020BB6E /* Default.png in Resources */,
 				A0D23BE317E6E27D0020BB6E /* Default@2x.png in Resources */,
 				A0413CBE17EA65B700EBC215 /* 049.png in Resources */,
-				6A35860917EC442600E23CE4 /* eventdata.xml in Resources */,
 				A0D23BE517E6E27D0020BB6E /* Default-568h@2x.png in Resources */,
 				A0D23BE817E6E27D0020BB6E /* MainStoryboard.storyboard in Resources */,
 				A0413CC417EA65B700EBC215 /* star@2x.png in Resources */,
 				A0413CBD17EA65B700EBC215 /* 021.png in Resources */,
+				6A12DD6517F207A200382C56 /* eventdata.xml in Resources */,
 				A0A77BF517E70F7100CF91FF /* Art_Gallery_Explore.png in Resources */,
 				A0A77BF617E70F7100CF91FF /* Beastie_Burgers_Explore.png in Resources */,
 				A0413CC317EA65B700EBC215 /* star.png in Resources */,
@@ -457,6 +471,7 @@
 				A0A77BF717E70F7100CF91FF /* Explore_Entertainment.png in Resources */,
 				A0A77BF817E70F7100CF91FF /* Explore_FreeFun.png in Resources */,
 				A0A77BF917E70F7100CF91FF /* Explore_Kids.png in Resources */,
+				6AE336E117F182150019E704 /* Entertainment Icons.png in Resources */,
 				A0A77BFA17E70F7100CF91FF /* Explore_Resturants.png in Resources */,
 				A0413CBF17EA65B700EBC215 /* 155.png in Resources */,
 				A0413CC017EA65B700EBC215 /* 209.png in Resources */,
@@ -464,7 +479,9 @@
 				A0A77BFC17E70F7100CF91FF /* menuButton@2x.png in Resources */,
 				A0A77BFD17E70F7100CF91FF /* Now_View_placeholder.png in Resources */,
 				A0A77BFE17E70F7100CF91FF /* Now_View_Placeholder_art.png in Resources */,
+				6AE336E317F182150019E704 /* Shopping Icons.png in Resources */,
 				A0413CC217EA65B700EBC215 /* star_highlighted@2x.png in Resources */,
+				6AE336E217F182150019E704 /* Food Icons.png in Resources */,
 				A0A77BFF17E70F7100CF91FF /* Planner_ExampleTile1.png in Resources */,
 				A0A77C0017E70F7100CF91FF /* Planner_ExampleTile2.png in Resources */,
 				A0A77C0117E70F7100CF91FF /* plus sign.png in Resources */,
@@ -482,8 +499,8 @@
 				6A3585F317EC15A700E23CE4 /* BnearbyAppDelegate.m in Sources */,
 				A0A77C0317E7132000CF91FF /* EXScrollView.m in Sources */,
 				A0A77BAD17E70DA900CF91FF /* NavBarMenuButton.m in Sources */,
-				6A35861517EC482600E23CE4 /* BNEvent.m in Sources */,
 				A0A77BAC17E70D7700CF91FF /* InitViewController.m in Sources */,
+				6AE336F217F194D30019E704 /* EventSearchViewController.m in Sources */,
 				6A35860F17EC476B00E23CE4 /* Bnearby.xcdatamodeld in Sources */,
 				A0A77BAB17E70D6800CF91FF /* UIImage+ImageWithUIView.m in Sources */,
 				A0A77BAA17E70D4900CF91FF /* TimeController.m in Sources */,
@@ -504,6 +521,7 @@
 				A0EDCD2F17E7008200819F49 /* EXEventButton.m in Sources */,
 				A0EDCD5317E7049500819F49 /* NWViewController.m in Sources */,
 				A0EDCD5617E7050C00819F49 /* NWScrollView.m in Sources */,
+				6A12DD6817F2088700382C56 /* BNEvent.m in Sources */,
 				A0A77C0617E7163C00CF91FF /* EXTableViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -589,11 +607,14 @@
 		A0D23BEF17E6E27D0020BB6E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Bnearby/Bnearby-Prefix.pch";
 				INFOPLIST_FILE = "Bnearby/Bnearby-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos6.1;
+				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -601,11 +622,14 @@
 		A0D23BF017E6E27D0020BB6E /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Bnearby/Bnearby-Prefix.pch";
 				INFOPLIST_FILE = "Bnearby/Bnearby-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos6.1;
+				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
