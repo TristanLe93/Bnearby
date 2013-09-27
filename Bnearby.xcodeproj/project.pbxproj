@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		6A12DD6517F207A200382C56 /* eventdata.xml in Resources */ = {isa = PBXBuildFile; fileRef = 6A12DD6417F207A200382C56 /* eventdata.xml */; };
 		6A12DD6817F2088700382C56 /* BNEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A12DD6717F2088700382C56 /* BNEvent.m */; };
+		6A1564B417F57A9100161C18 /* NWPhotoCellScroller.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A1564AF17F57A9100161C18 /* NWPhotoCellScroller.m */; };
+		6A1564B517F57A9100161C18 /* NWPhotoCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A1564B117F57A9100161C18 /* NWPhotoCellView.m */; };
+		6A1564B617F57A9100161C18 /* NWTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A1564B317F57A9100161C18 /* NWTableViewController.m */; };
 		6A3585F317EC15A700E23CE4 /* BnearbyAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A0D23BDE17E6E27D0020BB6E /* BnearbyAppDelegate.m */; };
 		6A3585F617EC16B000E23CE4 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A3585F517EC16B000E23CE4 /* CoreData.framework */; };
 		6A35860C17EC44B600E23CE4 /* XMLParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A35860B17EC44B600E23CE4 /* XMLParser.m */; };
@@ -67,14 +70,18 @@
 		A0EDCD2717E6FD7B00819F49 /* EXEventView.m in Sources */ = {isa = PBXBuildFile; fileRef = A0EDCD2617E6FD7B00819F49 /* EXEventView.m */; };
 		A0EDCD2C17E6FF4600819F49 /* EXTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = A0EDCD2B17E6FF4600819F49 /* EXTableView.m */; };
 		A0EDCD2F17E7008200819F49 /* EXEventButton.m in Sources */ = {isa = PBXBuildFile; fileRef = A0EDCD2E17E7008100819F49 /* EXEventButton.m */; };
-		A0EDCD5317E7049500819F49 /* NWViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A0EDCD5217E7049500819F49 /* NWViewController.m */; };
-		A0EDCD5617E7050C00819F49 /* NWScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = A0EDCD5517E7050C00819F49 /* NWScrollView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		6A12DD6417F207A200382C56 /* eventdata.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = eventdata.xml; sourceTree = "<group>"; };
 		6A12DD6617F2088700382C56 /* BNEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BNEvent.h; path = Model/BNEvent.h; sourceTree = "<group>"; };
 		6A12DD6717F2088700382C56 /* BNEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BNEvent.m; path = Model/BNEvent.m; sourceTree = "<group>"; };
+		6A1564AE17F57A9100161C18 /* NWPhotoCellScroller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NWPhotoCellScroller.h; sourceTree = "<group>"; };
+		6A1564AF17F57A9100161C18 /* NWPhotoCellScroller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NWPhotoCellScroller.m; sourceTree = "<group>"; };
+		6A1564B017F57A9100161C18 /* NWPhotoCellView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NWPhotoCellView.h; sourceTree = "<group>"; };
+		6A1564B117F57A9100161C18 /* NWPhotoCellView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NWPhotoCellView.m; sourceTree = "<group>"; };
+		6A1564B217F57A9100161C18 /* NWTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NWTableViewController.h; sourceTree = "<group>"; };
+		6A1564B317F57A9100161C18 /* NWTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NWTableViewController.m; sourceTree = "<group>"; };
 		6A3585F517EC16B000E23CE4 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		6A35860A17EC44B600E23CE4 /* XMLParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMLParser.h; sourceTree = "<group>"; };
 		6A35860B17EC44B600E23CE4 /* XMLParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMLParser.m; sourceTree = "<group>"; };
@@ -158,10 +165,6 @@
 		A0EDCD3417E7026E00819F49 /* StarRatingControl.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = StarRatingControl.m; path = Model/RatingController/StarRatingControl.m; sourceTree = "<group>"; };
 		A0EDCD3517E7026E00819F49 /* TimeController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = TimeController.h; path = Model/RatingController/TimeController.h; sourceTree = "<group>"; };
 		A0EDCD3617E7026E00819F49 /* TimeController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = TimeController.m; path = Model/RatingController/TimeController.m; sourceTree = "<group>"; };
-		A0EDCD5117E7049500819F49 /* NWViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NWViewController.h; path = View/NowView/NWViewController.h; sourceTree = "<group>"; };
-		A0EDCD5217E7049500819F49 /* NWViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NWViewController.m; path = View/NowView/NWViewController.m; sourceTree = "<group>"; };
-		A0EDCD5417E7050B00819F49 /* NWScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NWScrollView.h; path = View/NowView/NWScrollView.h; sourceTree = "<group>"; };
-		A0EDCD5517E7050C00819F49 /* NWScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NWScrollView.m; path = View/NowView/NWScrollView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -395,10 +398,12 @@
 		A0EDCD5017E7045500819F49 /* NowView */ = {
 			isa = PBXGroup;
 			children = (
-				A0EDCD5117E7049500819F49 /* NWViewController.h */,
-				A0EDCD5217E7049500819F49 /* NWViewController.m */,
-				A0EDCD5417E7050B00819F49 /* NWScrollView.h */,
-				A0EDCD5517E7050C00819F49 /* NWScrollView.m */,
+				6A1564AE17F57A9100161C18 /* NWPhotoCellScroller.h */,
+				6A1564AF17F57A9100161C18 /* NWPhotoCellScroller.m */,
+				6A1564B017F57A9100161C18 /* NWPhotoCellView.h */,
+				6A1564B117F57A9100161C18 /* NWPhotoCellView.m */,
+				6A1564B217F57A9100161C18 /* NWTableViewController.h */,
+				6A1564B317F57A9100161C18 /* NWTableViewController.m */,
 			);
 			name = NowView;
 			sourceTree = "<group>";
@@ -497,10 +502,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				6A3585F317EC15A700E23CE4 /* BnearbyAppDelegate.m in Sources */,
+				6A1564B417F57A9100161C18 /* NWPhotoCellScroller.m in Sources */,
 				A0A77C0317E7132000CF91FF /* EXScrollView.m in Sources */,
 				A0A77BAD17E70DA900CF91FF /* NavBarMenuButton.m in Sources */,
 				A0A77BAC17E70D7700CF91FF /* InitViewController.m in Sources */,
 				6AE336F217F194D30019E704 /* EventSearchViewController.m in Sources */,
+				6A1564B617F57A9100161C18 /* NWTableViewController.m in Sources */,
 				6A35860F17EC476B00E23CE4 /* Bnearby.xcdatamodeld in Sources */,
 				A0A77BAB17E70D6800CF91FF /* UIImage+ImageWithUIView.m in Sources */,
 				A0A77BAA17E70D4900CF91FF /* TimeController.m in Sources */,
@@ -512,6 +519,7 @@
 				A0A77BA417E70C8100CF91FF /* EXViewController.m in Sources */,
 				A0A77BA317E70C7B00CF91FF /* PLViewController.m in Sources */,
 				A0A77B9F17E70B9100CF91FF /* MenuViewController.m in Sources */,
+				6A1564B517F57A9100161C18 /* NWPhotoCellView.m in Sources */,
 				6A35860C17EC44B600E23CE4 /* XMLParser.m in Sources */,
 				A0D23BDB17E6E27D0020BB6E /* main.m in Sources */,
 				A0A222CF17E6EAE7009F0315 /* ECSlidingViewController.m in Sources */,
@@ -519,8 +527,6 @@
 				A0EDCD2717E6FD7B00819F49 /* EXEventView.m in Sources */,
 				A0EDCD2C17E6FF4600819F49 /* EXTableView.m in Sources */,
 				A0EDCD2F17E7008200819F49 /* EXEventButton.m in Sources */,
-				A0EDCD5317E7049500819F49 /* NWViewController.m in Sources */,
-				A0EDCD5617E7050C00819F49 /* NWScrollView.m in Sources */,
 				6A12DD6817F2088700382C56 /* BNEvent.m in Sources */,
 				A0A77C0617E7163C00CF91FF /* EXTableViewCell.m in Sources */,
 			);
