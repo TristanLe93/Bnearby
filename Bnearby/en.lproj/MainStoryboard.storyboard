@@ -389,7 +389,7 @@ CERldGFpbHM
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="07x-Sm-s3d" kind="push" id="GXq-Z7-C7f"/>
+                                    <segue destination="lD1-AW-CUc" kind="push" id="70S-7m-y6t"/>
                                 </connections>
                             </button>
                         </barButtonItem>
@@ -400,57 +400,69 @@ CERldGFpbHM
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zDe-uo-0cv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="392" y="-646"/>
+            <point key="canvasLocation" x="392" y="-698"/>
         </scene>
-        <!--Event Search View Controller - Add an Event-->
-        <scene sceneID="dDT-n7-RAa">
+        <!--Venue Category Select View - Venue Categories-->
+        <scene sceneID="Rru-Sz-LsP">
             <objects>
-                <tableViewController id="07x-Sm-s3d" customClass="EventSearchViewController" sceneMemberID="viewController">
-                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="75" sectionHeaderHeight="22" sectionFooterHeight="22" id="lPj-BR-gxg">
+                <tableViewController id="lD1-AW-CUc" customClass="VenueCategorySelectView" sceneMemberID="viewController">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="3Fp-jQ-0Ae">
                         <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="none" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="EventSearchCell" rowHeight="75" id="0BM-nG-BZ3">
-                                <rect key="frame" x="0.0" y="22" width="320" height="75"/>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="categoryCell" id="ZPK-Ig-EkR">
+                                <rect key="frame" x="0.0" y="22" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="0BM-nG-BZ3" id="EY7-nv-P49">
-                                    <rect key="frame" x="0.0" y="0.0" width="300" height="74"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ZPK-Ig-EkR" id="lYx-gQ-UxF">
+                                    <rect key="frame" x="0.0" y="0.0" width="300" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="101" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Event Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" adjustsLetterSpacingToFitWidth="YES" id="3eM-an-1qZ">
-                                            <rect key="frame" x="78" y="5" width="222" height="21"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <imageView userInteractionEnabled="NO" tag="100" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="P85-vd-R2k">
-                                            <rect key="frame" x="5" y="5" width="65" height="65"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        </imageView>
-                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="102" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Event Address" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumFontSize="7" adjustsLetterSpacingToFitWidth="YES" id="Ysf-Ec-wKv">
-                                            <rect key="frame" x="78" y="34" width="222" height="36"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                    </subviews>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <segue destination="GEb-zo-Gba" kind="push" id="buq-DJ-GwP"/>
+                                    <segue destination="VSF-aT-PiZ" kind="push" identifier="categoryToVenue" id="OhP-1I-qXn"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
+                        <sections/>
                         <connections>
-                            <outlet property="dataSource" destination="07x-Sm-s3d" id="2qX-sE-yH5"/>
-                            <outlet property="delegate" destination="07x-Sm-s3d" id="EaC-8T-sKO"/>
+                            <outlet property="dataSource" destination="lD1-AW-CUc" id="bTp-g3-hSV"/>
+                            <outlet property="delegate" destination="lD1-AW-CUc" id="Izw-iJ-QZt"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Add an Event" id="ckR-0D-oMr"/>
+                    <navigationItem key="navigationItem" title="Venue Categories" id="0Uo-SC-Las"/>
                 </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="oXo-dx-jPK" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="TuX-fM-5uJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="933" y="-782"/>
+            <point key="canvasLocation" x="1149" y="-698"/>
+        </scene>
+        <!--Venue Results View - Venues-->
+        <scene sceneID="7yH-nG-tpu">
+            <objects>
+                <tableViewController id="VSF-aT-PiZ" customClass="VenueResultsView" sceneMemberID="viewController">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="22o-P2-x6E">
+                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="venueCell" id="bg4-d9-cmX">
+                                <rect key="frame" x="0.0" y="22" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="bg4-d9-cmX" id="GBE-Mh-gEs">
+                                    <rect key="frame" x="0.0" y="0.0" width="300" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="VSF-aT-PiZ" id="r3i-xc-HOQ"/>
+                            <outlet property="delegate" destination="VSF-aT-PiZ" id="nff-07-DV7"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Venues" id="sp3-eY-55c"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="THO-eb-oET" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1637" y="-698"/>
         </scene>
         <!--Table View Controller - Now-->
         <scene sceneID="N9O-J3-7yl">
@@ -586,6 +598,6 @@ CERldGFpbHM
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="cCI-Pp-UuJ"/>
+        <segue reference="snG-09-aDx"/>
     </inferredMetricsTieBreakers>
 </document>

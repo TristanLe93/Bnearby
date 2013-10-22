@@ -11,6 +11,7 @@
 #import "ECSlidingViewController.h"
 #import "MenuViewController.h"
 #import "BnearbyAppDelegate.h"
+#import "VenueCategorySelectView.h"
 #import "BNEvent.h"
 
 @implementation PLViewController
