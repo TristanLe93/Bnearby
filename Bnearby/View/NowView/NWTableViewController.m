@@ -18,6 +18,7 @@
 @interface NWTableViewController ()
 @property (strong, nonatomic) UILabel *weatherLabel;
 @property (strong, nonatomic) UILabel *detailedWeatherLabel;
+@property (weak, nonatomic) UIImageView *weatherIcon;
 @property (strong, nonatomic) MKMapView *theMap;
 @property (strong, nonatomic) NWWeatherCell *weatherCell;
 @property (strong, nonatomic) NSString *weatherText;
@@ -138,8 +139,11 @@
             weather = [app.listArray objectAtIndex:0];
             self.weatherLabel = (UILabel*)[cell.contentView viewWithTag:25];
             self.detailedWeatherLabel = (UILabel*)[cell.contentView viewWithTag:26];
-            self.weatherLabel.text = [NSString stringWithFormat:@"%@", weather.currentTemperature];
-            self.detailedWeatherLabel.text = [NSString stringWithFormat:@"min: %@ max: %@", weather.minTemperature, weather.maxTemperature];
+            self.weatherIcon = (UIImageView*)[cell.contentView viewWithTag:27];
+            self.weatherLabel.text = [NSString stringWithFormat:@"%d℃ %@", (int)weather.currentTemperature, weather.description];
+            self.detailedWeatherLabel.text = [NSString stringWithFormat:@"lo %.d℃ hi %.d℃", (int)weather.minTemperature, (int)weather.maxTemperature];
+            NSString *aux = [self iconForWeather:weather.icon];
+            self.weatherIcon.image = [UIImage imageNamed:[NSString stringWithFormat:@"%@", aux]];
             self.navigationItem.title = [NSString stringWithFormat:@"%@", weather.name];
             break;}
         case 1: {
@@ -173,7 +177,7 @@
     CGFloat height = 44;
     switch (indexPath.row) {
         case 0:
-            height = 484;
+            height = 200;
             break;
         case 1:
             height = 44;
@@ -188,6 +192,24 @@
             break;
     }
     return height;
+}
+
+- (NSString*)iconForWeather: (NSString*)iconId {
+    NSString *image;
+    if ([iconId isEqualToString:@"01d"]) {
+        image = @"32 - Sunny.png";
+    } else if ([iconId isEqualToString:@"01n"]) {
+        image = @"31 - Clear Night";
+    } else if ([iconId isEqualToString:@"02d"] || [iconId isEqualToString:@"03d"] || [iconId isEqualToString:@"04d"]) {
+        image = @"26 - Cloudy.png";
+    } else if ([iconId isEqualToString:@"02n"] || [iconId isEqualToString:@"03n"] || [iconId isEqualToString:@"04n"]) {
+        image = @"27 - Cloudy Night.png";
+    } else if ([iconId isEqualToString:@"09d"] || [iconId isEqualToString:@"10d"] || [iconId isEqualToString:@"09n"] || [iconId isEqualToString:@"10n"]) {
+        image = @"Rainy.png";
+    } else if ([iconId isEqualToString:@"11d"] || [iconId isEqualToString:@"11n"]) {
+        image = @"4 - Thunderstorms.png";
+    }
+    return image;
 }
 
 - (void)refreshLocation {

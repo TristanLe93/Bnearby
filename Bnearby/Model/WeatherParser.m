@@ -33,15 +33,15 @@
 //            NSLog(@"name %@", weather.name);
         }
         if ([elementName isEqualToString:@"temperature"]) {
-            weather.currentTemperature = [attributeDict objectForKey:@"value"];
+            weather.currentTemperature = [[attributeDict objectForKey:@"value"] integerValue];
 //            NSLog(@"weather %@", weather.currentTemperature);
-            weather.maxTemperature = [attributeDict objectForKey:@"max"];
-            weather.minTemperature = [attributeDict objectForKey:@"min"];
+            weather.maxTemperature = [[attributeDict objectForKey:@"max"] integerValue];
+            weather.minTemperature = [[attributeDict objectForKey:@"min"] integerValue];
 //            NSLog(@"weather %@", weather.currentTemperature);
         }
         if ([elementName isEqualToString:@"weather"]) {
             weather.description = [attributeDict objectForKey:@"value"];
-            weather.icon = [[attributeDict objectForKey:@"icon"] integerValue];
+            weather.icon = [attributeDict objectForKey:@"icon"];
         }
     }
 }

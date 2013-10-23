@@ -12,10 +12,10 @@
 @interface Weather : NSObject
 
 @property (strong, nonatomic) NSString *name;
-@property (strong, nonatomic) NSString *currentTemperature;
-@property (strong, nonatomic) NSString *minTemperature;
-@property (strong, nonatomic) NSString *maxTemperature;
-@property (readwrite, nonatomic) NSInteger icon;
+@property (readwrite, nonatomic) NSInteger currentTemperature;
+@property (readwrite, nonatomic) NSInteger minTemperature;
+@property (readwrite, nonatomic) NSInteger maxTemperature;
+@property (strong, nonatomic) NSString *icon;
 @property (readwrite, nonatomic) NSInteger cityId;
 @property (strong, nonatomic) NSString *description;
 
