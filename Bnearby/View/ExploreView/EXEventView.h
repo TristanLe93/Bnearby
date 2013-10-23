@@ -12,10 +12,7 @@
 
 @interface EXEventView : UIView
 
-//@property (strong, nonatomic) MTEvent *myEvent;
-
-@property (weak, nonatomic) IBOutletCollection(UIImageView) NSArray *myImages;
-@property (weak, nonatomic) IBOutlet UIImageView *myImage;
+@property (weak, nonatomic) IBOutlet UIButton *myImage;
 //@property (weak, nonatomic) IBOutlet UIButton *myEventButton;
 //@property (strong, nonatomic) IBOutletCollection(UIButton) NSMutableArray *myEventButtons;
 

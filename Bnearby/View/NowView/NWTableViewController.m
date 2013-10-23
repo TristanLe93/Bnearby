@@ -141,6 +141,9 @@
             self.detailedWeatherLabel = (UILabel*)[cell.contentView viewWithTag:26];
             self.weatherIcon = (UIImageView*)[cell.contentView viewWithTag:27];
             self.weatherLabel.text = [NSString stringWithFormat:@"%d℃ %@", (int)weather.currentTemperature, weather.description];
+            self.weatherLabel.adjustsFontSizeToFitWidth = YES;
+//            self.weatherLabel.minimumFontSize = 0;
+            self.weatherLabel.numberOfLines = 1;
             self.detailedWeatherLabel.text = [NSString stringWithFormat:@"lo %.d℃ hi %.d℃", (int)weather.minTemperature, (int)weather.maxTemperature];
             NSString *aux = [self iconForWeather:weather.icon];
             self.weatherIcon.image = [UIImage imageNamed:[NSString stringWithFormat:@"%@", aux]];

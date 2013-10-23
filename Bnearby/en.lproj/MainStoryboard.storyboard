@@ -75,14 +75,20 @@
                                                     <rect key="frame" x="0.0" y="0.0" width="320" height="168"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                     <subviews>
-                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" id="BgO-mR-rQS">
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="S2i-cj-whd">
                                                             <rect key="frame" x="0.0" y="0.0" width="320" height="168"/>
-                                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                                        </imageView>
+                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                            <state key="normal">
+                                                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                            </state>
+                                                            <connections>
+                                                                <action selector="leadTileTapped:" destination="Lag-Uk-KOK" eventType="touchUpInside" id="Htp-vf-5gW"/>
+                                                            </connections>
+                                                        </button>
                                                     </subviews>
                                                     <connections>
-                                                        <outlet property="myImage" destination="BgO-mR-rQS" id="Sij-IO-d5T"/>
-                                                        <outletCollection property="myImages" destination="BgO-mR-rQS" id="hdI-SQ-8ZG"/>
+                                                        <outlet property="myImage" destination="S2i-cj-whd" id="Ou8-po-bCb"/>
                                                     </connections>
                                                 </view>
                                             </subviews>
@@ -226,7 +232,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="25" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="9Ou-2c-g9e">
-                                            <rect key="frame" x="78" y="129" width="145" height="21"/>
+                                            <rect key="frame" x="78" y="129" width="222" height="21"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -635,6 +641,6 @@ CFZlbnVlIERldGFpbHM
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="fcL-qD-sRu"/>
+        <segue reference="cCI-Pp-UuJ"/>
     </inferredMetricsTieBreakers>
 </document>

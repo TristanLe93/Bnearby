@@ -131,7 +131,7 @@ static NSString *CellIdentifier = @"CellIdentifier";
     // Configure Cell
     EXScrollView *scroll = (EXScrollView *)[cell.contentView viewWithTag:10];
     //[label setText:[NSString stringWithFormat:@"Row %i in Section %i", [indexPath row], [indexPath section]]];
-    [scroll setContentSize:(CGSizeMake(321, 168))];
+    [scroll setContentSize:(CGSizeMake(320, 168))];
     [scroll setScrollEnabled:YES];
     [scroll setPagingEnabled:YES];
     cell.backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Loading_Variation_One.png"]];
@@ -155,21 +155,21 @@ static NSString *CellIdentifier = @"CellIdentifier";
                     cell.myScrollView.myView.myImage.frame = CGRectMake(0, 0, 320, 168);
                     
                     // Create a new Image View
-                    UIImageView *newImage = [[UIImageView alloc] initWithFrame:CGRectMake(cell.myScrollView.myView.frame.size.width - 320, 0, 320, 168)];
-                    newImage.image = [UIImage imageNamed:@"Loading_Variation_One.png"];
+                    UIButton *newTile = [[UIButton alloc] initWithFrame:CGRectMake(cell.myScrollView.myView.frame.size.width - 320, 0, 320, 168)];
+                    [newTile setBackgroundImage:[UIImage imageNamed:@"Loading_Variation_One.png"] forState:UIControlStateNormal];
                     UILabel *newLabel = [[UILabel alloc] initWithFrame:CGRectMake(cell.myScrollView.myView.frame.origin.x + 20, 127, 204, 40)];
                     newLabel.text = [NSString stringWithFormat:@"%@\nMore Details Here", event.title];
                     newLabel.textColor = [UIColor whiteColor];
                     newLabel.numberOfLines = 0;
                     newLabel.adjustsFontSizeToFitWidth = YES;
                     newLabel.minimumScaleFactor = 0;
-                    [newImage addSubview:newLabel];
+                    [newTile addSubview:newLabel];
 
-                    [cell.myScrollView.myView addSubview:newImage];
+                    [cell.myScrollView.myView addSubview:newTile];
                 }
             }
             // Setup Category Tile Image
-            [cell.myScrollView.myView.myImage setImage:[UIImage imageNamed:[NSString stringWithFormat:@"Explore_Entertainment.png"]]];
+            [cell.myScrollView.myView.myImage setBackgroundImage:[UIImage imageNamed:[NSString stringWithFormat:@"Explore_Entertainment.png"]] forState:UIControlStateNormal];
             break;
         case 1:
             for (int i = 0; i < numbRows; i++) {
@@ -183,30 +183,30 @@ static NSString *CellIdentifier = @"CellIdentifier";
                     // Make sure Image view isn't distorted
                     cell.myScrollView.myView.myImage.frame = CGRectMake(0, 0, 320, 168);
                     
-                    // Create a new Image View
-                    UIImageView *newImage = [[UIImageView alloc] initWithFrame:CGRectMake(cell.myScrollView.myView.frame.size.width - 320, 0, 320, 168)];
-                    newImage.image = [UIImage imageNamed:@"Loading_Variation_One.png"];
+                    // Create a new button Tile
+                    UIButton *newTile = [[UIButton alloc] initWithFrame:CGRectMake(cell.myScrollView.myView.frame.size.width - 320, 0, 320, 168)];
+                    [newTile setBackgroundImage:[UIImage imageNamed:@"Loading_Variation_One.png"] forState:UIControlStateNormal];
                     UILabel *newLabel = [[UILabel alloc] initWithFrame:CGRectMake(cell.myScrollView.myView.frame.origin.x + 20, 127, 204, 40)];
                     newLabel.text = [NSString stringWithFormat:@"%@\nMore Details Here", event.title];
                     newLabel.textColor = [UIColor whiteColor];
                     newLabel.numberOfLines = 0;
                     newLabel.adjustsFontSizeToFitWidth = YES;
                     newLabel.minimumScaleFactor = 0;
-                    [newImage addSubview:newLabel];
+                    [newTile addSubview:newLabel];
                     
-                    [cell.myScrollView.myView addSubview:newImage];
+                    [cell.myScrollView.myView addSubview:newTile];
                 }
             }
-            [cell.myScrollView.myView.myImage setImage:[UIImage imageNamed:[NSString stringWithFormat:@"Explore_Resturants.png"]]];
+            [cell.myScrollView.myView.myImage setBackgroundImage:[UIImage imageNamed:[NSString stringWithFormat:@"Explore_Resturants.png"]] forState:UIControlStateNormal];
             break;
         case 2:
-            [cell.myScrollView.myView.myImage setImage:[UIImage imageNamed:[NSString stringWithFormat:@"Explore_FreeFun.png"]]];
+            [cell.myScrollView.myView.myImage setBackgroundImage:[UIImage imageNamed:[NSString stringWithFormat:@"Explore_FreeFun.png"]] forState:UIControlStateNormal];
             break;
         case 3:
-            [cell.myScrollView.myView.myImage setImage:[UIImage imageNamed:[NSString stringWithFormat:@"Explore_Kids.png"]]];
+            [cell.myScrollView.myView.myImage setBackgroundImage:[UIImage imageNamed:[NSString stringWithFormat:@"Explore_Kids.png"]] forState:UIControlStateNormal];
             break;
         default:
-            [cell.myScrollView.myView.myImage setImage:[UIImage imageNamed:[NSString stringWithFormat:@"Loading_Variation_One.png"]]];
+            [cell.myScrollView.myView.myImage setBackgroundImage:[UIImage imageNamed:[NSString stringWithFormat:@"Loading_Variation_One.png"]] forState:UIControlStateNormal];
             break;
     }
     return cell;
@@ -242,6 +242,34 @@ static NSString *CellIdentifier = @"CellIdentifier";
 - (IBAction)displaySearch:(id)sender {
     [self.myHeaderScroller setContentOffset:CGPointMake(0, 0) animated:YES];
     [self.tableView setContentOffset:CGPointMake(0, -64) animated:YES];
+}
+
+- (IBAction)leadTileTapped:(id)sender {
+    UIButton *button = (UIButton *)sender;
+    EXEventView *eventView = (EXEventView *)button.superview;
+    EXScrollView *eventScroller = (EXScrollView *)eventView.superview;
+    if (eventView.frame.size.width > 320) {
+        [eventScroller setContentOffset:CGPointMake(320, 0) animated:YES];
+    } else {
+        CGRect newFrame = eventView.frame;
+        CGRect newFrame2 = eventView.frame;
+        newFrame.origin.x -= 20;
+        
+        [UIView animateWithDuration:0.2
+                         animations:^{
+                             eventView.frame = newFrame;
+                         }
+                         completion:^(BOOL finished){
+                             [UIView animateWithDuration:0.2
+                                              animations:^{
+                                                  eventView.frame = newFrame2;
+                                              }
+                                              completion:^(BOOL finished){  
+//                                                  [eventView removeFromSuperview];
+                                              }];
+                         }];
+    }
+
 }
 
 - (IBAction)revealMenu:(id)sender
