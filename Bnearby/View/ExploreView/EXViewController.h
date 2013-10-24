@@ -7,12 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <CoreLocation/CoreLocation.h>
 
-#define kCLIENT_ID "M4RA3Z1F5HVI1YC43LBPADNFUDG4L4DBXSAFSZ0UKA2KNJXM"
-#define kCLIENT_SECRET "4E2QRUE3LY4EET3NR0SAKZREL5PBWUP2EFWVTSLEKVYPC5BV"
-
-@interface EXViewController : UITableViewController <CLLocationManagerDelegate> {
+@interface EXViewController : UITableViewController {
     NSFetchedResultsController *fetchedResultsController;
     NSManagedObjectContext *context;
 }

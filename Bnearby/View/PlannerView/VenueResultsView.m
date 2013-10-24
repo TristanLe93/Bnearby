@@ -34,7 +34,6 @@ static NSString *resourcePath = @"venues/explore?";
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    // Loading Animation start
     [self.spinner startAnimating];
     venues = [[NSMutableArray alloc] init];
     
@@ -44,10 +43,8 @@ static NSString *resourcePath = @"venues/explore?";
     
     NSString *currentLocation = @"Brisbane";
     
-//    NSString *fullUrl = [NSString stringWithFormat:@"%@%@ll=%@,%@&near=%@&client_id=%@&client_secret=%@", baseurl, resourcePath, currentLocation, clientID, clientSecret];
-    NSString *fullUrl = [NSString stringWithFormat:@"%@%@near=%@&categoryId=%@&client_id=%@&client_secret=%@", baseurl, resourcePath, currentLocation, self.categoryId, clientID, clientSecret];
-    
-//    NSLog(@"URL %@", [NSString stringWithFormat:@"%@%@near=%@&categoryId=%@&client_id=%@&client_secret=%@", baseurl, resourcePath, currentLocation, self.categoryId, clientID, clientSecret]);
+    NSString *fullUrl = [NSString stringWithFormat:@"%@%@near=%@&categoryId=%@&client_id=%@&client_secret=%@",
+                         baseurl, resourcePath, currentLocation, self.categoryId, clientID, clientSecret];
     
     NSURL *url = [NSURL URLWithString:fullUrl];
     NSURLRequest *request = [NSURLRequest requestWithURL:url];

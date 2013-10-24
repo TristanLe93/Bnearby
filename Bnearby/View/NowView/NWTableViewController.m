@@ -14,7 +14,6 @@
 #import "NWMapCell.h"
 #import "NWWeatherCell.h"
 #import "WeatherParser.h"
-#import "NWPlannerTableView.h"
 
 @interface NWTableViewController ()
 @property (strong, nonatomic) UILabel *weatherLabel;
@@ -26,8 +25,6 @@
 @property (strong, nonatomic) NSString *detailedWeatherText;
 @property (assign, nonatomic) BOOL refresh;
 @property (assign, nonatomic) BOOL once;
-@property (weak, nonatomic) UIScrollView *plannerScroller;
-@property (weak, nonatomic) UIView *plannerView;
 
 
 @end
@@ -154,8 +151,6 @@
             break;}
         case 1: {
             cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier1 forIndexPath:indexPath];
-            self.plannerScroller = (UIScrollView*)[cell.contentView viewWithTag:29];
-            self.plannerView = (UIView*)[cell.contentView viewWithTag:30];
             break;}
         case 2: {
             cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier2 forIndexPath:indexPath];
@@ -188,7 +183,7 @@
             height = 200;
             break;
         case 1:
-            height = 132;
+            height = 44;
             break;
         case 2:
             height = 100;

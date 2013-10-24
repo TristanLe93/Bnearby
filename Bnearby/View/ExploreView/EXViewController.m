@@ -17,10 +17,6 @@
 #import "EXEventButton.h"
 #import "BNEvent.h"
 #import "BnearbyAppDelegate.h"
-#import "EXNearByTile.h"
-
-#define baseurl "https://api.foursquare.com/v2/"
-#define resourcePath "venues/explore?"
 
 @interface EXViewController ()
 @property (weak, nonatomic) IBOutlet EXTableView *myTableView;
@@ -29,10 +25,6 @@
 @property (weak, nonatomic) IBOutlet UISearchBar *mySearchBar;
 @property (assign, nonatomic) BOOL searchVisible;
 @property (strong, nonatomic) NSMutableArray *attractionImages;
-@property (strong, nonatomic) NSArray *venues;
-@property (strong, nonatomic) CLLocationManager *locationManager;
-@property (readwrite, nonatomic) NSInteger tilePosition;
-//@property (strong, nonatomic) IBOutlet UIActivityIndicatorView *spinner;
 
 
 @end
@@ -42,7 +34,6 @@
 @synthesize menuBtn;
 @synthesize mySearchBar;
 @synthesize searchVisible;
-@synthesize venues;
 
 static NSString *CellIdentifier = @"CellIdentifier";
 
@@ -77,70 +68,11 @@ static NSString *CellIdentifier = @"CellIdentifier";
     [self.myButton addTarget:self action:@selector(revealMenu:) forControlEvents:UIControlEventTouchUpInside];
     
     self.attractionImages = [[NSMutableArray alloc] init];
-    
-    self.locationManager = [[CLLocationManager alloc]init];
-    self.locationManager.distanceFilter = kCLDistanceFilterNone;
-    self.locationManager.desiredAccuracy = kCLLocationAccuracyBestForNavigation;
-    [self.locationManager startUpdatingLocation];
-    
-    // Foursquare
-    venues = [[NSMutableArray alloc] init];
-    
-    // setup client key and secret
-    NSString *clientID=[NSString stringWithUTF8String:kCLIENT_ID];
-    NSString *clientSecret=[NSString stringWithUTF8String:kCLIENT_SECRET];
-    NSString *bURL = [NSString stringWithUTF8String:baseurl];
-    NSString *rPath = [NSString stringWithUTF8String:resourcePath];
-    
-    NSString *currentLocation = @"Brisbane";
-    
-    NSString *fullUrl = [NSString stringWithFormat:@"%@%@ll=%f,%f&near=%@&limit=5&client_id=%@&client_secret=%@", bURL, rPath, self.locationManager.location.coordinate.latitude, self.locationManager.location.coordinate.longitude, currentLocation, clientID, clientSecret];
-    
-    NSURL *url = [NSURL URLWithString:fullUrl];
-    NSURLRequest *request = [NSURLRequest requestWithURL:url];
-    
-    /*
-     * Begin venue fetch operation.
-     *
-     * Success: fetch venue information from FourSquare API and stores it in a Array.
-     * Failure: display the error message in a popup.
-     */
-    AFJSONRequestOperation *operation= [AFJSONRequestOperation JSONRequestOperationWithRequest:request
-                                                                                       success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON)
-                                        {
-                                            NSMutableArray *tempVenues = [[NSMutableArray alloc] init];
-                                            
-                                            NSArray *groups = [[JSON objectForKey:@"response"] objectForKey:@"groups"];
-                                            NSArray *items = [[groups objectAtIndex:0] objectForKey:@"items"];
-                                            
-                                            for (NSDictionary *item in items) {
-                                                [tempVenues addObject:[item objectForKey:@"venue"]];
-                                            }
-                                            
-                                            // sort the venues in alphabetical order
-                                            NSSortDescriptor *descriptor = [[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES];
-                                            NSArray *sortDescriptors = [NSArray arrayWithObject:descriptor];
-                                            
-                                            venues = [tempVenues sortedArrayUsingDescriptors:sortDescriptors];
-                                            
-                                            [self.tableView reloadData];
-                                            
-                                        } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
-                                            //Error Pop up
-                                            UIAlertView *av=[[UIAlertView alloc]initWithTitle:@"Error Retriveing Data" message:[NSString stringWithFormat:@"%@",error] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-                                            [av show];
-                                        }];
-    
-    [operation start];
-
-    [self.locationManager stopUpdatingLocation];
-    [self.myTableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:NO];
-
 }
 
 - (void) viewDidAppear:(BOOL)animated {
     [super viewDidAppear:NO];
-    [self.tableView reloadData];
+    [self.myTableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:NO];
     searchVisible = NO;
 }
 
@@ -177,8 +109,22 @@ static NSString *CellIdentifier = @"CellIdentifier";
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 5;
+    return 4;
 }
+
+//- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+//    
+//    EXTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+//    // Configure Cell
+//    [cell.myScrollView setContentSize:(CGSizeMake(640, 168))];
+//    [cell.myScrollView setScrollEnabled:YES];
+//    [cell.myScrollView setPagingEnabled:YES];
+//    
+//    cell.backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Loading_Variation_One.png"]];
+//    
+//    return cell;
+//}
+
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     EXTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
@@ -259,39 +205,25 @@ static NSString *CellIdentifier = @"CellIdentifier";
         case 3:
             [cell.myScrollView.myView.myImage setBackgroundImage:[UIImage imageNamed:[NSString stringWithFormat:@"Explore_Kids.png"]] forState:UIControlStateNormal];
             break;
-        case 4:{
-            for (NSDictionary* venue in venues) {
-                
-//                NSLog(@"test %@", [venue objectForKey:@"name"]);
-                // Prepare Scroll View for new event
-                [cell.myScrollView setContentSize:(CGSizeMake(cell.myScrollView.myView.frame.size.width + 320, 168))];
-                // Prepare Event View for new event
-                cell.myScrollView.myView.frame = CGRectMake(cell.myScrollView.myView.frame.origin.x, cell.myScrollView.myView.frame.origin.y, cell.myScrollView.myView.frame.size.width + 320, cell.myScrollView.myView.frame.size.height);
-                // Make sure Image view isn't distorted
-                cell.myScrollView.myView.myImage.frame = CGRectMake(0, 0, 320, 168);
-                
-                // Create a new button Tile
-                UIButton *newTile = [[EXNearByTile alloc] initWithFrame:CGRectMake(cell.myScrollView.myView.frame.size.width - 320, 0, 320, 168)];
-                [newTile setBackgroundImage:[UIImage imageNamed:@"Loading_Variation_One.png"] forState:UIControlStateNormal];
-                UILabel *newLabel = [[UILabel alloc] initWithFrame:CGRectMake(cell.myScrollView.myView.frame.origin.x + 20, 127, 204, 40)];
-                newLabel.text = [NSString stringWithFormat:@"%@\nMore Details Here", [venue objectForKey:@"name"]];
-                newLabel.textColor = [UIColor whiteColor];
-                newLabel.numberOfLines = 0;
-                newLabel.adjustsFontSizeToFitWidth = YES;
-                newLabel.minimumScaleFactor = 0;
-                [newTile addSubview:newLabel];
-                [newTile addTarget:self action:@selector(nearByTileTapped:) forControlEvents:UIControlEventTouchUpInside];
-                
-                [cell.myScrollView.myView addSubview:newTile];
-            }
-            [cell.myScrollView.myView.myImage setBackgroundImage:[UIImage imageNamed:[NSString stringWithFormat:@"Loading_Variation_One.png"]] forState:UIControlStateNormal];
-            break;}
         default:
             [cell.myScrollView.myView.myImage setBackgroundImage:[UIImage imageNamed:[NSString stringWithFormat:@"Loading_Variation_One.png"]] forState:UIControlStateNormal];
             break;
     }
     return cell;
 }
+
+//- (void)fetchEvents {
+//    // Listing all MemberInfo from the store
+//    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+//    NSEntityDescription *entity = [NSEntityDescription entityForName:@"MemberInfo" inManagedObjectContext: context];
+//    [fetchRequest setEntity:entity];
+//    NSArray *fetchedObjects = [context executeFetchRequest:fetchRequest
+//                                                     error:&err];
+//    for (MemberInfo *info in fetchedObjects) {
+//        NSLog(@"Name: %@  date:%@", info.name, info.startdate);
+//    }
+//}
+
 
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
     return NO;
@@ -310,12 +242,6 @@ static NSString *CellIdentifier = @"CellIdentifier";
 - (IBAction)displaySearch:(id)sender {
     [self.myHeaderScroller setContentOffset:CGPointMake(0, 0) animated:YES];
     [self.tableView setContentOffset:CGPointMake(0, -64) animated:YES];
-}
-
-- (IBAction)nearByTileTapped:(id)sender {
-    UIButton *tile = (UIButton*)sender;
-    self.tilePosition = (tile.frame.origin.x/320) - 1;
-    [self performSegueWithIdentifier:@"DetailSegue" sender:self];
 }
 
 - (IBAction)leadTileTapped:(id)sender {
@@ -351,55 +277,24 @@ static NSString *CellIdentifier = @"CellIdentifier";
     [self.slidingViewController anchorTopViewTo:ECRight];
 }
 
-//- (EXEventButton *)createEventButton: (NSString *)withImage :(BNEvent*)andEvent {
-//    EXEventButton *newEventButton = [[EXEventButton alloc] initEventButton:withImage :andEvent];
-//    [newEventButton addTarget:self action:@selector(buttonPressed:) forControlEvents:UIControlEventTouchUpInside];
-//    return newEventButton;
-//}
+- (EXEventButton *)createEventButton: (NSString *)withImage :(BNEvent*)andEvent {
+    EXEventButton *newEventButton = [[EXEventButton alloc] initEventButton:withImage :andEvent];
+    [newEventButton addTarget:self action:@selector(buttonPressed:) forControlEvents:UIControlEventTouchUpInside];
+    return newEventButton;
+}
 
-//-(void)buttonPressed:(EXEventButton *) sender {
-//    [self performSegueWithIdentifier: @"DetailSegue" sender: sender];
-//}
-
--(void)startUpdatingCurrentLocation {
-    if (!self.locationManager) {
-        self.locationManager = [[CLLocationManager alloc] init];
-        
-        self.locationManager.delegate = self;
-        self.locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters;
-        self.locationManager.distanceFilter = 2;
-    }
+-(void)buttonPressed:(EXEventButton *) sender {
+    [self performSegueWithIdentifier: @"DetailSegue" sender: sender];
     
-    [self.locationManager startUpdatingLocation];
 }
 
-//Delegate method
--(void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations {
-    [self stopUpdatingCurrentLocation];
-}
-
-- (void)stopUpdatingCurrentLocation
-{
-    [self.locationManager stopUpdatingLocation];
-}
-
-//- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(EXEventButton*)sender {
-//    // Make sure your segue name in storyboard is the same as this line
-//    if ([[segue identifier] isEqualToString:@"DetailSegue"])
-//    {
-//        // Get reference to the destination view controller
-//        DEViewController *vc = [segue destinationViewController];
-//        //vc.receivedEvent = sender.myEvent;
-//    }
-//}
-
-
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    if ([[segue identifier] isEqualToString:@"DetailSegue"]) {
-        NSDictionary *theVenue = [venues objectAtIndex:self.tilePosition];
-        
-        DEViewController *destinationView = segue.destinationViewController;
-        destinationView.theVenue = theVenue;
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(EXEventButton*)sender {
+    // Make sure your segue name in storyboard is the same as this line
+    if ([[segue identifier] isEqualToString:@"DetailSegue"])
+    {
+        // Get reference to the destination view controller
+        DEViewController *vc = [segue destinationViewController];
+        //vc.receivedEvent = sender.myEvent;
     }
 }
 

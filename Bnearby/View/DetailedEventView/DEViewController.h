@@ -10,6 +10,6 @@
 
 @interface DEViewController : UIViewController
 
-@property (weak, nonatomic) NSDictionary *theVenue;
+@property (strong, nonatomic) NSDictionary *theVenue;
 
 @end
