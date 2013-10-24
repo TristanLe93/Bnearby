@@ -132,7 +132,7 @@ static NSString *CellIdentifier = @"CellIdentifier";
 
 - (void) viewDidAppear:(BOOL)animated {
     [super viewDidAppear:NO];
-    [self.tableView reloadData];
+//    [self.tableView reloadData];
     searchVisible = NO;
 }
 
