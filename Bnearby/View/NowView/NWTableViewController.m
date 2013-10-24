@@ -183,7 +183,7 @@
             height = 200;
             break;
         case 1:
-            height = 44;
+            height = 132;
             break;
         case 2:
             height = 100;
