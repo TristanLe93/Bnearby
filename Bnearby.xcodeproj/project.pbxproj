@@ -29,6 +29,7 @@
 		6A3585F617EC16B000E23CE4 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A3585F517EC16B000E23CE4 /* CoreData.framework */; };
 		9964387B17F5A24900A1A748 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9964387A17F5A24900A1A748 /* MapKit.framework */; };
 		9964387D17F5A25300A1A748 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9964387C17F5A25300A1A748 /* CoreLocation.framework */; };
+<<<<<<< HEAD
 		9967E51D181920E0005EC59F /* Logo.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 9967E51C181920E0005EC59F /* Logo.jpg */; };
 		9967E52E181932AF005EC59F /* Icon-72.png in Resources */ = {isa = PBXBuildFile; fileRef = 9967E525181932AF005EC59F /* Icon-72.png */; };
 		9967E52F181932AF005EC59F /* Icon-72@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9967E526181932AF005EC59F /* Icon-72@2x.png */; };
@@ -40,6 +41,9 @@
 		9967E535181932AF005EC59F /* iTunesArtwork.png in Resources */ = {isa = PBXBuildFile; fileRef = 9967E52C181932AF005EC59F /* iTunesArtwork.png */; };
 		9967E536181932AF005EC59F /* iTunesArtwork@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9967E52D181932AF005EC59F /* iTunesArtwork@2x.png */; };
 		9967E538181932C2005EC59F /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9967E537181932C2005EC59F /* Images.xcassets */; };
+=======
+		A00E44081818BB68005DBD62 /* NWPlannerTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = A00E44071818BB68005DBD62 /* NWPlannerTableView.m */; };
+>>>>>>> 581198e04767b4feda818d022e625bc76e1e5688
 		A033A37B1806391A00D768DC /* NWMapCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A033A37A1806391A00D768DC /* NWMapCell.m */; };
 		A0413CBD17EA65B700EBC215 /* 021.png in Resources */ = {isa = PBXBuildFile; fileRef = A0413CB517EA65B700EBC215 /* 021.png */; };
 		A0413CBE17EA65B700EBC215 /* 049.png in Resources */ = {isa = PBXBuildFile; fileRef = A0413CB617EA65B700EBC215 /* 049.png */; };
@@ -52,6 +56,7 @@
 		A045FC5517F1969B0049D91C /* Entertainment Icons.png in Resources */ = {isa = PBXBuildFile; fileRef = A045FC5217F1969B0049D91C /* Entertainment Icons.png */; };
 		A045FC5617F1969B0049D91C /* Food Icons.png in Resources */ = {isa = PBXBuildFile; fileRef = A045FC5317F1969B0049D91C /* Food Icons.png */; };
 		A045FC5717F1969B0049D91C /* Shopping Icons.png in Resources */ = {isa = PBXBuildFile; fileRef = A045FC5417F1969B0049D91C /* Shopping Icons.png */; };
+		A0487DFB1819172900A8E593 /* EXNearByTile.m in Sources */ = {isa = PBXBuildFile; fileRef = A0487DFA1819172900A8E593 /* EXNearByTile.m */; };
 		A06BAAC317F2EEAB0053A9FD /* NWPhotoCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = A06BAAC217F2EEAB0053A9FD /* NWPhotoCellView.m */; };
 		A06BAAC617F2F3480053A9FD /* NWPhotoCellScroller.m in Sources */ = {isa = PBXBuildFile; fileRef = A06BAAC517F2F3480053A9FD /* NWPhotoCellScroller.m */; };
 		A0848C8C17F122FD006CC06D /* NWTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A0848C8B17F122FD006CC06D /* NWTableViewController.m */; };
@@ -146,6 +151,7 @@
 		6A3585F517EC16B000E23CE4 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		9964387A17F5A24900A1A748 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		9964387C17F5A25300A1A748 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+<<<<<<< HEAD
 		9967E51C181920E0005EC59F /* Logo.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = Logo.jpg; path = Images/Logo.jpg; sourceTree = "<group>"; };
 		9967E525181932AF005EC59F /* Icon-72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-72.png"; sourceTree = "<group>"; };
 		9967E526181932AF005EC59F /* Icon-72@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-72@2x.png"; sourceTree = "<group>"; };
@@ -157,6 +163,10 @@
 		9967E52C181932AF005EC59F /* iTunesArtwork.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iTunesArtwork.png; sourceTree = "<group>"; };
 		9967E52D181932AF005EC59F /* iTunesArtwork@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iTunesArtwork@2x.png"; sourceTree = "<group>"; };
 		9967E537181932C2005EC59F /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+=======
+		A00E44061818BB68005DBD62 /* NWPlannerTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NWPlannerTableView.h; path = View/NowView/NWPlannerTableView.h; sourceTree = "<group>"; };
+		A00E44071818BB68005DBD62 /* NWPlannerTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NWPlannerTableView.m; path = View/NowView/NWPlannerTableView.m; sourceTree = "<group>"; };
+>>>>>>> 581198e04767b4feda818d022e625bc76e1e5688
 		A033A3791806391A00D768DC /* NWMapCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NWMapCell.h; path = View/NowView/NWMapCell.h; sourceTree = "<group>"; };
 		A033A37A1806391A00D768DC /* NWMapCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NWMapCell.m; path = View/NowView/NWMapCell.m; sourceTree = "<group>"; };
 		A0413CB517EA65B700EBC215 /* 021.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = 021.png; path = View/ExploreView/RatingHeader/Images/021.png; sourceTree = "<group>"; };
@@ -170,6 +180,8 @@
 		A045FC5217F1969B0049D91C /* Entertainment Icons.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Entertainment Icons.png"; sourceTree = "<group>"; };
 		A045FC5317F1969B0049D91C /* Food Icons.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Food Icons.png"; sourceTree = "<group>"; };
 		A045FC5417F1969B0049D91C /* Shopping Icons.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Shopping Icons.png"; sourceTree = "<group>"; };
+		A0487DF91819172900A8E593 /* EXNearByTile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EXNearByTile.h; path = View/NowView/EXNearByTile.h; sourceTree = "<group>"; };
+		A0487DFA1819172900A8E593 /* EXNearByTile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EXNearByTile.m; path = View/NowView/EXNearByTile.m; sourceTree = "<group>"; };
 		A06BAAC117F2EEAB0053A9FD /* NWPhotoCellView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NWPhotoCellView.h; path = View/NowView/NWPhotoCellView.h; sourceTree = "<group>"; };
 		A06BAAC217F2EEAB0053A9FD /* NWPhotoCellView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NWPhotoCellView.m; path = View/NowView/NWPhotoCellView.m; sourceTree = "<group>"; };
 		A06BAAC417F2F3480053A9FD /* NWPhotoCellScroller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NWPhotoCellScroller.h; path = View/NowView/NWPhotoCellScroller.h; sourceTree = "<group>"; };
@@ -375,6 +387,8 @@
 				A0EDCD2617E6FD7B00819F49 /* EXEventView.m */,
 				A0EDCD2D17E7008100819F49 /* EXEventButton.h */,
 				A0EDCD2E17E7008100819F49 /* EXEventButton.m */,
+				A0487DF91819172900A8E593 /* EXNearByTile.h */,
+				A0487DFA1819172900A8E593 /* EXNearByTile.m */,
 				A0EDCD3017E701ED00819F49 /* RatingController */,
 				A0EDCD0D17E6F7D900819F49 /* RatingHeader */,
 			);
@@ -573,6 +587,8 @@
 				A0B2697C1809127000EACCBA /* NWWeatherCell.m */,
 				A0ACF047180CFF24004956C2 /* NWMapViewController.h */,
 				A0ACF048180CFF24004956C2 /* NWMapViewController.m */,
+				A00E44061818BB68005DBD62 /* NWPlannerTableView.h */,
+				A00E44071818BB68005DBD62 /* NWPlannerTableView.m */,
 			);
 			name = NowView;
 			sourceTree = "<group>";
@@ -707,6 +723,7 @@
 				A0A77BA717E70D2400CF91FF /* HDTopView.m in Sources */,
 				6A1E3CD1180D65C10082D70C /* Bnearby.xcdatamodeld in Sources */,
 				A033A37B1806391A00D768DC /* NWMapCell.m in Sources */,
+				A00E44081818BB68005DBD62 /* NWPlannerTableView.m in Sources */,
 				6A1E3D37180D7AAD0082D70C /* UIImageView+AFNetworking.m in Sources */,
 				A0A77BA617E70D1500CF91FF /* HDScrollView.m in Sources */,
 				A0BB6D62180A39380037BD5F /* WeatherParser.m in Sources */,
@@ -728,6 +745,7 @@
 				6A1E3D32180D7AAD0082D70C /* AFJSONRequestOperation.m in Sources */,
 				A0EDCD2C17E6FF4600819F49 /* EXTableView.m in Sources */,
 				A0EDCD2F17E7008200819F49 /* EXEventButton.m in Sources */,
+				A0487DFB1819172900A8E593 /* EXNearByTile.m in Sources */,
 				A0848C8C17F122FD006CC06D /* NWTableViewController.m in Sources */,
 				A0A77C0617E7163C00CF91FF /* EXTableViewCell.m in Sources */,
 				6A1E3D34180D7AAD0082D70C /* AFPropertyListRequestOperation.m in Sources */,
