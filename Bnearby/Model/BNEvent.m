@@ -25,5 +25,6 @@
 @dynamic summary;
 @dynamic title;
 @dynamic type;
+@dynamic tileBanner;
 
 @end

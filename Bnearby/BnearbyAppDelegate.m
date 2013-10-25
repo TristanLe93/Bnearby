@@ -29,30 +29,6 @@
     }
     
     [self parseWeather];
-//    self.locationManager = [[CLLocationManager alloc]init];
-//    self.locationManager.distanceFilter = kCLDistanceFilterNone;
-//    self.locationManager.desiredAccuracy = kCLLocationAccuracyBestForNavigation;
-//    [self.locationManager startUpdatingLocation];
-//    
-//    NSString * urlStart = @"http://api.openweathermap.org/data/2.5/weather?lat=";
-//    NSString * latString = [[NSString alloc] initWithFormat:@"%g", self.locationManager.location.coordinate.latitude];
-//    NSString * urlMiddle = @"&lon=";
-//    NSString * longString = [[NSString alloc] initWithFormat:@"%g", self.locationManager.location.coordinate.longitude];
-//    NSString * urlEnd = @"&mode=xml&units=metric";
-//    NSString * address = [NSString stringWithFormat:@"%@%@%@%@%@", urlStart, latString, urlMiddle, longString, urlEnd];
-//
-//    
-//    NSURL *url = [[NSURL alloc] initWithString:[NSString stringWithFormat:@"%@", address]];
-//    NSData *weatherData = [[NSData alloc] initWithContentsOfURL:url];
-//    NSXMLParser *xmlWeatherParser = [[NSXMLParser alloc] initWithData:weatherData];
-//    WeatherParser *theWeatherParser = [[WeatherParser alloc] initWeatherParser];
-//    [xmlWeatherParser setDelegate:theWeatherParser];
-//    BOOL worked = [xmlWeatherParser parse];
-//    if (worked) {
-//        NSLog(@"Success %i", [listArray count]);
-//    } else {
-//        NSLog(@"Error");
-//    }
     return YES;
 }
 

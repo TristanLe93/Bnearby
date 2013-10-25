@@ -216,7 +216,7 @@ static NSString *CellIdentifier = @"CellIdentifier";
                     
                     // Create a new Image View
                     UIButton *newTile = [[UIButton alloc] initWithFrame:CGRectMake(cell.myScrollView.myView.frame.size.width - 320, 0, 320, 168)];
-                    [newTile setBackgroundImage:[UIImage imageNamed:@"Loading_Variation_One.png"] forState:UIControlStateNormal];
+                    [newTile setBackgroundImage:[UIImage imageNamed:[NSString stringWithFormat:@"%@", event.tileBanner]] forState:UIControlStateNormal];
                     UILabel *newLabel = [[UILabel alloc] initWithFrame:CGRectMake(cell.myScrollView.myView.frame.origin.x + 20, 127, 204, 40)];
                     newLabel.text = [NSString stringWithFormat:@"%@\nMore Details Here", event.title];
                     newLabel.textColor = [UIColor whiteColor];
@@ -245,7 +245,7 @@ static NSString *CellIdentifier = @"CellIdentifier";
                     
                     // Create a new button Tile
                     UIButton *newTile = [[UIButton alloc] initWithFrame:CGRectMake(cell.myScrollView.myView.frame.size.width - 320, 0, 320, 168)];
-                    [newTile setBackgroundImage:[UIImage imageNamed:@"Loading_Variation_One.png"] forState:UIControlStateNormal];
+                    [newTile setBackgroundImage:[UIImage imageNamed:[NSString stringWithFormat:@"%@", event.tileBanner]] forState:UIControlStateNormal];
                     UILabel *newLabel = [[UILabel alloc] initWithFrame:CGRectMake(cell.myScrollView.myView.frame.origin.x + 20, 127, 204, 40)];
                     newLabel.text = [NSString stringWithFormat:@"%@\nMore Details Here", event.title];
                     newLabel.textColor = [UIColor whiteColor];
@@ -253,7 +253,7 @@ static NSString *CellIdentifier = @"CellIdentifier";
                     newLabel.adjustsFontSizeToFitWidth = YES;
                     newLabel.minimumScaleFactor = 0;
                     [newTile addSubview:newLabel];
-                    [newTile addTarget:self action:@selector(nearByTileTapped:) forControlEvents:UIControlEventTouchUpInside];
+//                    [newTile addTarget:self action:@selector(nearByTileTapped:) forControlEvents:UIControlEventTouchUpInside];
                     
                     [cell.myScrollView.myView addSubview:newTile];
                 }
@@ -289,7 +289,7 @@ static NSString *CellIdentifier = @"CellIdentifier";
                 
                 [cell.myScrollView.myView addSubview:newTile];
             }
-            [cell.myScrollView.myView.myImage setBackgroundImage:[UIImage imageNamed:[NSString stringWithFormat:@"Loading_Variation_One.png"]] forState:UIControlStateNormal];
+            [cell.myScrollView.myView.myImage setBackgroundImage:[UIImage imageNamed:[NSString stringWithFormat:@"Explore_Nearby.png"]] forState:UIControlStateNormal];
             break;}
         default:
             [cell.myScrollView.myView.myImage setBackgroundImage:[UIImage imageNamed:[NSString stringWithFormat:@"Loading_Variation_One.png"]] forState:UIControlStateNormal];

@@ -26,5 +26,6 @@
 @property (nonatomic, retain) NSString * summary;
 @property (nonatomic, retain) NSString * title;
 @property (nonatomic, retain) NSString * type;
+@property (nonatomic, retain) NSString * tileBanner;
 
 @end
