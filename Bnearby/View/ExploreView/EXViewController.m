@@ -34,6 +34,7 @@
 @property (strong, nonatomic) NSMutableArray *row2;
 @property (strong, nonatomic) NSMutableArray *row3;
 @property (strong, nonatomic) NSMutableArray *row4;
+@property (strong, nonatomic) NSMutableArray *row5;
 
 
 
@@ -178,22 +179,8 @@ static NSString *CellIdentifier = @"CellIdentifier";
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 6;
+    return 7;
 }
-
-//- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-//    
-//    EXTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-//    // Configure Cell
-//    [cell.myScrollView setContentSize:(CGSizeMake(640, 168))];
-//    [cell.myScrollView setScrollEnabled:YES];
-//    [cell.myScrollView setPagingEnabled:YES];
-//    
-//    cell.backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Loading_Variation_One.png"]];
-//    
-//    return cell;
-//}
-
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     EXTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
@@ -204,11 +191,6 @@ static NSString *CellIdentifier = @"CellIdentifier";
             if ([oldTile isKindOfClass:[UIButton class]]) {
                 if (oldTile.frame.origin.x != 0) {
                     [oldTile removeFromSuperview];
-                    
-//                    self.row0 = nil;
-//                    self.row1 = nil;
-//                    self.row2 = nil;
-//                    self.row3 = nil;
                 }
                 cell.myScrollView.myView.frame = CGRectMake(0, 0, 320, 168);
             }
@@ -216,7 +198,6 @@ static NSString *CellIdentifier = @"CellIdentifier";
     }
     // Configure Cell
     EXScrollView *scroll = (EXScrollView *)[cell.contentView viewWithTag:10];
-    //[label setText:[NSString stringWithFormat:@"Row %i in Section %i", [indexPath row], [indexPath section]]];
     [scroll setContentSize:(CGSizeMake(320, 168))];
     [scroll setScrollEnabled:YES];
     [scroll setPagingEnabled:YES];
@@ -336,9 +317,12 @@ static NSString *CellIdentifier = @"CellIdentifier";
             [cell.myScrollView.myView.myImage setBackgroundImage:[UIImage imageNamed:[NSString stringWithFormat:@"Explore_FreeFun.png"]] forState:UIControlStateNormal];
             break;
         case 4:
+            [cell.myScrollView.myView.myImage setBackgroundImage:[UIImage imageNamed:[NSString stringWithFormat:@"Explore_Attractions.png"]] forState:UIControlStateNormal];
+            break;
+        case 5:
             [cell.myScrollView.myView.myImage setBackgroundImage:[UIImage imageNamed:[NSString stringWithFormat:@"Explore_Kids.png"]] forState:UIControlStateNormal];
             break;
-        case 5:{
+        case 6:{
             for (NSDictionary* venue in venues) {
                 // Prepare Scroll View for new event
                 [cell.myScrollView setContentSize:(CGSizeMake(cell.myScrollView.myView.frame.size.width + 320, 168))];
