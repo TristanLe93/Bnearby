@@ -116,7 +116,7 @@ static NSString *CellIdentifier = @"CellIdentifier";
                                             
                                             venues = [tempVenues sortedArrayUsingDescriptors:sortDescriptors];
                                             
-                                            [self.tableView reloadData];
+//                                            [self.tableView reloadData];
                                             
                                         } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
                                             //Error Pop up
@@ -130,11 +130,15 @@ static NSString *CellIdentifier = @"CellIdentifier";
 
 }
 
-- (void) viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:NO];
-//    [self.tableView reloadData];
+- (void) viewWillAppear:(BOOL)animated {
     searchVisible = NO;
 }
+
+//- (void) viewDidAppear:(BOOL)animated {
+//    [super viewDidAppear:NO];
+////    [self.tableView reloadData];
+//    searchVisible = NO;
+//}
 
 - (void)didReceiveMemoryWarning
 {
@@ -188,6 +192,18 @@ static NSString *CellIdentifier = @"CellIdentifier";
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     EXTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    
+    // Avoid custom content stacking
+    if (cell != Nil) {
+        for (UIView *oldTile in cell.myScrollView.myView.subviews){
+            if ([oldTile isKindOfClass:[UIButton class]]) {
+                if (oldTile.frame.origin.x != 0) {
+                    [oldTile removeFromSuperview];
+                }
+                cell.myScrollView.myView.frame = CGRectMake(0, 0, 320, 168);
+            }
+        }
+    }
     // Configure Cell
     EXScrollView *scroll = (EXScrollView *)[cell.contentView viewWithTag:10];
     //[label setText:[NSString stringWithFormat:@"Row %i in Section %i", [indexPath row], [indexPath section]]];
@@ -402,7 +418,7 @@ static NSString *CellIdentifier = @"CellIdentifier";
     
 }
 
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(EXEventButton*)sender {
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Make sure your segue name in storyboard is the same as this line
     if ([[segue identifier] isEqualToString:@"DetailSegue"])
     {
