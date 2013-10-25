@@ -28,6 +28,13 @@
 @property (strong, nonatomic) CLLocationManager *locationManager;
 @property (strong, nonatomic) NSArray *venues;
 @property (readwrite, nonatomic) NSInteger tilePosition;
+@property (assign, nonatomic) BOOL normalTile;
+@property (strong, nonatomic) NSMutableArray *row0;
+@property (strong, nonatomic) NSMutableArray *row1;
+@property (strong, nonatomic) NSMutableArray *row2;
+@property (strong, nonatomic) NSMutableArray *row3;
+@property (strong, nonatomic) NSMutableArray *row4;
+
 
 
 @end
@@ -83,8 +90,6 @@ static NSString *CellIdentifier = @"CellIdentifier";
     NSString *rPath = [NSString stringWithUTF8String:resourcePath];
     
     NSString *currentLocation = @"Brisbane";
-    
-    NSLog(@"lat %f", self.locationManager.location.coordinate.latitude);
     
     NSString *fullUrl = [NSString stringWithFormat:@"%@%@ll=%f,%f&near=%@&limit=5&client_id=%@&client_secret=%@",
                          bURL, rPath,self.locationManager.location.coordinate.latitude, self.locationManager.location.coordinate.longitude, currentLocation, clientID, clientSecret];
@@ -173,7 +178,7 @@ static NSString *CellIdentifier = @"CellIdentifier";
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 5;
+    return 6;
 }
 
 //- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -199,6 +204,11 @@ static NSString *CellIdentifier = @"CellIdentifier";
             if ([oldTile isKindOfClass:[UIButton class]]) {
                 if (oldTile.frame.origin.x != 0) {
                     [oldTile removeFromSuperview];
+                    
+//                    self.row0 = nil;
+//                    self.row1 = nil;
+//                    self.row2 = nil;
+//                    self.row3 = nil;
                 }
                 cell.myScrollView.myView.frame = CGRectMake(0, 0, 320, 168);
             }
@@ -240,7 +250,14 @@ static NSString *CellIdentifier = @"CellIdentifier";
                     newLabel.adjustsFontSizeToFitWidth = YES;
                     newLabel.minimumScaleFactor = 0;
                     [newTile addSubview:newLabel];
-
+                    
+                    [newTile addTarget:self action:@selector(tileTapped:) forControlEvents:UIControlEventTouchUpInside];
+                    if (self.row0 == nil) {
+                        self.row0 = [[NSMutableArray alloc] init];
+                    }
+                    
+                    newTile.tag = indexPath.row;
+                    [self.row0 addObject:event];
                     [cell.myScrollView.myView addSubview:newTile];
                 }
             }
@@ -269,20 +286,59 @@ static NSString *CellIdentifier = @"CellIdentifier";
                     newLabel.adjustsFontSizeToFitWidth = YES;
                     newLabel.minimumScaleFactor = 0;
                     [newTile addSubview:newLabel];
-//                    [newTile addTarget:self action:@selector(nearByTileTapped:) forControlEvents:UIControlEventTouchUpInside];
-                    
+                    [newTile addTarget:self action:@selector(tileTapped:) forControlEvents:UIControlEventTouchUpInside];
+                    if (self.row1 == nil) {
+                        self.row1 = [[NSMutableArray alloc] init];
+                    }
+
+                    newTile.tag = indexPath.row;
+                    [self.row1 addObject:event];
                     [cell.myScrollView.myView addSubview:newTile];
                 }
             }
             [cell.myScrollView.myView.myImage setBackgroundImage:[UIImage imageNamed:[NSString stringWithFormat:@"Explore_Resturants.png"]] forState:UIControlStateNormal];
             break;
         case 2:
-            [cell.myScrollView.myView.myImage setBackgroundImage:[UIImage imageNamed:[NSString stringWithFormat:@"Explore_FreeFun.png"]] forState:UIControlStateNormal];
+            for (int i = 0; i < numbRows; i++) {
+                NSIndexPath *indexPath2 = [NSIndexPath indexPathForRow:i inSection:0];
+                BNEvent *event = [fetchedResultsController objectAtIndexPath:indexPath2];
+                if ([event.type isEqualToString:@"Hotel"]) {
+                    // Prepare Scroll View for new event
+                    [cell.myScrollView setContentSize:(CGSizeMake(cell.myScrollView.myView.frame.size.width + 320, 168))];
+                    // Prepare Event View for new event
+                    cell.myScrollView.myView.frame = CGRectMake(cell.myScrollView.myView.frame.origin.x, cell.myScrollView.myView.frame.origin.y, cell.myScrollView.myView.frame.size.width + 320, cell.myScrollView.myView.frame.size.height);
+                    // Make sure Image view isn't distorted
+                    cell.myScrollView.myView.myImage.frame = CGRectMake(0, 0, 320, 168);
+                    
+                    // Create a new button Tile
+                    UIButton *newTile = [[UIButton alloc] initWithFrame:CGRectMake(cell.myScrollView.myView.frame.size.width - 320, 0, 320, 168)];
+                    [newTile setBackgroundImage:[UIImage imageNamed:[NSString stringWithFormat:@"%@", event.tileBanner]] forState:UIControlStateNormal];
+                    UILabel *newLabel = [[UILabel alloc] initWithFrame:CGRectMake(cell.myScrollView.myView.frame.origin.x + 20, 127, 204, 40)];
+                    newLabel.text = [NSString stringWithFormat:@"%@\nMore Details Here", event.title];
+                    newLabel.textColor = [UIColor whiteColor];
+                    newLabel.numberOfLines = 0;
+                    newLabel.adjustsFontSizeToFitWidth = YES;
+                    newLabel.minimumScaleFactor = 0;
+                    [newTile addSubview:newLabel];
+                    [newTile addTarget:self action:@selector(tileTapped:) forControlEvents:UIControlEventTouchUpInside];
+                    if (self.row2 == nil) {
+                        self.row2 = [[NSMutableArray alloc] init];
+                    }
+                    
+                    newTile.tag = indexPath.row;
+                    [self.row2 addObject:event];
+                    [cell.myScrollView.myView addSubview:newTile];
+                }
+            }
+            [cell.myScrollView.myView.myImage setBackgroundImage:[UIImage imageNamed:[NSString stringWithFormat:@"Explore_Accomodation.png"]] forState:UIControlStateNormal];
             break;
         case 3:
+            [cell.myScrollView.myView.myImage setBackgroundImage:[UIImage imageNamed:[NSString stringWithFormat:@"Explore_FreeFun.png"]] forState:UIControlStateNormal];
+            break;
+        case 4:
             [cell.myScrollView.myView.myImage setBackgroundImage:[UIImage imageNamed:[NSString stringWithFormat:@"Explore_Kids.png"]] forState:UIControlStateNormal];
             break;
-        case 4:{
+        case 5:{
             for (NSDictionary* venue in venues) {
                 // Prepare Scroll View for new event
                 [cell.myScrollView setContentSize:(CGSizeMake(cell.myScrollView.myView.frame.size.width + 320, 168))];
@@ -313,19 +369,6 @@ static NSString *CellIdentifier = @"CellIdentifier";
     }
     return cell;
 }
-
-//- (void)fetchEvents {
-//    // Listing all MemberInfo from the store
-//    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-//    NSEntityDescription *entity = [NSEntityDescription entityForName:@"MemberInfo" inManagedObjectContext: context];
-//    [fetchRequest setEntity:entity];
-//    NSArray *fetchedObjects = [context executeFetchRequest:fetchRequest
-//                                                     error:&err];
-//    for (MemberInfo *info in fetchedObjects) {
-//        NSLog(@"Name: %@  date:%@", info.name, info.startdate);
-//    }
-//}
-
 
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
     return NO;
@@ -369,6 +412,7 @@ static NSString *CellIdentifier = @"CellIdentifier";
 }
 
 - (IBAction)nearByTileTapped:(id)sender {
+    self.normalTile = NO;
     UIButton *tile = (UIButton*)sender;
     self.tilePosition = (tile.frame.origin.x/320)-1;
     [self performSegueWithIdentifier:@"DetailSegue" sender:sender];
@@ -394,24 +438,25 @@ static NSString *CellIdentifier = @"CellIdentifier";
                                               animations:^{
                                                   eventView.frame = newFrame2;
                                               }
-                                              completion:^(BOOL finished){  
-//                                                  [eventView removeFromSuperview];
+                                              completion:^(BOOL finished){
                                               }];
                          }];
     }
 
 }
 
+- (IBAction)tileTapped:(id)sender {
+    self.normalTile = YES;
+    UIButton *tile = (UIButton*)sender;
+    self.tilePosition = (tile.frame.origin.x/320)-1;
+
+    [self performSegueWithIdentifier:@"DetailSegue" sender:sender];
+}
+
 - (IBAction)revealMenu:(id)sender
 {
     [self.slidingViewController anchorTopViewTo:ECRight];
 }
-
-//- (EXEventButton *)createEventButton: (NSString *)withImage :(BNEvent*)andEvent {
-//    EXEventButton *newEventButton = [[EXEventButton alloc] initEventButton:withImage :andEvent];
-//    [newEventButton addTarget:self action:@selector(buttonPressed:) forControlEvents:UIControlEventTouchUpInside];
-//    return newEventButton;
-//}
 
 -(void)buttonPressed:(EXEventButton *) sender {
     [self performSegueWithIdentifier: @"DetailSegue" sender: sender];
@@ -420,12 +465,37 @@ static NSString *CellIdentifier = @"CellIdentifier";
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Make sure your segue name in storyboard is the same as this line
-    if ([[segue identifier] isEqualToString:@"DetailSegue"])
-    {
-        NSDictionary *theVenue = [venues objectAtIndex:self.tilePosition];
-        
-        DEViewController *destinationView = segue.destinationViewController;
-        destinationView.theVenue = theVenue;
+    if ([[segue identifier] isEqualToString:@"DetailSegue"]) {
+        if (self.normalTile) {
+            UIButton *tile = (UIButton*)sender;
+            NSDictionary *theVenue;
+            switch (tile.tag) {
+                case 0:{
+                    theVenue = [self.row0 objectAtIndex:self.tilePosition];
+                    break;}
+                case 1:{
+                    theVenue = [self.row1 objectAtIndex:self.tilePosition];
+                    break;}
+                case 2:{
+                    theVenue = [self.row2 objectAtIndex:self.tilePosition];
+                    break;}
+                case 3:{
+                    theVenue = [self.row3 objectAtIndex:self.tilePosition];
+                    break;}
+                default:
+                    theVenue = [self.row0 objectAtIndex:self.tilePosition];
+                    break;
+            }
+    
+            DEViewController *destinationView = segue.destinationViewController;
+            destinationView.theVenue = theVenue;
+        }
+        else {
+            NSDictionary *theVenue = [venues objectAtIndex:self.tilePosition];
+            
+            DEViewController *destinationView = segue.destinationViewController;
+            destinationView.theVenue = theVenue;
+        }
     }
 }
 

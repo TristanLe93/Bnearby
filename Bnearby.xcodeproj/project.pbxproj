@@ -40,6 +40,7 @@
 		99AF6C9D181942120080D881 /* iTunesArtwork@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 99AF6C94181942120080D881 /* iTunesArtwork@2x.png */; };
 		99AF6C9F1819421A0080D881 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 99AF6C9E1819421A0080D881 /* Images.xcassets */; };
 		99AF6CA1181942820080D881 /* Logo.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 99AF6CA0181942820080D881 /* Logo.jpg */; };
+		A011BE11181A59000032F8CD /* Explore_Accomodation.png in Resources */ = {isa = PBXBuildFile; fileRef = A011BE10181A59000032F8CD /* Explore_Accomodation.png */; };
 		A033A37B1806391A00D768DC /* NWMapCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A033A37A1806391A00D768DC /* NWMapCell.m */; };
 		A0413CBD17EA65B700EBC215 /* 021.png in Resources */ = {isa = PBXBuildFile; fileRef = A0413CB517EA65B700EBC215 /* 021.png */; };
 		A0413CBE17EA65B700EBC215 /* 049.png in Resources */ = {isa = PBXBuildFile; fileRef = A0413CB617EA65B700EBC215 /* 049.png */; };
@@ -175,6 +176,7 @@
 		99AF6C94181942120080D881 /* iTunesArtwork@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iTunesArtwork@2x.png"; sourceTree = "<group>"; };
 		99AF6C9E1819421A0080D881 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		99AF6CA0181942820080D881 /* Logo.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = Logo.jpg; path = Images/Logo.jpg; sourceTree = "<group>"; };
+		A011BE10181A59000032F8CD /* Explore_Accomodation.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Explore_Accomodation.png; path = Images/Explore_Accomodation.png; sourceTree = "<group>"; };
 		A033A3791806391A00D768DC /* NWMapCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NWMapCell.h; path = View/NowView/NWMapCell.h; sourceTree = "<group>"; };
 		A033A37A1806391A00D768DC /* NWMapCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NWMapCell.m; path = View/NowView/NWMapCell.m; sourceTree = "<group>"; };
 		A0413CB517EA65B700EBC215 /* 021.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = 021.png; path = View/ExploreView/RatingHeader/Images/021.png; sourceTree = "<group>"; };
@@ -420,6 +422,7 @@
 		A0A77BAE17E70E6200CF91FF /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				A011BE10181A59000032F8CD /* Explore_Accomodation.png */,
 				A0A7AB82181A001400C146BF /* Explore_Attractions.png */,
 				A0A7AB83181A001400C146BF /* Explore_Data_Customs_House_Restaurant.png */,
 				A0A7AB84181A001400C146BF /* Explore_Data_Emporium_Hotel.png */,
@@ -689,6 +692,7 @@
 				A0A7AB96181A001400C146BF /* Explore_Data_Emporium_Hotel.png in Resources */,
 				A0F6B1041817889500936156 /* 31 - Clear Night.png in Resources */,
 				99AF6C96181942120080D881 /* Icon-72@2x.png in Resources */,
+				A011BE11181A59000032F8CD /* Explore_Accomodation.png in Resources */,
 				A0A7AB97181A001400C146BF /* Explore_Data_Gallery_of_Modern_Art.png in Resources */,
 				A0A7ABA0181A001400C146BF /* Explore_Data_Sono_Japanese_Restaurant.png in Resources */,
 				A0F6B1021817889500936156 /* 26 - Cloudy.png in Resources */,
