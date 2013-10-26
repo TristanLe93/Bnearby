@@ -26,5 +26,6 @@
 @dynamic title;
 @dynamic type;
 @dynamic tileBanner;
+@dynamic duration;
 
 @end
