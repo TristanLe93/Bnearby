@@ -41,6 +41,16 @@
 		99AF6C9F1819421A0080D881 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 99AF6C9E1819421A0080D881 /* Images.xcassets */; };
 		99AF6CA1181942820080D881 /* Logo.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 99AF6CA0181942820080D881 /* Logo.jpg */; };
 		A011BE11181A59000032F8CD /* Explore_Accomodation.png in Resources */ = {isa = PBXBuildFile; fileRef = A011BE10181A59000032F8CD /* Explore_Accomodation.png */; };
+		A011BE24181A60670032F8CD /* Distance_Filter_Unused.png in Resources */ = {isa = PBXBuildFile; fileRef = A011BE22181A60670032F8CD /* Distance_Filter_Unused.png */; };
+		A011BE25181A60670032F8CD /* Distance_Filter_Used.png in Resources */ = {isa = PBXBuildFile; fileRef = A011BE23181A60670032F8CD /* Distance_Filter_Used.png */; };
+		A02A30A3181B3B01000D688B /* Cost_Filter_Unused.png in Resources */ = {isa = PBXBuildFile; fileRef = A02A309B181B3B01000D688B /* Cost_Filter_Unused.png */; };
+		A02A30A4181B3B01000D688B /* Cost_Filter_Used.png in Resources */ = {isa = PBXBuildFile; fileRef = A02A309C181B3B01000D688B /* Cost_Filter_Used.png */; };
+		A02A30A5181B3B01000D688B /* Distance_Filter_Unused.png in Resources */ = {isa = PBXBuildFile; fileRef = A02A309D181B3B01000D688B /* Distance_Filter_Unused.png */; };
+		A02A30A6181B3B01000D688B /* Distance_Filter_Used.png in Resources */ = {isa = PBXBuildFile; fileRef = A02A309E181B3B01000D688B /* Distance_Filter_Used.png */; };
+		A02A30A7181B3B01000D688B /* Fun_Filter_Unused.png in Resources */ = {isa = PBXBuildFile; fileRef = A02A309F181B3B01000D688B /* Fun_Filter_Unused.png */; };
+		A02A30A8181B3B01000D688B /* Fun_Filter_Used.png in Resources */ = {isa = PBXBuildFile; fileRef = A02A30A0181B3B01000D688B /* Fun_Filter_Used.png */; };
+		A02A30A9181B3B01000D688B /* Time_Filter_Unused.png in Resources */ = {isa = PBXBuildFile; fileRef = A02A30A1181B3B01000D688B /* Time_Filter_Unused.png */; };
+		A02A30AA181B3B01000D688B /* Time_Filter_Used.png in Resources */ = {isa = PBXBuildFile; fileRef = A02A30A2181B3B01000D688B /* Time_Filter_Used.png */; };
 		A033A37B1806391A00D768DC /* NWMapCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A033A37A1806391A00D768DC /* NWMapCell.m */; };
 		A0413CBD17EA65B700EBC215 /* 021.png in Resources */ = {isa = PBXBuildFile; fileRef = A0413CB517EA65B700EBC215 /* 021.png */; };
 		A0413CBE17EA65B700EBC215 /* 049.png in Resources */ = {isa = PBXBuildFile; fileRef = A0413CB617EA65B700EBC215 /* 049.png */; };
@@ -177,6 +187,16 @@
 		99AF6C9E1819421A0080D881 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		99AF6CA0181942820080D881 /* Logo.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = Logo.jpg; path = Images/Logo.jpg; sourceTree = "<group>"; };
 		A011BE10181A59000032F8CD /* Explore_Accomodation.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Explore_Accomodation.png; path = Images/Explore_Accomodation.png; sourceTree = "<group>"; };
+		A011BE22181A60670032F8CD /* Distance_Filter_Unused.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Distance_Filter_Unused.png; path = Images/Distance_Filter_Unused.png; sourceTree = "<group>"; };
+		A011BE23181A60670032F8CD /* Distance_Filter_Used.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Distance_Filter_Used.png; path = Images/Distance_Filter_Used.png; sourceTree = "<group>"; };
+		A02A309B181B3B01000D688B /* Cost_Filter_Unused.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Cost_Filter_Unused.png; path = Images/Cost_Filter_Unused.png; sourceTree = "<group>"; };
+		A02A309C181B3B01000D688B /* Cost_Filter_Used.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Cost_Filter_Used.png; path = Images/Cost_Filter_Used.png; sourceTree = "<group>"; };
+		A02A309D181B3B01000D688B /* Distance_Filter_Unused.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Distance_Filter_Unused.png; path = Images/Distance_Filter_Unused.png; sourceTree = "<group>"; };
+		A02A309E181B3B01000D688B /* Distance_Filter_Used.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Distance_Filter_Used.png; path = Images/Distance_Filter_Used.png; sourceTree = "<group>"; };
+		A02A309F181B3B01000D688B /* Fun_Filter_Unused.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Fun_Filter_Unused.png; path = Images/Fun_Filter_Unused.png; sourceTree = "<group>"; };
+		A02A30A0181B3B01000D688B /* Fun_Filter_Used.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Fun_Filter_Used.png; path = Images/Fun_Filter_Used.png; sourceTree = "<group>"; };
+		A02A30A1181B3B01000D688B /* Time_Filter_Unused.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Time_Filter_Unused.png; path = Images/Time_Filter_Unused.png; sourceTree = "<group>"; };
+		A02A30A2181B3B01000D688B /* Time_Filter_Used.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Time_Filter_Used.png; path = Images/Time_Filter_Used.png; sourceTree = "<group>"; };
 		A033A3791806391A00D768DC /* NWMapCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NWMapCell.h; path = View/NowView/NWMapCell.h; sourceTree = "<group>"; };
 		A033A37A1806391A00D768DC /* NWMapCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NWMapCell.m; path = View/NowView/NWMapCell.m; sourceTree = "<group>"; };
 		A0413CB517EA65B700EBC215 /* 021.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = 021.png; path = View/ExploreView/RatingHeader/Images/021.png; sourceTree = "<group>"; };
@@ -603,6 +623,16 @@
 		A0EDCD3717E7029300819F49 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				A02A309B181B3B01000D688B /* Cost_Filter_Unused.png */,
+				A02A309C181B3B01000D688B /* Cost_Filter_Used.png */,
+				A02A309D181B3B01000D688B /* Distance_Filter_Unused.png */,
+				A02A309E181B3B01000D688B /* Distance_Filter_Used.png */,
+				A02A309F181B3B01000D688B /* Fun_Filter_Unused.png */,
+				A02A30A0181B3B01000D688B /* Fun_Filter_Used.png */,
+				A02A30A1181B3B01000D688B /* Time_Filter_Unused.png */,
+				A02A30A2181B3B01000D688B /* Time_Filter_Used.png */,
+				A011BE22181A60670032F8CD /* Distance_Filter_Unused.png */,
+				A011BE23181A60670032F8CD /* Distance_Filter_Used.png */,
 				A0413CB517EA65B700EBC215 /* 021.png */,
 				A0413CB617EA65B700EBC215 /* 049.png */,
 				A0413CB717EA65B700EBC215 /* 155.png */,
@@ -686,6 +716,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A02A30A9181B3B01000D688B /* Time_Filter_Unused.png in Resources */,
 				99AF6C97181942120080D881 /* Icon-Small-50.png in Resources */,
 				A0D23BD917E6E27D0020BB6E /* InfoPlist.strings in Resources */,
 				A0A7ABA2181A001400C146BF /* Explore_Data_Spice_Avenue_Balti_Restaurant.png in Resources */,
@@ -698,11 +729,15 @@
 				A0F6B1021817889500936156 /* 26 - Cloudy.png in Resources */,
 				A0D23BE117E6E27D0020BB6E /* Default.png in Resources */,
 				A0D23BE317E6E27D0020BB6E /* Default@2x.png in Resources */,
+				A011BE24181A60670032F8CD /* Distance_Filter_Unused.png in Resources */,
+				A02A30A4181B3B01000D688B /* Cost_Filter_Used.png in Resources */,
+				A02A30A3181B3B01000D688B /* Cost_Filter_Unused.png in Resources */,
 				A0413CBE17EA65B700EBC215 /* 049.png in Resources */,
 				99AF6C9A181942120080D881 /* Icon.png in Resources */,
 				99AF6C98181942120080D881 /* Icon-Small.png in Resources */,
 				A0D23BE517E6E27D0020BB6E /* Default-568h@2x.png in Resources */,
 				A0A7AB9F181A001400C146BF /* Explore_Data_Sofitel_Brisbane_Central.png in Resources */,
+				A02A30A8181B3B01000D688B /* Fun_Filter_Used.png in Resources */,
 				A0D23BE817E6E27D0020BB6E /* MainStoryboard.storyboard in Resources */,
 				A0A7AB94181A001400C146BF /* Explore_Attractions.png in Resources */,
 				A0B2697A1808D83E00EACCBA /* ios7-location-icon.png in Resources */,
@@ -710,11 +745,13 @@
 				A0A7AB98181A001400C146BF /* Explore_Data_Lone_Pine_Koala_Sanctuary.png in Resources */,
 				A0A7ABA4181A001400C146BF /* Explore_Data_Zafron_on_Brunswick.png in Resources */,
 				6A1E3CFA180D6D730082D70C /* eventdata.xml in Resources */,
+				A02A30A6181B3B01000D688B /* Distance_Filter_Used.png in Resources */,
 				A0413CBD17EA65B700EBC215 /* 021.png in Resources */,
 				A0A7ABA5181A001400C146BF /* Explore_Nearby.png in Resources */,
 				A0A77BF517E70F7100CF91FF /* Art_Gallery_Explore.png in Resources */,
 				A0A7AB9A181A001400C146BF /* Explore_Data_Punthill_Brisbane.png in Resources */,
 				A0A7AB99181A001400C146BF /* Explore_Data_Meriton_Apartments.png in Resources */,
+				A02A30AA181B3B01000D688B /* Time_Filter_Used.png in Resources */,
 				A0A7AB9B181A001400C146BF /* Explore_Data_Queensland_Art_Gallery.png in Resources */,
 				A0A77BF617E70F7100CF91FF /* Beastie_Burgers_Explore.png in Resources */,
 				A0413CC317EA65B700EBC215 /* star.png in Resources */,
@@ -729,16 +766,19 @@
 				A045FC5517F1969B0049D91C /* Entertainment Icons.png in Resources */,
 				A0A7AB9C181A001400C146BF /* Explore_Data_Reserve_Restaurant_Milton.png in Resources */,
 				A0A7AB9D181A001400C146BF /* Explore_Data_Roma_Street_Parklands.png in Resources */,
+				A02A30A7181B3B01000D688B /* Fun_Filter_Unused.png in Resources */,
 				A0A77BFA17E70F7100CF91FF /* Explore_Resturants.png in Resources */,
 				A0413CBF17EA65B700EBC215 /* 155.png in Resources */,
 				A0F6B1031817889500936156 /* 27 - Cloudy Night.png in Resources */,
 				99AF6CA1181942820080D881 /* Logo.jpg in Resources */,
 				A0A7AB9E181A001400C146BF /* Explore_Data_Royal_On_The_Park.png in Resources */,
 				A0413CC017EA65B700EBC215 /* 209.png in Resources */,
+				A011BE25181A60670032F8CD /* Distance_Filter_Used.png in Resources */,
 				A0F6B1011817889500936156 /* 4 - Thunderstorm.png in Resources */,
 				A0A77BFB17E70F7100CF91FF /* Loading_Variation_One.png in Resources */,
 				99AF6C9C181942120080D881 /* iTunesArtwork.png in Resources */,
 				99AF6C9F1819421A0080D881 /* Images.xcassets in Resources */,
+				A02A30A5181B3B01000D688B /* Distance_Filter_Unused.png in Resources */,
 				A0A77BFC17E70F7100CF91FF /* menuButton@2x.png in Resources */,
 				A0A77BFD17E70F7100CF91FF /* Now_View_placeholder.png in Resources */,
 				A0A77BFE17E70F7100CF91FF /* Now_View_Placeholder_art.png in Resources */,

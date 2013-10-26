@@ -35,8 +35,8 @@
                 NSNumberFormatter *f = [[NSNumberFormatter alloc] init];
                 [f setNumberStyle:NSNumberFormatterDecimalStyle];
                 
-                NSNumber *myNumber = [f numberFromString:key];
-                
+//                NSNumber *myNumber = [f numberFromString:key];
+                NSNumber *myNumber = [f numberFromString:[attributeDict valueForKey:key]];
                 [event setValue:myNumber forKey:key];
             } else {
                 [event setValue:[attributeDict valueForKey:key] forKey:key];

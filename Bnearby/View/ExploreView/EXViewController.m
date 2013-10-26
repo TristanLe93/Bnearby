@@ -17,6 +17,7 @@
 #import "EXEventButton.h"
 #import "BNEvent.h"
 #import "BnearbyAppDelegate.h"
+//#import "StarRatingControl.h"
 
 @interface EXViewController ()
 @property (weak, nonatomic) IBOutlet EXTableView *myTableView;
@@ -36,6 +37,11 @@
 @property (strong, nonatomic) NSMutableArray *row4;
 @property (strong, nonatomic) NSMutableArray *row5;
 
+@property (strong, nonatomic) NSArray *costLimits;
+@property (assign, nonatomic) BOOL refined;
+@property (strong, nonatomic) NSMutableArray *refinedEvents;
+@property (readwrite) NSInteger refinedEventsSize;
+
 
 
 @end
@@ -46,11 +52,23 @@
 @synthesize mySearchBar;
 @synthesize searchVisible;
 @synthesize venues;
+@synthesize starRatingControl = _starRatingControl;
+@synthesize timeRatingControl = _timeRatingControl;
+@synthesize costRatingControl = _costRatingControl;
 
 static NSString *CellIdentifier = @"CellIdentifier";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    _starRatingControl.delegate = self;
+    _timeRatingControl.delegate = self;
+    _costRatingControl.delegate = self;
+    
+    _costLimits = [[NSArray alloc] initWithObjects:@20, @40, @50, @80, @100, nil];
+    
+//    self.refinedEvents = [[NSMutableArray alloc] init];
+    self.refinedEventsSize = 0;
     
     // setup managedcontext
     BnearbyAppDelegate *delegate = [[UIApplication sharedApplication] delegate];
@@ -210,9 +228,23 @@ static NSString *CellIdentifier = @"CellIdentifier";
     }
     switch (indexPath.row) {
         case 0:
+            if (self.refined) {
+                numbRows = self.refinedEvents.count;
+            }
             for (int i = 0; i < numbRows; i++) {
                 NSIndexPath *indexPath2 = [NSIndexPath indexPathForRow:i inSection:0];
-                BNEvent *event = [fetchedResultsController objectAtIndexPath:indexPath2];
+                BNEvent *event;
+                if (self.refined) {
+//                    if (i+1 == self.refinedEvents.count) {
+//                        break;
+//                    }
+//                    else {
+                        event = [self.refinedEvents objectAtIndex:i];
+//                    }
+                }
+                else {
+                    event = [fetchedResultsController objectAtIndexPath:indexPath2];
+                }
                 if ([event.type isEqualToString:@"Attraction"]) {
                     // Prepare Scroll View for new event
                     [cell.myScrollView setContentSize:(CGSizeMake(cell.myScrollView.myView.frame.size.width + 320, 168))];
@@ -226,6 +258,7 @@ static NSString *CellIdentifier = @"CellIdentifier";
                     [newTile setBackgroundImage:[UIImage imageNamed:[NSString stringWithFormat:@"%@", event.tileBanner]] forState:UIControlStateNormal];
                     UILabel *newLabel = [[UILabel alloc] initWithFrame:CGRectMake(cell.myScrollView.myView.frame.origin.x + 20, 127, 204, 40)];
                     newLabel.text = [NSString stringWithFormat:@"%@\nMore Details Here", event.title];
+//                    NSLog(@"testing0 %d", [event.maxprice integerValue]);
                     newLabel.textColor = [UIColor whiteColor];
                     newLabel.numberOfLines = 0;
                     newLabel.adjustsFontSizeToFitWidth = YES;
@@ -246,9 +279,21 @@ static NSString *CellIdentifier = @"CellIdentifier";
             [cell.myScrollView.myView.myImage setBackgroundImage:[UIImage imageNamed:[NSString stringWithFormat:@"Explore_Entertainment.png"]] forState:UIControlStateNormal];
             break;
         case 1:
+            if (self.refined) {
+                numbRows = self.refinedEvents.count;
+            }
             for (int i = 0; i < numbRows; i++) {
                 NSIndexPath *indexPath2 = [NSIndexPath indexPathForRow:i inSection:0];
-                BNEvent *event = [fetchedResultsController objectAtIndexPath:indexPath2];
+                BNEvent *event;
+                if (self.refined) {
+//                    if (i+1 == self.refinedEvents.count) {
+//                        break;
+//                    }
+                    event = [self.refinedEvents objectAtIndex:i];
+                }
+                else {
+                    event = [fetchedResultsController objectAtIndexPath:indexPath2];
+                }
                 if ([event.type isEqualToString:@"Restaurant"]) {
                     // Prepare Scroll View for new event
                     [cell.myScrollView setContentSize:(CGSizeMake(cell.myScrollView.myView.frame.size.width + 320, 168))];
@@ -262,6 +307,7 @@ static NSString *CellIdentifier = @"CellIdentifier";
                     [newTile setBackgroundImage:[UIImage imageNamed:[NSString stringWithFormat:@"%@", event.tileBanner]] forState:UIControlStateNormal];
                     UILabel *newLabel = [[UILabel alloc] initWithFrame:CGRectMake(cell.myScrollView.myView.frame.origin.x + 20, 127, 204, 40)];
                     newLabel.text = [NSString stringWithFormat:@"%@\nMore Details Here", event.title];
+//                    NSLog(@"testing1 %d", [event.maxprice integerValue]);
                     newLabel.textColor = [UIColor whiteColor];
                     newLabel.numberOfLines = 0;
                     newLabel.adjustsFontSizeToFitWidth = YES;
@@ -280,9 +326,22 @@ static NSString *CellIdentifier = @"CellIdentifier";
             [cell.myScrollView.myView.myImage setBackgroundImage:[UIImage imageNamed:[NSString stringWithFormat:@"Explore_Resturants.png"]] forState:UIControlStateNormal];
             break;
         case 2:
+            if (self.refined) {
+                numbRows = self.refinedEvents.count;
+            }
             for (int i = 0; i < numbRows; i++) {
                 NSIndexPath *indexPath2 = [NSIndexPath indexPathForRow:i inSection:0];
-                BNEvent *event = [fetchedResultsController objectAtIndexPath:indexPath2];
+                BNEvent *event;
+                if (self.refined) {
+//                    if (i+1 == self.refinedEvents.count) {
+//                        break;
+//                    }
+                    event = [self.refinedEvents objectAtIndex:i];
+                }
+                else {
+                    event = [fetchedResultsController objectAtIndexPath:indexPath2];
+                }
+//                BNEvent *event = [fetchedResultsController objectAtIndexPath:indexPath2];
                 if ([event.type isEqualToString:@"Hotel"]) {
                     // Prepare Scroll View for new event
                     [cell.myScrollView setContentSize:(CGSizeMake(cell.myScrollView.myView.frame.size.width + 320, 168))];
@@ -296,6 +355,8 @@ static NSString *CellIdentifier = @"CellIdentifier";
                     [newTile setBackgroundImage:[UIImage imageNamed:[NSString stringWithFormat:@"%@", event.tileBanner]] forState:UIControlStateNormal];
                     UILabel *newLabel = [[UILabel alloc] initWithFrame:CGRectMake(cell.myScrollView.myView.frame.origin.x + 20, 127, 204, 40)];
                     newLabel.text = [NSString stringWithFormat:@"%@\nMore Details Here", event.title];
+//                    NSLog(@"testing2 %d", [event.maxprice integerValue]);
+//                    NSLog(@"idevent2 %d", [event.idevent integerValue]);
                     newLabel.textColor = [UIColor whiteColor];
                     newLabel.numberOfLines = 0;
                     newLabel.adjustsFontSizeToFitWidth = YES;
@@ -388,6 +449,72 @@ static NSString *CellIdentifier = @"CellIdentifier";
 {
     [self.locationManager stopUpdatingLocation];
 }
+
+- (void)starRatingControl:(StarRatingControl *)control didUpdateRating:(NSUInteger)rating {
+    NSLog(@"rating: %d", rating);
+//    NSInteger numbRows = 0;
+//    for (int j = 0; j < fetchedResultsController.sections.count; j++) {
+//        id sectionInfo = [[fetchedResultsController sections] objectAtIndex:j];
+//        NSInteger count = [sectionInfo numberOfObjects];
+//        numbRows = numbRows + count;
+//    }
+//    for (int i = 0; i < numbRows; i++) {
+//        NSIndexPath *indexPath2 = [NSIndexPath indexPathForRow:i inSection:0];
+//        BNEvent *event = [fetchedResultsController objectAtIndexPath:indexPath2];
+//        if ([event.type isEqualToString:@"Attraction"]) {
+//        }
+//    }
+    NSLog(@"Hey!");
+}
+
+//- (void)starRatingControl:(StarRatingControl *)control willUpdateRating:(NSUInteger)rating {
+//	// Call back to indicate the control has finished being updated
+//}
+
+- (void)timeRatingControl:(TimeController *)control didUpdateRating:(NSUInteger)rating {
+    NSLog(@"Hey!");
+}
+
+//- (void)timeRatingControl:(TimeController *)control willUpdateRating:(NSUInteger)rating {
+//}
+
+- (void)costRatingControl:(CostController *)control didUpdateRating:(NSUInteger)rating {
+    NSInteger numbRows = 0;
+    for (int j = 0; j < fetchedResultsController.sections.count; j++) {
+        id sectionInfo = [[fetchedResultsController sections] objectAtIndex:j];
+        NSInteger count = [sectionInfo numberOfObjects];
+        numbRows = numbRows + count;
+    }
+    self.refinedEvents = [[NSMutableArray alloc] init];
+    for (int i = 0; i < numbRows; i++) {
+        NSIndexPath *indexPath2 = [NSIndexPath indexPathForRow:i inSection:0];
+//        NSIndexPath *indexPath2 = [NSIndexPath indexPathForRow:self.refinedEventsSize inSection:0];
+        BNEvent *event = [fetchedResultsController objectAtIndexPath:indexPath2];
+        if (rating < 5 && rating != 0) {
+            NSInteger min = [event.minprice integerValue];
+            NSInteger max = [event.maxprice integerValue];
+            NSInteger limit = [[self.costLimits objectAtIndex:rating] integerValue];
+            
+//            NSLog(@"max %d price at rating %d", max, limit);
+            if (min >= 0 && max < limit) {
+                [self.refinedEvents addObject:event];
+//                NSLog(@"An event!!! %d", self.refinedEvents.count);
+            }
+            self.refinedEventsSize += 1;
+        }
+        else {
+            [self.refinedEvents addObject:event];
+//            NSLog(@"An event!!! %d", self.refinedEvents.count);
+        }
+    }
+    self.refined = YES;
+    [self.tableView reloadData];
+//    self.refined = NO;
+    NSLog(@"Hey!");
+}
+
+//- (void)costRatingControl:(CostController *)control willUpdateRating:(NSUInteger)rating {
+//}
 
 // Scroll to display search bar
 - (IBAction)displaySearch:(id)sender {

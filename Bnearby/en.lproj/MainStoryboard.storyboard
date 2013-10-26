@@ -145,11 +145,14 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="costRatingControl" destination="yZx-9E-L6B" id="KJR-lY-yod"/>
                         <outlet property="menuBtn" destination="uGa-6Y-mRB" id="sMS-7p-2gx"/>
                         <outlet property="myButton" destination="vsP-lE-mm9" id="Pjg-Ih-zWU"/>
                         <outlet property="myHeaderScroller" destination="Acs-bT-EKq" id="JjT-xz-x0Q"/>
                         <outlet property="mySearchBar" destination="jXa-mZ-RPe" id="wTS-nL-6wq"/>
                         <outlet property="myTableView" destination="pJZ-Iz-SY6" id="e4F-Jp-N8X"/>
+                        <outlet property="starRatingControl" destination="AoB-O8-gfr" id="SdT-6c-6ed"/>
+                        <outlet property="timeRatingControl" destination="UUn-6m-zLP" id="Lzv-gZ-JMb"/>
                         <segue destination="GEb-zo-Gba" kind="push" identifier="DetailSegue" id="cCI-Pp-UuJ"/>
                     </connections>
                 </tableViewController>

@@ -39,9 +39,9 @@
 	self.clipsToBounds = YES;
 	_currentIdx = -1;
     //	_star = [UIImage imageNamed:@"star.png"];
-    _star = [UIImage imageNamed:@"155.png"];
+    _star = [UIImage imageNamed:@"Cost_Filter_Unused.png"];
     //	_highlightedStar = [UIImage imageNamed:@"star_highlighted.png"];
-    _highlightedStar = [UIImage imageNamed:@"049.png"];
+    _highlightedStar = [UIImage imageNamed:@"Cost_Filter_Used.png"];
 	NSMutableArray *s = [NSMutableArray arrayWithCapacity:_numberOfStars];
 	for (int i=0; i<_numberOfStars; i++) {
 		UIImageView *v = [[UIImageView alloc] initWithImage:_star highlightedImage:_highlightedStar];
