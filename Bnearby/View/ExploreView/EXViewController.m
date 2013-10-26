@@ -38,9 +38,9 @@
 @property (strong, nonatomic) NSMutableArray *row5;
 
 @property (strong, nonatomic) NSArray *costLimits;
+@property (strong, nonatomic) NSArray *ratingLimits;
 @property (assign, nonatomic) BOOL refined;
 @property (strong, nonatomic) NSMutableArray *refinedEvents;
-@property (readwrite) NSInteger refinedEventsSize;
 
 
 
@@ -65,10 +65,8 @@ static NSString *CellIdentifier = @"CellIdentifier";
     _timeRatingControl.delegate = self;
     _costRatingControl.delegate = self;
     
-    _costLimits = [[NSArray alloc] initWithObjects:@20, @40, @50, @80, @100, nil];
-    
-//    self.refinedEvents = [[NSMutableArray alloc] init];
-    self.refinedEventsSize = 0;
+    _costLimits = [[NSArray alloc] initWithObjects:@0, @20, @40, @50, @80, @100, nil];
+    _ratingLimits = [[NSArray alloc] initWithObjects:@0, @1, @2, @3, @4, @5, nil];
     
     // setup managedcontext
     BnearbyAppDelegate *delegate = [[UIApplication sharedApplication] delegate];
@@ -150,7 +148,7 @@ static NSString *CellIdentifier = @"CellIdentifier";
     
     [operation start];
     [self stopUpdatingCurrentLocation];
-    [self.myTableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:NO];
+    [self.myTableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:YES];
 
 }
 
@@ -202,7 +200,7 @@ static NSString *CellIdentifier = @"CellIdentifier";
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     EXTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    
+
     // Avoid custom content stacking
     if (cell != Nil) {
         for (UIView *oldTile in cell.myScrollView.myView.subviews){
@@ -258,7 +256,6 @@ static NSString *CellIdentifier = @"CellIdentifier";
                     [newTile setBackgroundImage:[UIImage imageNamed:[NSString stringWithFormat:@"%@", event.tileBanner]] forState:UIControlStateNormal];
                     UILabel *newLabel = [[UILabel alloc] initWithFrame:CGRectMake(cell.myScrollView.myView.frame.origin.x + 20, 127, 204, 40)];
                     newLabel.text = [NSString stringWithFormat:@"%@\nMore Details Here", event.title];
-//                    NSLog(@"testing0 %d", [event.maxprice integerValue]);
                     newLabel.textColor = [UIColor whiteColor];
                     newLabel.numberOfLines = 0;
                     newLabel.adjustsFontSizeToFitWidth = YES;
@@ -307,7 +304,6 @@ static NSString *CellIdentifier = @"CellIdentifier";
                     [newTile setBackgroundImage:[UIImage imageNamed:[NSString stringWithFormat:@"%@", event.tileBanner]] forState:UIControlStateNormal];
                     UILabel *newLabel = [[UILabel alloc] initWithFrame:CGRectMake(cell.myScrollView.myView.frame.origin.x + 20, 127, 204, 40)];
                     newLabel.text = [NSString stringWithFormat:@"%@\nMore Details Here", event.title];
-//                    NSLog(@"testing1 %d", [event.maxprice integerValue]);
                     newLabel.textColor = [UIColor whiteColor];
                     newLabel.numberOfLines = 0;
                     newLabel.adjustsFontSizeToFitWidth = YES;
@@ -355,8 +351,6 @@ static NSString *CellIdentifier = @"CellIdentifier";
                     [newTile setBackgroundImage:[UIImage imageNamed:[NSString stringWithFormat:@"%@", event.tileBanner]] forState:UIControlStateNormal];
                     UILabel *newLabel = [[UILabel alloc] initWithFrame:CGRectMake(cell.myScrollView.myView.frame.origin.x + 20, 127, 204, 40)];
                     newLabel.text = [NSString stringWithFormat:@"%@\nMore Details Here", event.title];
-//                    NSLog(@"testing2 %d", [event.maxprice integerValue]);
-//                    NSLog(@"idevent2 %d", [event.idevent integerValue]);
                     newLabel.textColor = [UIColor whiteColor];
                     newLabel.numberOfLines = 0;
                     newLabel.adjustsFontSizeToFitWidth = YES;
@@ -451,20 +445,46 @@ static NSString *CellIdentifier = @"CellIdentifier";
 }
 
 - (void)starRatingControl:(StarRatingControl *)control didUpdateRating:(NSUInteger)rating {
-    NSLog(@"rating: %d", rating);
-//    NSInteger numbRows = 0;
-//    for (int j = 0; j < fetchedResultsController.sections.count; j++) {
-//        id sectionInfo = [[fetchedResultsController sections] objectAtIndex:j];
-//        NSInteger count = [sectionInfo numberOfObjects];
-//        numbRows = numbRows + count;
-//    }
-//    for (int i = 0; i < numbRows; i++) {
-//        NSIndexPath *indexPath2 = [NSIndexPath indexPathForRow:i inSection:0];
-//        BNEvent *event = [fetchedResultsController objectAtIndexPath:indexPath2];
-//        if ([event.type isEqualToString:@"Attraction"]) {
-//        }
-//    }
-    NSLog(@"Hey!");
+    NSInteger numbRows = 0;
+    for (int j = 0; j < fetchedResultsController.sections.count; j++) {
+        id sectionInfo = [[fetchedResultsController sections] objectAtIndex:j];
+        NSInteger count = [sectionInfo numberOfObjects];
+        numbRows = numbRows + count;
+    }
+    self.refinedEvents = [[NSMutableArray alloc] init];
+    for (int i = 0; i < numbRows; i++) {
+        NSIndexPath *indexPath2 = [NSIndexPath indexPathForRow:i inSection:0];
+        BNEvent *event = [fetchedResultsController objectAtIndexPath:indexPath2];
+        // Star Rating
+        float eventRating = [event.rating floatValue];
+        NSInteger starLimit = [[self.ratingLimits objectAtIndex:rating] integerValue];
+        
+        NSInteger costRating = self.costRatingControl.rating;
+        
+        if (costRating > 0) {
+            // Cost Rating
+            NSInteger max = [event.maxprice integerValue];
+            NSInteger costLimit = [[self.costLimits objectAtIndex:self.costRatingControl.rating] integerValue];
+            
+            if (eventRating >= (float)starLimit && max < costLimit) {
+                [self.refinedEvents addObject:event];
+            }
+        }
+        else {
+            if (eventRating >= starLimit) {
+                [self.refinedEvents addObject:event];
+            }
+        }
+        
+        
+    }
+    if (rating == 0) {
+        self.refined = NO;
+    }
+    else {
+        self.refined = YES;
+    }
+    [self.tableView reloadData];
 }
 
 //- (void)starRatingControl:(StarRatingControl *)control willUpdateRating:(NSUInteger)rating {
@@ -488,29 +508,58 @@ static NSString *CellIdentifier = @"CellIdentifier";
     self.refinedEvents = [[NSMutableArray alloc] init];
     for (int i = 0; i < numbRows; i++) {
         NSIndexPath *indexPath2 = [NSIndexPath indexPathForRow:i inSection:0];
-//        NSIndexPath *indexPath2 = [NSIndexPath indexPathForRow:self.refinedEventsSize inSection:0];
         BNEvent *event = [fetchedResultsController objectAtIndexPath:indexPath2];
-        if (rating < 5 && rating != 0) {
-            NSInteger min = [event.minprice integerValue];
+        if (rating < 5) {
+            // Cost Rating
             NSInteger max = [event.maxprice integerValue];
-            NSInteger limit = [[self.costLimits objectAtIndex:rating] integerValue];
+            NSInteger costLimit = [[self.costLimits objectAtIndex:rating] integerValue];
+
+            NSInteger starRating = self.costRatingControl.rating;
             
-//            NSLog(@"max %d price at rating %d", max, limit);
-            if (min >= 0 && max < limit) {
-                [self.refinedEvents addObject:event];
-//                NSLog(@"An event!!! %d", self.refinedEvents.count);
+            if (starRating > 0) {
+                // Star Rating
+                float eventRating = [event.rating floatValue];
+                NSInteger starLimit = [[self.ratingLimits objectAtIndex:self.starRatingControl.rating] integerValue];
+                
+                if (max < costLimit && eventRating >= starLimit) {
+                    [self.refinedEvents addObject:event];
+                }
             }
-            self.refinedEventsSize += 1;
+            else {
+                if (max < costLimit) {
+                    [self.refinedEvents addObject:event];
+                }
+            }
         }
         else {
-            [self.refinedEvents addObject:event];
-//            NSLog(@"An event!!! %d", self.refinedEvents.count);
+            NSInteger max = [event.maxprice integerValue];
+            NSInteger costLimit = [[self.costLimits objectAtIndex:rating] integerValue];
+            
+            NSInteger starRating = self.starRatingControl.rating;
+            
+            if (starRating > 0) {
+                // Star Rating
+                float eventRating = [event.rating floatValue];
+                NSInteger starLimit = [[self.ratingLimits objectAtIndex:self.starRatingControl.rating] integerValue];
+                
+                if (max < costLimit && eventRating >= starLimit) {
+                    [self.refinedEvents addObject:event];
+                }
+            }
+            else {
+                if (max < costLimit) {
+                    [self.refinedEvents addObject:event];
+                }
+            }
         }
     }
-    self.refined = YES;
+    if (rating == 0) {
+        self.refined = NO;
+    }
+    else {
+        self.refined = YES;
+    }
     [self.tableView reloadData];
-//    self.refined = NO;
-    NSLog(@"Hey!");
 }
 
 //- (void)costRatingControl:(CostController *)control willUpdateRating:(NSUInteger)rating {

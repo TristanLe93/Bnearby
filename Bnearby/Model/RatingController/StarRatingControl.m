@@ -38,8 +38,8 @@
 - (void)setupView {
 	self.clipsToBounds = YES;
 	_currentIdx = -1;
-	_star = [UIImage imageNamed:@"Distance_Filter_Unused.png"];
-	_highlightedStar = [UIImage imageNamed:@"Distance_Filter_Used.png"];
+	_star = [UIImage imageNamed:@"Fun_Filter_Unused.png"];
+	_highlightedStar = [UIImage imageNamed:@"Fun_Filter_Used.png"];
 	NSMutableArray *s = [NSMutableArray arrayWithCapacity:_numberOfStars];
 	for (int i=0; i<_numberOfStars; i++) {
 		UIImageView *v = [[UIImageView alloc] initWithImage:_star highlightedImage:_highlightedStar];
