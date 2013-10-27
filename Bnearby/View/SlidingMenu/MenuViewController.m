@@ -45,11 +45,11 @@
     self.slidingViewController.underLeftWidthLayout = ECFullWidth;
     
     // This will NOT change logo frame
-    UIView *logoView = [[UIView alloc]  initWithFrame:CGRectMake(0, 0, 320, 85)];
+    UIView *logoView = [[UIView alloc]  initWithFrame:CGRectMake(0, 0, 320, 95)];
     // to change the width and height of logo, modify values BELOW!
     // 200 width is Maximum, and recommended. Please only modify height
-    UIImageView *logoImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 18, 200, 77)];
-    logoImageView.image = [UIImage imageNamed:@"Logo.jpg"];
+    UIImageView *logoImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 18, 320, 77)];
+    logoImageView.image = [UIImage imageNamed:@"BNearby Logo 2_invert.png"];
     [logoView addSubview:logoImageView];
     self.tableView.tableHeaderView = logoView;
 }
