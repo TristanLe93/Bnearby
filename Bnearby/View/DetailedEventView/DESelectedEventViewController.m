@@ -15,6 +15,7 @@
 
 @implementation DESelectedEventViewController
 @synthesize myDatePicker, theVenue;
+@synthesize type;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -42,29 +43,42 @@
 // saves data
 - (IBAction)selectButtonPressed:(id)sender {
     NSDate *date = [myDatePicker date];
-    NSDictionary *location = [theVenue objectForKey:@"location"];
-    NSDictionary *contact = [theVenue objectForKey:@"contact"];
-    
-    BNEvent *event = [NSEntityDescription insertNewObjectForEntityForName:@"BNEvent" inManagedObjectContext:context];
-    
-    //set data
-    event.title = [theVenue objectForKey:@"name"];
-    event.address = [self addressBuilder:location];
-    event.date = date;
-    event.phonenumber = [contact objectForKey:@"formattedPhone"];
-    
-    NSError *error;
-    NSString *message;
-    if (![context save:&error]) {
-        message = @"Error: Venue was not able to save";
-    } else {
-        message = @"The venue was saved to Planner";
+    NSLog(@"TYPE %@", type);
+    switch ([type integerValue]) {
+        case 1:
+            NSLog(@"NOT YET IMPLEMENTED -- LUCAS");
+            break;
+        case 2:{
+            NSDictionary *location = [theVenue objectForKey:@"location"];
+            NSDictionary *contact = [theVenue objectForKey:@"contact"];
+            
+            BNEvent *event = [NSEntityDescription insertNewObjectForEntityForName:@"BNEvent" inManagedObjectContext:context];
+            
+            //set data
+            event.title = [theVenue objectForKey:@"name"];
+            event.address = [self addressBuilder:location];
+            event.date = date;
+            event.phonenumber = [contact objectForKey:@"formattedPhone"];
+            
+            NSError *error;
+            NSString *message;
+            if (![context save:&error]) {
+                message = @"Error: Venue was not able to save";
+            } else {
+                message = @"The venue was saved to Planner";
+            }
+            
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Save Venue" message:message delegate:Nil cancelButtonTitle:@"Done" otherButtonTitles:nil];
+            [alert show];
+            
+            [self dismissViewControllerAnimated:TRUE completion:nil];
+            break;}
+        default:
+            NSLog(@"ERROR");
+            break;
     }
-
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Save Venue" message:message delegate:Nil cancelButtonTitle:@"Done" otherButtonTitles:nil];
-    [alert show];
     
-    [self dismissViewControllerAnimated:TRUE completion:nil];
+
 }
 
 - (NSMutableString *)addressBuilder:(NSDictionary *)location {

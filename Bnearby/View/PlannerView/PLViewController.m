@@ -361,10 +361,15 @@ int testtt = 0;
     if ([segue.identifier isEqualToString:@"showEventDetail"]) {
         DEViewController *destVC = segue.destinationViewController;
         
+        UITableViewCell *cell = (UITableViewCell*)sender;
+        NSDate *dateRepresentingThisDay = [self.sortedDays objectAtIndex:[[self.tableView indexPathForCell:cell] section]];
+        NSArray *eventsOnThisDay = [self.sections objectForKey:dateRepresentingThisDay];
+        BNEvent *event = [eventsOnThisDay objectAtIndex:[[self.tableView indexPathForCell:cell] row]];
+        
         //
         // send event data here! - Tristan
         //
-        destVC.event = ;
+        destVC.event = event;
         destVC.type = @1;
     }
 }

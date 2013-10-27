@@ -45,6 +45,7 @@
     
     switch ([type integerValue]) {
         case 1:
+            NSLog(@"TYPE %@", type);
             //set core data information
             myImageView.frame = CGRectMake(0, 0, 320, 168);
             myImageView.image = [UIImage imageNamed:[NSString stringWithFormat:@"%@", event.tileBanner]];
@@ -75,10 +76,15 @@
     }
 }
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    if ([segue.identifier isEqualToString:@"venueSaveSegue"] && theVenue != nil) {
+    if ([segue.identifier isEqualToString:@"venueSaveSegue"] && theVenue != nil && [type isEqual:@2]) {
         DESelectedEventViewController *viewController = segue.destinationViewController;
         viewController.theVenue = theVenue;
-        
+        viewController.type = type;
+    }
+    if ([segue.identifier isEqualToString:@"venueSaveSegue"] && event != nil && [type isEqual:@1]) {
+        DESelectedEventViewController *viewController = segue.destinationViewController;
+        viewController.event = event;
+        viewController.type = type;
     }
 }
 

@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "BNEvent.h"
 
 @interface DESelectedEventViewController : UIViewController {
     NSManagedObjectContext *context;
@@ -14,6 +15,8 @@
 
 @property (weak, nonatomic) IBOutlet UIDatePicker *myDatePicker;
 @property (weak, nonatomic) NSDictionary *theVenue;
+@property (strong, nonatomic) BNEvent *event;
+@property (weak, nonatomic) NSNumber *type;
 
 - (IBAction)selectButtonPressed:(id)sender;
 
