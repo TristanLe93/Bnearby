@@ -124,6 +124,7 @@ static NSString *resourcePath = @"venues/explore?";
         
         DEViewController *destinationView = segue.destinationViewController;
         destinationView.theVenue = theVenue;
+        destinationView.type = @2;
     }
 }
 

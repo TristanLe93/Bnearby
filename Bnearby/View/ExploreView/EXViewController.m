@@ -768,33 +768,49 @@ static NSString *CellIdentifier = @"CellIdentifier";
     if ([[segue identifier] isEqualToString:@"DetailSegue"]) {
         if (self.normalTile) {
             UIButton *tile = (UIButton*)sender;
-            NSDictionary *theVenue;
+//            NSMutableDictionary *theVenue;
+            BNEvent *eventToSend;
             switch (tile.tag) {
                 case 0:{
-                    theVenue = [self.row0 objectAtIndex:self.tilePosition];
+//                    theVenue = [self.row0 objectAtIndex:self.tilePosition];
+                    eventToSend = [self.row0 objectAtIndex:self.tilePosition];
+//                    [theVenue setObject:[self.row0 objectAtIndex:self.tilePosition] forKey:0];
                     break;}
                 case 1:{
-                    theVenue = [self.row1 objectAtIndex:self.tilePosition];
+//                    theVenue = [self.row1 objectAtIndex:self.tilePosition];
+                    eventToSend = [self.row1 objectAtIndex:self.tilePosition];
+//                    [theVenue setObject:[self.row1 objectAtIndex:self.tilePosition] forKey:0];
                     break;}
                 case 2:{
-                    theVenue = [self.row2 objectAtIndex:self.tilePosition];
+//                    theVenue = [self.row2 objectAtIndex:self.tilePosition];
+                    eventToSend = [self.row2 objectAtIndex:self.tilePosition];
+//                    [theVenue setObject:[self.row2 objectAtIndex:self.tilePosition] forKey:0];
                     break;}
                 case 3:{
-                    theVenue = [self.row3 objectAtIndex:self.tilePosition];
+//                    theVenue = [self.row3 objectAtIndex:self.tilePosition];
+                    eventToSend = [self.row3 objectAtIndex:self.tilePosition];
+//                    [theVenue setObject:[self.row3 objectAtIndex:self.tilePosition] forKey:0];
                     break;}
                 default:
-                    theVenue = [self.row0 objectAtIndex:self.tilePosition];
+//                    theVenue = [self.row0 objectAtIndex:self.tilePosition];
+                    eventToSend = [self.row0 objectAtIndex:self.tilePosition];
+//                    [theVenue setObject:[self.row0 objectAtIndex:self.tilePosition] forKey:0];
                     break;
             }
-    
+            
             DEViewController *destinationView = segue.destinationViewController;
-            destinationView.theVenue = theVenue;
+//            destinationView.theVenue = theVenue;
+            // Type 1 indicates it is from coredata
+            destinationView.type = @1;
+            destinationView.event = eventToSend;
         }
         else {
             NSDictionary *theVenue = [venues objectAtIndex:self.tilePosition];
             
             DEViewController *destinationView = segue.destinationViewController;
             destinationView.theVenue = theVenue;
+            // Type 2 indicates it is from foursquare
+            destinationView.type = @2;
         }
     }
 }

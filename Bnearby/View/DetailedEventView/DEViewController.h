@@ -7,9 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "BNEvent.h"
 
 @interface DEViewController : UIViewController
 
 @property (strong, nonatomic) NSDictionary *theVenue;
+@property (strong, nonatomic) NSNumber *type;
+@property (strong, nonatomic) BNEvent *event;
+
 
 @end

@@ -65,6 +65,7 @@
 		A045FC5517F1969B0049D91C /* Entertainment Icons.png in Resources */ = {isa = PBXBuildFile; fileRef = A045FC5217F1969B0049D91C /* Entertainment Icons.png */; };
 		A045FC5617F1969B0049D91C /* Food Icons.png in Resources */ = {isa = PBXBuildFile; fileRef = A045FC5317F1969B0049D91C /* Food Icons.png */; };
 		A045FC5717F1969B0049D91C /* Shopping Icons.png in Resources */ = {isa = PBXBuildFile; fileRef = A045FC5417F1969B0049D91C /* Shopping Icons.png */; };
+		A05BFB6F181D3607000DBF40 /* DESelectedEventViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A05BFB6E181D3607000DBF40 /* DESelectedEventViewController.m */; };
 		A06BAAC317F2EEAB0053A9FD /* NWPhotoCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = A06BAAC217F2EEAB0053A9FD /* NWPhotoCellView.m */; };
 		A06BAAC617F2F3480053A9FD /* NWPhotoCellScroller.m in Sources */ = {isa = PBXBuildFile; fileRef = A06BAAC517F2F3480053A9FD /* NWPhotoCellScroller.m */; };
 		A0848C8C17F122FD006CC06D /* NWTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A0848C8B17F122FD006CC06D /* NWTableViewController.m */; };
@@ -214,6 +215,8 @@
 		A045FC5217F1969B0049D91C /* Entertainment Icons.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Entertainment Icons.png"; sourceTree = "<group>"; };
 		A045FC5317F1969B0049D91C /* Food Icons.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Food Icons.png"; sourceTree = "<group>"; };
 		A045FC5417F1969B0049D91C /* Shopping Icons.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Shopping Icons.png"; sourceTree = "<group>"; };
+		A05BFB6D181D3607000DBF40 /* DESelectedEventViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DESelectedEventViewController.h; path = View/DetailedEventView/DESelectedEventViewController.h; sourceTree = "<group>"; };
+		A05BFB6E181D3607000DBF40 /* DESelectedEventViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DESelectedEventViewController.m; path = View/DetailedEventView/DESelectedEventViewController.m; sourceTree = "<group>"; };
 		A06BAAC117F2EEAB0053A9FD /* NWPhotoCellView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NWPhotoCellView.h; path = View/NowView/NWPhotoCellView.h; sourceTree = "<group>"; };
 		A06BAAC217F2EEAB0053A9FD /* NWPhotoCellView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NWPhotoCellView.m; path = View/NowView/NWPhotoCellView.m; sourceTree = "<group>"; };
 		A06BAAC417F2F3480053A9FD /* NWPhotoCellScroller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NWPhotoCellScroller.h; path = View/NowView/NWPhotoCellScroller.h; sourceTree = "<group>"; };
@@ -595,6 +598,8 @@
 			children = (
 				A0EDCD1817E6F9A200819F49 /* DEViewController.h */,
 				A0EDCD1917E6F9A200819F49 /* DEViewController.m */,
+				A05BFB6D181D3607000DBF40 /* DESelectedEventViewController.h */,
+				A05BFB6E181D3607000DBF40 /* DESelectedEventViewController.m */,
 			);
 			name = DetailedEventView;
 			sourceTree = "<group>";
@@ -849,6 +854,7 @@
 				A0EDCD1A17E6F9A200819F49 /* DEViewController.m in Sources */,
 				A0BB6D59180A32DC0037BD5F /* Weather.m in Sources */,
 				A0EDCD2717E6FD7B00819F49 /* EXEventView.m in Sources */,
+				A05BFB6F181D3607000DBF40 /* DESelectedEventViewController.m in Sources */,
 				6A1E3D32180D7AAD0082D70C /* AFJSONRequestOperation.m in Sources */,
 				A0EDCD2C17E6FF4600819F49 /* EXTableView.m in Sources */,
 				A0EDCD2F17E7008200819F49 /* EXEventButton.m in Sources */,
