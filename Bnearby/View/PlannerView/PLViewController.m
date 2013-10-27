@@ -21,6 +21,8 @@
 @property (strong, nonatomic) NSArray *sortedDays;
 @property (strong, nonatomic) NSDateFormatter *sectionDateFormatter;
 @property (strong, nonatomic) NSDateFormatter *cellDateFormatter;
+//@property (assign, nonatomic) int test;
+
 
 @end
 
@@ -33,6 +35,7 @@
 @synthesize sectionDateFormatter;
 @synthesize cellDateFormatter;
 
+int testtt = 0;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -142,41 +145,101 @@
     return [self.sectionDateFormatter stringFromDate:dateRepresentingThisDay];
 }
 
+// Override to support editing the table view.
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        //add code here for when you hit delete
+        
+        // Remove date from plan
+        NSDate *dateRepresentingThisDay = [self.sortedDays objectAtIndex:indexPath.section];
+        NSArray *eventsOnThisDay = [self.sections objectForKey:dateRepresentingThisDay];
+        BNEvent *event = [eventsOnThisDay objectAtIndex:indexPath.row];
+//        NSLog(@"Event being deleted name: %@", event.title);
+        event.date = nil;
+
+//        NSLog(@"Sections before: %d", [sections count]);
+//        NSLog(@"Number of events in one day before: %d", [eventsOnThisDay count]);
+        
+        if (eventsOnThisDay.count == 1) {
+
+            NSMutableArray *newSortedDates = [[NSMutableArray alloc] initWithArray:sortedDays];
+//            NSLog(@"Number of new sorted days: %d", newSortedDates.count);
+            [newSortedDates removeObject:dateRepresentingThisDay];
+//            NSLog(@"Number of new sorted days after removed: %d", newSortedDates.count);
+            sortedDays = [[NSArray alloc] initWithArray:newSortedDates];
+//            NSLog(@"Number of sorted days after: %d", sortedDays.count);
+           
+
+//            NSLog(@"Method call %d", [self numberOfSectionsInTableView:self.tableView]);
+            [self.sections removeObjectForKey:dateRepresentingThisDay];
+//            NSLog(@"Sections after removed: %d", [sections count]);
+//            NSLog(@"Method call %d", [self numberOfSectionsInTableView:self.tableView]);
+            
+            [self.tableView deleteSections:[NSIndexSet indexSetWithIndex:indexPath.section] withRowAnimation:UITableViewRowAnimationLeft];
+        }
+        else {
+            NSMutableArray *newEventsOnThisDay = [eventsOnThisDay mutableCopy];
+//            NSLog(@"Number of events in newEvents: %d", [newEventsOnThisDay count]);
+            [newEventsOnThisDay removeObject:event];
+//            NSLog(@"Number of events in newEvents after event removed: %d", [newEventsOnThisDay count]);
+            [self.sections removeObjectForKey:dateRepresentingThisDay];
+//            NSLog(@"Sections after removed: %d", [sections count]);
+            [self.sections setObject:newEventsOnThisDay forKey:dateRepresentingThisDay];
+//            NSLog(@"Sections after added: %d", [sections count]);
+            [self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationLeft];
+        }
+        
+//        NSDate *test1 = [self.sortedDays objectAtIndex:indexPath.section];
+//        NSArray *test2 = [self.sections objectForKey:test1];
+        
+//        NSLog(@"Number of events in one day after all: %d", [test2 count]);
+//        [self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+        
+        
+        [self.tableView reloadData];
+    }
+}
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString *CellIdentifier = @"PlannedEventCell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
-    if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-    }
+//    if (cell == nil) {
+//        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+//    }
     
     NSDate *dateRepresentingThisDay = [self.sortedDays objectAtIndex:indexPath.section];
     NSArray *eventsOnThisDay = [self.sections objectForKey:dateRepresentingThisDay];
     BNEvent *event = [eventsOnThisDay objectAtIndex:indexPath.row];
     
-    // set event title
-    UILabel *eventTitle = (UILabel *)[cell viewWithTag:101];
-    eventTitle.text = event.title;
+//    if (event != nil) {
+//        NSLog(@"Test");
+        // set event title
+        UILabel *eventTitle = (UILabel *)[cell viewWithTag:101];
+        eventTitle.text = event.title;
+        
+        // set event address
+        UILabel *eventAddress = (UILabel *)[cell viewWithTag:102];
+        eventAddress.text = event.address;
+        eventAddress.adjustsFontSizeToFitWidth = YES;
+        
+        // set image according to its event type
+        UIImageView *imageView = (UIImageView *)[cell viewWithTag:100];
+        UIImage *image;
+        
+        if ([event.type isEqualToString:@"Hotel"]) {
+            image = [UIImage imageNamed:@"Shopping Icons.png"];
+        }
+        else if ([event.type isEqualToString:@"Restaurant"]) {
+            image = [UIImage imageNamed:@"Food Icons.png"];
+        }
+        else if ([event.type isEqualToString:@"Attraction"]) {
+            image = [UIImage imageNamed:@"Entertainment Icons.png"];
+        }
+        imageView.image = image;
+//    }
     
-    // set event address
-    UILabel *eventAddress = (UILabel *)[cell viewWithTag:102];
-    eventAddress.text = event.address;
-    eventAddress.adjustsFontSizeToFitWidth = YES;
-    
-    // set image according to its event type
-    UIImageView *imageView = (UIImageView *)[cell viewWithTag:100];
-    UIImage *image;
-    
-    if ([event.type isEqualToString:@"Hotel"]) {
-        image = [UIImage imageNamed:@"Shopping Icons.png"];
-    }
-    else if ([event.type isEqualToString:@"Restaurant"]) {
-        image = [UIImage imageNamed:@"Food Icons.png"];
-    }
-    else if ([event.type isEqualToString:@"Attraction"]) {
-        image = [UIImage imageNamed:@"Entertainment Icons.png"];
-    }
-    imageView.image = image;
+
     
     return cell;
 }
@@ -187,8 +250,21 @@
     for (int i = 0; i < [fetchedResultsController.fetchedObjects count]; i++) {
         NSIndexPath *indexPath = [NSIndexPath indexPathForRow:i inSection:0];
         BNEvent *event = [fetchedResultsController objectAtIndexPath:indexPath];
-        if (i == 0) {
+        if (i == 0 && testtt == 0) {
             event.date = [NSDate date];
+            testtt = 0;
+        }
+        if (i == 1 && testtt == 0) {
+            event.date = [NSDate date];
+            testtt = 0;
+        }
+        if (i == 2 && testtt == 0) {
+            event.date = [NSDate dateWithTimeInterval:(24*60*60) sinceDate:[NSDate date]];
+            testtt = 0;
+        }
+        if (i == 3 && testtt == 0) {
+            event.date = [NSDate dateWithTimeInterval:(24*60*60) sinceDate:[NSDate date]];
+            testtt = 1;
         }
         if (event.date != Nil) {
             [self.allEvents addObject:event];
@@ -235,6 +311,50 @@
     NSDate *newDate = [calendar dateByAddingComponents:dateComps toDate:inputDate options:0];
     return newDate;
 }
+//
+//- (void)doThis {
+//    // Begin organising events
+//    NSDate *now = [NSDate date];
+//    NSDate *startDate = [self dateAtBeginningOfDayForDate:now];
+//    NSDate *endDate = [self dateByAddingYears:1 toDate:startDate];
+//    
+//    self.selectedEvents = [[NSMutableArray alloc] init];
+//    for (BNEvent* event in self.allEvents) {
+//        if ([self date:event.date isBetweenDate:startDate andDate:endDate]) {
+//            [self.selectedEvents addObject:event];
+//        }
+//    }
+//    
+//    self.sections = [NSMutableDictionary dictionary];
+//    for (BNEvent *event in selectedEvents) {
+//        // Reduce event start date to date components (year, month, day)
+//        NSDate *dateRepresentingThisDay = [self dateAtBeginningOfDayForDate:event.date];
+//        
+//        // If we don't yet have an array to hold the events for this day, create one
+//        NSMutableArray *eventsOnThisDay = [self.sections objectForKey:dateRepresentingThisDay];
+//        if (eventsOnThisDay == nil) {
+//            eventsOnThisDay = [NSMutableArray array];
+//            
+//            // Use the reduced date as dictionary key to later retrieve the event list this day
+//            [self.sections setObject:eventsOnThisDay forKey:dateRepresentingThisDay];
+//        }
+//        
+//        // Add the event to the list for this day
+//        [eventsOnThisDay addObject:event];
+//    }
+//    
+//    // Create a sorted list of days
+//    NSArray *unsortedDays = [self.sections allKeys];
+//    self.sortedDays = [unsortedDays sortedArrayUsingSelector:@selector(compare:)];
+//    
+//    self.sectionDateFormatter = [[NSDateFormatter alloc] init];
+//    [self.sectionDateFormatter setDateStyle:NSDateFormatterLongStyle];
+//    [self.sectionDateFormatter setTimeStyle:NSDateFormatterNoStyle];
+//    
+//    self.cellDateFormatter = [[NSDateFormatter alloc] init];
+//    [self.cellDateFormatter setDateStyle:NSDateFormatterNoStyle];
+//    [self.cellDateFormatter setTimeStyle:NSDateFormatterShortStyle];
+//}
 
 // transfers event object to the destination VC
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
