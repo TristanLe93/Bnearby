@@ -8,9 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
-@interface DESelectedEventViewController : UIViewController
+@interface DESelectedEventViewController : UIViewController {
+    NSManagedObjectContext *context;
+}
+
 @property (weak, nonatomic) IBOutlet UIDatePicker *myDatePicker;
-//@property (weak, nonatomic) IBOutlet UIButton *mySelectButton;
+@property (weak, nonatomic) NSDictionary *theVenue;
+
 - (IBAction)selectButtonPressed:(id)sender;
 
 @end
