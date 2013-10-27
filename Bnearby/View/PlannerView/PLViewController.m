@@ -359,10 +359,13 @@ int testtt = 0;
 // transfers event object to the destination VC
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue.identifier isEqualToString:@"showEventDetail"]) {
-        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
         DEViewController *destVC = segue.destinationViewController;
         
-        //destVC.theEvent = [fetchedResultsController objectAtIndexPath:indexPath];
+        //
+        // send event data here! - Tristan
+        //
+        destVC.event = ;
+        destVC.type = @1;
     }
 }
 

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="13A603" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="AbN-bA-BjZ">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4510" systemVersion="12F37" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="AbN-bA-BjZ">
     <dependencies>
         <deployment defaultVersion="1792" identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3746"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3742"/>
     </dependencies>
     <scenes>
         <!--View Controller - Explore-->
@@ -473,11 +473,11 @@
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
-                                            <segue destination="y77-Ip-zUL" kind="push" id="Hzt-PE-YUj"/>
+                                            <segue destination="y77-Ip-zUL" kind="modal" identifier="venueSaveSegue" id="Hzt-PE-YUj"/>
                                         </connections>
                                     </button>
                                     <view tag="123" contentMode="scaleToFill" id="kIi-Jb-ujG">
-                                        <rect key="frame" x="20" y="214" width="280" height="270"/>
+                                        <rect key="frame" x="0.0" y="199" width="320" height="369"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
                                     </view>
@@ -500,7 +500,7 @@ CFZlbnVlIERldGFpbHM
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ikH-nB-dLu" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1817" y="-463"/>
+            <point key="canvasLocation" x="1719" y="-201"/>
         </scene>
         <!--Selected Event View Controller-->
         <scene sceneID="wZe-oC-lO2">
@@ -548,6 +548,15 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                                     <action selector="selectButtonPressed:" destination="y77-Ip-zUL" eventType="touchUpInside" id="4EB-ZQ-VBb"/>
                                 </connections>
                             </button>
+                            <navigationBar contentMode="scaleToFill" id="6cj-cM-swD">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <items>
+                                    <navigationItem title="Save Event" id="BJn-jj-oPd">
+                                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="IZp-Ia-4Ab"/>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
@@ -558,7 +567,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5yc-t5-8Tg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2275" y="-463"/>
+            <point key="canvasLocation" x="2195" y="-201"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="WZ6-oD-e32">
@@ -611,6 +620,9 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                                     </subviews>
                                 </tableViewCellContentView>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <segue destination="GEb-zo-Gba" kind="push" identifier="showEventDetail" id="jJG-h7-cmn"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -751,6 +763,6 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="cCI-Pp-UuJ"/>
+        <segue reference="jJG-h7-cmn"/>
     </inferredMetricsTieBreakers>
 </document>
