@@ -227,40 +227,17 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="weatherCell" rowHeight="200" id="keu-WU-QRx" customClass="NWWeatherCell">
-                                <rect key="frame" x="0.0" y="86" width="320" height="200"/>
+                            <tableViewCell alpha="0.0" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="weatherCell" rowHeight="88" id="keu-WU-QRx" customClass="NWWeatherCell">
+                                <rect key="frame" x="0.0" y="86" width="320" height="88"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="keu-WU-QRx" id="G1D-Gb-EdC">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="200"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="88"/>
                                     <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="25" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="9Ou-2c-g9e">
-                                            <rect key="frame" x="78" y="129" width="222" height="21"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="26" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Q2b-d3-56B">
-                                            <rect key="frame" x="78" y="158" width="232" height="21"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <imageView userInteractionEnabled="NO" tag="27" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="bwO-a0-ddz">
-                                            <rect key="frame" x="20" y="129" width="50" height="50"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        </imageView>
-                                    </subviews>
+                                    <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 </tableViewCellContentView>
-                                <connections>
-                                    <outlet property="detailedWeatherLabel" destination="Q2b-d3-56B" id="pRw-N1-dgQ"/>
-                                    <outlet property="weatherLabel" destination="9Ou-2c-g9e" id="vda-U7-WMo"/>
-                                </connections>
                             </tableViewCell>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="plannerCell" rowHeight="132" id="GCq-rQ-bFX">
-                                <rect key="frame" x="0.0" y="286" width="320" height="132"/>
+                                <rect key="frame" x="0.0" y="174" width="320" height="132"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="GCq-rQ-bFX" id="aws-6O-9KC">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="132"/>
@@ -283,61 +260,23 @@
                                     </subviews>
                                 </tableViewCellContentView>
                             </tableViewCell>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="photoCell" rowHeight="100" id="YGP-Ed-k7O">
-                                <rect key="frame" x="0.0" y="418" width="320" height="100"/>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="photoCell" rowHeight="132" id="YGP-Ed-k7O">
+                                <rect key="frame" x="0.0" y="306" width="320" height="132"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="YGP-Ed-k7O" id="s4j-Ks-7sF">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="100"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="132"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" tag="100" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" id="m3f-Qe-hQr" customClass="NWPhotoCellScroller">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="100"/>
+                                        <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" tag="100" contentMode="scaleToFill" id="m3f-Qe-hQr" customClass="NWPhotoCellScroller">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="132"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                            <subviews>
-                                                <view tag="101" contentMode="scaleToFill" id="iNL-a8-QOa" customClass="NWPhotoCellView">
-                                                    <rect key="frame" x="0.0" y="0.0" width="543" height="100"/>
-                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                                    <subviews>
-                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="3Ad-QM-RxU">
-                                                            <rect key="frame" x="8" y="0.0" width="99" height="100"/>
-                                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                                        </imageView>
-                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="z0T-OI-k7Z">
-                                                            <rect key="frame" x="115" y="0.0" width="99" height="100"/>
-                                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                                        </imageView>
-                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="z5h-8R-hCK">
-                                                            <rect key="frame" x="222" y="0.0" width="99" height="100"/>
-                                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                                        </imageView>
-                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="kIn-6L-CI3">
-                                                            <rect key="frame" x="329" y="0.0" width="99" height="100"/>
-                                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                                        </imageView>
-                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="Ruv-5E-byQ">
-                                                            <rect key="frame" x="436" y="0.0" width="99" height="100"/>
-                                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                                        </imageView>
-                                                    </subviews>
-                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                                                    <connections>
-                                                        <outletCollection property="imageViews" destination="3Ad-QM-RxU" id="4iE-w3-flQ"/>
-                                                        <outletCollection property="imageViews" destination="z0T-OI-k7Z" id="bj0-QK-Az1"/>
-                                                        <outletCollection property="imageViews" destination="z5h-8R-hCK" id="Was-t6-YGu"/>
-                                                        <outletCollection property="imageViews" destination="kIn-6L-CI3" id="Udl-1B-RPu"/>
-                                                        <outletCollection property="imageViews" destination="Ruv-5E-byQ" id="s2A-81-Rmn"/>
-                                                    </connections>
-                                                </view>
-                                            </subviews>
-                                            <connections>
-                                                <outlet property="view" destination="iNL-a8-QOa" id="JE8-8s-EoX"/>
-                                            </connections>
                                         </scrollView>
                                     </subviews>
+                                    <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 </tableViewCellContentView>
                             </tableViewCell>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="mapCell" rowHeight="200" id="A0L-g7-Crh" customClass="NWMapCell">
-                                <rect key="frame" x="0.0" y="518" width="320" height="200"/>
+                                <rect key="frame" x="0.0" y="438" width="320" height="200"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="A0L-g7-Crh" id="bNS-mP-kBm">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="200"/>
@@ -364,7 +303,7 @@
                                 </connections>
                             </tableViewCell>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="recommendation" id="F9z-5x-3sU">
-                                <rect key="frame" x="0.0" y="718" width="320" height="44"/>
+                                <rect key="frame" x="0.0" y="638" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="F9z-5x-3sU" id="SaJ-OQ-oSS">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
@@ -768,6 +707,6 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="jJG-h7-cmn"/>
+        <segue reference="cCI-Pp-UuJ"/>
     </inferredMetricsTieBreakers>
 </document>

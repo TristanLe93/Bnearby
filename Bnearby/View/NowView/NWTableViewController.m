@@ -14,11 +14,12 @@
 #import "NWMapCell.h"
 #import "NWWeatherCell.h"
 #import "WeatherParser.h"
+#import "ILTranslucentView.h"
 
 @interface NWTableViewController ()
 @property (strong, nonatomic) UILabel *weatherLabel;
 @property (strong, nonatomic) UILabel *detailedWeatherLabel;
-@property (weak, nonatomic) UIImageView *weatherIcon;
+@property (strong, nonatomic) UIImageView *weatherIcon;
 @property (strong, nonatomic) MKMapView *theMap;
 @property (strong, nonatomic) NWWeatherCell *weatherCell;
 @property (strong, nonatomic) NSString *weatherText;
@@ -137,9 +138,13 @@
         case 0: {
             cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier0 forIndexPath:indexPath];
             weather = [app.listArray objectAtIndex:0];
-            self.weatherLabel = (UILabel*)[cell.contentView viewWithTag:25];
-            self.detailedWeatherLabel = (UILabel*)[cell.contentView viewWithTag:26];
-            self.weatherIcon = (UIImageView*)[cell.contentView viewWithTag:27];
+//            self.weatherLabel = (UILabel*)[cell.contentView viewWithTag:25];
+//            self.detailedWeatherLabel = (UILabel*)[cell.contentView viewWithTag:26];
+//            self.weatherIcon = (UIImageView*)[cell.contentView viewWithTag:27];
+            
+            self.weatherLabel = [[UILabel alloc] initWithFrame:CGRectMake(78, 9, 202, 21)];
+            self.detailedWeatherLabel = [[UILabel alloc] initWithFrame:CGRectMake(78, 38, 202, 21)];
+            self.weatherIcon = [[UIImageView alloc] initWithFrame:CGRectMake(20, 9, 50, 50)];
             self.weatherLabel.text = [NSString stringWithFormat:@"%d℃ %@", (int)weather.currentTemperature, weather.description];
             self.weatherLabel.adjustsFontSizeToFitWidth = YES;
 //            self.weatherLabel.minimumFontSize = 0;
@@ -148,6 +153,21 @@
             NSString *aux = [self iconForWeather:weather.icon];
             self.weatherIcon.image = [UIImage imageNamed:[NSString stringWithFormat:@"%@", aux]];
             self.navigationItem.title = [NSString stringWithFormat:@"%@", weather.name];
+            
+            
+            ILTranslucentView *translucentView = [[ILTranslucentView alloc] initWithFrame:CGRectMake(10, 10, 300, 68)];
+            [translucentView addSubview:self.weatherIcon];
+            [translucentView addSubview:self.weatherLabel];
+            [translucentView addSubview:self.detailedWeatherLabel];
+//            [cell addSubview:translucentView]; //that's it :)
+            
+            //optional:
+            translucentView.translucentAlpha = 0.8;
+            translucentView.translucentStyle = UIBarStyleDefault;
+            translucentView.translucentTintColor = [UIColor clearColor];
+            translucentView.backgroundColor = [UIColor clearColor];
+            
+            [cell addSubview:translucentView]; //that's it :)
             break;}
         case 1: {
             cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier1 forIndexPath:indexPath];
@@ -155,10 +175,29 @@
         case 2: {
             cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier2 forIndexPath:indexPath];
             NWPhotoCellScroller *scroller = (NWPhotoCellScroller*)[cell viewWithTag:100];
-            [scroller setContentSize:(CGSizeMake(543, 99))];
+            [scroller setContentSize:(CGSizeMake(1020, 132))];
             [scroller setScrollEnabled:YES];
-            NWPhotoCellView *view = (NWPhotoCellView *)[cell viewWithTag:101];
+//            NWPhotoCellView *view = (NWPhotoCellView *)[cell viewWithTag:101];
+            NWPhotoCellView *view = [[NWPhotoCellView alloc] initWithFrame:CGRectMake(0, 0, 1000, 112)];
+            NSMutableArray *images = [[NSMutableArray alloc] init];
+            for (int i = 0; i < 5; i++) {
+                UIImageView *newImageView = [[UIImageView alloc] initWithFrame:CGRectMake(((i+1)*5) + (i*194), 5, 194, 102)];
+                [view addSubview:newImageView];
+                [images addObject:newImageView];
+            }
+            
+            ILTranslucentView *translucentView = [[ILTranslucentView alloc] initWithFrame:CGRectMake(10, 10, 1000, 112)];
+            
+            //optional:
+            translucentView.translucentAlpha = 0.8;
+            translucentView.translucentStyle = UIBarStyleDefault;
+            translucentView.translucentTintColor = [UIColor clearColor];
+            translucentView.backgroundColor = [UIColor clearColor];
+            
+            view.imageViews = images;
             [view initWithFrame:view.frame];
+            [translucentView addSubview:view];
+            [scroller addSubview:translucentView];
             break;}
         case 3: {
             cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier3 forIndexPath:indexPath];
@@ -180,13 +219,13 @@
     CGFloat height = 44;
     switch (indexPath.row) {
         case 0:
-            height = 200;
+            height = 88;
             break;
         case 1:
             height = 132;
             break;
         case 2:
-            height = 100;
+            height = 132;
             break;
         case 3:
             height = 200;

@@ -73,6 +73,11 @@
             event.address = [self addressBuilder:location];
             event.date = [myDatePicker date];
             event.phonenumber = [contact objectForKey:@"formattedPhone"];
+            NSLog(@"%@", theVenue);
+            event.latitude = [location objectForKey:@"lat"];
+            event.longitude = [location objectForKey:@"lng"];
+            NSLog(@"lat %@ lng %@", event.latitude, event.longitude);
+            
             
             NSError *error;
             NSString *message;
@@ -80,9 +85,10 @@
                 message = @"Error: Venue was not able to save";
             } else {
                 message = @"The venue was saved to Planner";
+                self.event = event;
             }
             
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Save Venue" message:message delegate:Nil cancelButtonTitle:@"Done" otherButtonTitles:@"Remind Me", nil];
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Save Venue" message:message delegate:self cancelButtonTitle:@"Done" otherButtonTitles:@"Remind Me", nil];
             [alert show];
             
             [self dismissViewControllerAnimated:TRUE completion:nil];
@@ -130,54 +136,68 @@ address;
 */
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+    NSLog(@"pressed!");
     if (buttonIndex != [alertView cancelButtonIndex]){
-        NSLog(@"Hi");
-        
+        [self addReminder];
     }
 }
 
-- (IBAction)addAReminder:(id)sender
-{
-    
-	if(!self.eventStoreAccessGranted)
+- (void)addReminder {
+    if(!self.eventStoreAccessGranted)
 		return;
     
 	EKReminder *newReminder = [EKReminder reminderWithEventStore:self.eventStore];
-    
-	newReminder.title = @"Queensland Art Gallery";
+	newReminder.title = [NSString stringWithFormat:@"%@", self.event.title];
 	newReminder.calendar = [_eventStore defaultCalendarForNewReminders];
-    
 	NSError *error = nil;
-    
 	[self.eventStore saveReminder:newReminder
                            commit:YES
                             error:&error];
 }
 
 
-- (IBAction)addAReminderWithAlarm:(id)sender
-{
-    
-	if(!self.eventStoreAccessGranted)
-		return;
-    
-	NSDate *now = [NSDate date];
-    
-	NSDate *alarmDate = [now dateByAddingTimeInterval:120];
-	
-	EKAlarm *ourAlarm = [EKAlarm alarmWithAbsoluteDate:alarmDate];
-    
-	EKReminder *newReminder = [EKReminder reminderWithEventStore:self.eventStore];
-    
-	newReminder.title = @"Queensland Art Gallery";
-	newReminder.calendar = [_eventStore defaultCalendarForNewReminders];
-    
-	[newReminder addAlarm:ourAlarm];
-    
-	NSError *error = nil;
-    
-	[self.eventStore saveReminder:newReminder
-                           commit:YES
-                            error:&error];
-}
+//- (IBAction)addAReminder:(id)sender
+//{
+//    
+//	if(!self.eventStoreAccessGranted)
+//		return;
+//    
+//	EKReminder *newReminder = [EKReminder reminderWithEventStore:self.eventStore];
+//    
+//	newReminder.title = @"Queensland Art Gallery";
+//	newReminder.calendar = [_eventStore defaultCalendarForNewReminders];
+//    
+//	NSError *error = nil;
+//    
+//	[self.eventStore saveReminder:newReminder
+//                           commit:YES
+//                            error:&error];
+//}
+//
+//
+//- (IBAction)addAReminderWithAlarm:(id)sender
+//{
+//    
+//	if(!self.eventStoreAccessGranted)
+//		return;
+//    
+//	NSDate *now = [NSDate date];
+//    
+//	NSDate *alarmDate = [now dateByAddingTimeInterval:120];
+//	
+//	EKAlarm *ourAlarm = [EKAlarm alarmWithAbsoluteDate:alarmDate];
+//    
+//	EKReminder *newReminder = [EKReminder reminderWithEventStore:self.eventStore];
+//    
+//	newReminder.title = @"Queensland Art Gallery";
+//	newReminder.calendar = [_eventStore defaultCalendarForNewReminders];
+//    
+//	[newReminder addAlarm:ourAlarm];
+//    
+//	NSError *error = nil;
+//    
+//	[self.eventStore saveReminder:newReminder
+//                           commit:YES
+//                            error:&error];
+//}
 @end

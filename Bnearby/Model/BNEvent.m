@@ -27,5 +27,7 @@
 @dynamic type;
 @dynamic tileBanner;
 @dynamic duration;
+@dynamic latitude;
+@dynamic longitude;
 
 @end

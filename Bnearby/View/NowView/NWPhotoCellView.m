@@ -26,11 +26,11 @@
 
 - (void)setUpView {
     self.images = [NSArray arrayWithObjects:
-                       [UIImage imageNamed:@"Entertainment Icons.png"],
-                       [UIImage imageNamed:@"Food Icons.png"],
-                       [UIImage imageNamed:@"Shopping Icons.png"],
-                       [UIImage imageNamed:@"Entertainment Icons.png"],
-                       [UIImage imageNamed:@"Food Icons.png"],
+                       [UIImage imageNamed:@"Loading_Variation_One.png"],
+                       [UIImage imageNamed:@"Loading_Variation_One.png"],
+                       [UIImage imageNamed:@"Loading_Variation_One.png"],
+                       [UIImage imageNamed:@"Loading_Variation_One.png"],
+                       [UIImage imageNamed:@"Loading_Variation_One.png"],
                        nil];
     for (NSInteger i = 0; i < self.imageViews.count; i++) {
         [[self.imageViews objectAtIndex:i] setImage:[self.images objectAtIndex:i]];

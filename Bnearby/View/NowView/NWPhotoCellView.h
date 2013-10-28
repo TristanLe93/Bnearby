@@ -10,5 +10,5 @@
 
 @interface NWPhotoCellView : UIView
 
-@property (nonatomic, strong) IBOutletCollection (UIImageView) NSArray *imageViews;
+@property (nonatomic, strong) NSArray *imageViews;
 @end

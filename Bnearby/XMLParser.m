@@ -30,7 +30,7 @@
         // set all attributes to the event class
         for (id key in attributeDict) {
             if ([key isEqualToString:@"idevent"] || [key isEqualToString:@"rating"] ||
-                [key isEqualToString:@"minprice"] || [key isEqualToString:@"maxprice"] || [key isEqualToString:@"duration"]) {
+                [key isEqualToString:@"minprice"] || [key isEqualToString:@"maxprice"] || [key isEqualToString:@"duration"] || [key isEqualToString:@"latitude"] || [key isEqualToString:@"longitude"]) {
                 // all integer values need to be converted to NSNumber before set
                 NSNumberFormatter *f = [[NSNumberFormatter alloc] init];
                 [f setNumberStyle:NSNumberFormatterDecimalStyle];
@@ -39,7 +39,7 @@
 //                NSNumber *myNumber = [f numberFromString:[attributeDict valueForKey:key]];
 //                [event setValue:myNumber forKey:key];
                 
-                if ([key isEqualToString:@"rating"] || [key isEqualToString:@"duration"]) {
+                if ([key isEqualToString:@"rating"] || [key isEqualToString:@"duration"] || [key isEqualToString:@"latitude"] || [key isEqualToString:@"longitude"]) {
                     NSDecimal inDecimal = [[attributeDict valueForKey:key] decimalValue];
                     NSDecimalNumber *inDecimalNumber = [NSDecimalNumber decimalNumberWithDecimal:inDecimal];
                     NSNumber *myNumber = inDecimalNumber;
