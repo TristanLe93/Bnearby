@@ -11,6 +11,8 @@
 #import "BNEvent.h"
 
 @interface DESelectedEventViewController ()
+@property (nonatomic, strong) EKEventStore *eventStore;
+@property BOOL eventStoreAccessGranted;
 @end
 
 @implementation DESelectedEventViewController
@@ -30,6 +32,18 @@
     BnearbyAppDelegate *delegate = [[UIApplication sharedApplication] delegate];
     context = delegate.managedObjectContext;
     
+    // Reminders setup
+    self.eventStore = [[EKEventStore alloc] init];
+	self.eventStoreAccessGranted = NO;
+	[self.eventStore requestAccessToEntityType:EKEntityTypeReminder completion:^(BOOL success, NSError *error)
+     {
+         self.eventStoreAccessGranted = success;
+         
+         if(!success)
+             NSLog(@"User has not granted access to add reminders.");
+     }];
+    
+    // Date picker setup
     NSDate *now = [NSDate date];
     [myDatePicker setDate:now animated:YES];
 }
@@ -57,7 +71,7 @@
             //set data
             event.title = [theVenue objectForKey:@"name"];
             event.address = [self addressBuilder:location];
-            event.date = date;
+            event.date = [myDatePicker date];
             event.phonenumber = [contact objectForKey:@"formattedPhone"];
             
             NSError *error;
@@ -68,7 +82,7 @@
                 message = @"The venue was saved to Planner";
             }
             
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Save Venue" message:message delegate:Nil cancelButtonTitle:@"Done" otherButtonTitles:nil];
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Save Venue" message:message delegate:Nil cancelButtonTitle:@"Done" otherButtonTitles:@"Remind Me", nil];
             [alert show];
             
             [self dismissViewControllerAnimated:TRUE completion:nil];
@@ -114,4 +128,56 @@ address;
 @property (nonatomic, retain) NSString * tileBanner;
 @property (nonatomic, retain) NSNumber * duration;
 */
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+    if (buttonIndex != [alertView cancelButtonIndex]){
+        NSLog(@"Hi");
+        
+    }
+}
+
+- (IBAction)addAReminder:(id)sender
+{
+    
+	if(!self.eventStoreAccessGranted)
+		return;
+    
+	EKReminder *newReminder = [EKReminder reminderWithEventStore:self.eventStore];
+    
+	newReminder.title = @"Queensland Art Gallery";
+	newReminder.calendar = [_eventStore defaultCalendarForNewReminders];
+    
+	NSError *error = nil;
+    
+	[self.eventStore saveReminder:newReminder
+                           commit:YES
+                            error:&error];
+}
+
+
+- (IBAction)addAReminderWithAlarm:(id)sender
+{
+    
+	if(!self.eventStoreAccessGranted)
+		return;
+    
+	NSDate *now = [NSDate date];
+    
+	NSDate *alarmDate = [now dateByAddingTimeInterval:120];
+	
+	EKAlarm *ourAlarm = [EKAlarm alarmWithAbsoluteDate:alarmDate];
+    
+	EKReminder *newReminder = [EKReminder reminderWithEventStore:self.eventStore];
+    
+	newReminder.title = @"Queensland Art Gallery";
+	newReminder.calendar = [_eventStore defaultCalendarForNewReminders];
+    
+	[newReminder addAlarm:ourAlarm];
+    
+	NSError *error = nil;
+    
+	[self.eventStore saveReminder:newReminder
+                           commit:YES
+                            error:&error];
+}
 @end

@@ -7,9 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+//#import <EventKit/EventKit.h>
+#import <EventKit/EventKit.h>
 #import "BNEvent.h"
 
-@interface DESelectedEventViewController : UIViewController {
+@interface DESelectedEventViewController : UIViewController <UIAlertViewDelegate> {
     NSManagedObjectContext *context;
 }
 

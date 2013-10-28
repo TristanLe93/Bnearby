@@ -50,6 +50,10 @@
             myImageView.frame = CGRectMake(0, 0, 320, 168);
             myImageView.image = [UIImage imageNamed:[NSString stringWithFormat:@"%@", event.tileBanner]];
 
+            if (event.date != nil) {
+                NSLog(@"Date: %@", event.date);
+            }
+            
             title.text = event.title;
             category.text = event.category;
             summary.text = event.summary;

@@ -68,6 +68,7 @@
 		A05BFB6F181D3607000DBF40 /* DESelectedEventViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A05BFB6E181D3607000DBF40 /* DESelectedEventViewController.m */; };
 		A06BAAC317F2EEAB0053A9FD /* NWPhotoCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = A06BAAC217F2EEAB0053A9FD /* NWPhotoCellView.m */; };
 		A06BAAC617F2F3480053A9FD /* NWPhotoCellScroller.m in Sources */ = {isa = PBXBuildFile; fileRef = A06BAAC517F2F3480053A9FD /* NWPhotoCellScroller.m */; };
+		A074B933181E0C7C0062F21C /* EventKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A074B932181E0C7C0062F21C /* EventKit.framework */; };
 		A0848C8C17F122FD006CC06D /* NWTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A0848C8B17F122FD006CC06D /* NWTableViewController.m */; };
 		A0A222CF17E6EAE7009F0315 /* ECSlidingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A0A222CE17E6EAE7009F0315 /* ECSlidingViewController.m */; };
 		A0A77B9F17E70B9100CF91FF /* MenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A0A222D617E6ED99009F0315 /* MenuViewController.m */; };
@@ -221,6 +222,7 @@
 		A06BAAC217F2EEAB0053A9FD /* NWPhotoCellView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NWPhotoCellView.m; path = View/NowView/NWPhotoCellView.m; sourceTree = "<group>"; };
 		A06BAAC417F2F3480053A9FD /* NWPhotoCellScroller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NWPhotoCellScroller.h; path = View/NowView/NWPhotoCellScroller.h; sourceTree = "<group>"; };
 		A06BAAC517F2F3480053A9FD /* NWPhotoCellScroller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NWPhotoCellScroller.m; path = View/NowView/NWPhotoCellScroller.m; sourceTree = "<group>"; };
+		A074B932181E0C7C0062F21C /* EventKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EventKit.framework; path = System/Library/Frameworks/EventKit.framework; sourceTree = SDKROOT; };
 		A0848C8A17F122FD006CC06D /* NWTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NWTableViewController.h; path = View/NowView/NWTableViewController.h; sourceTree = "<group>"; };
 		A0848C8B17F122FD006CC06D /* NWTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NWTableViewController.m; path = View/NowView/NWTableViewController.m; sourceTree = "<group>"; };
 		A0A222CD17E6EAE7009F0315 /* ECSlidingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ECSlidingViewController.h; path = View/ECSlidingViewController/ECSlidingViewController.h; sourceTree = "<group>"; };
@@ -329,6 +331,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A074B933181E0C7C0062F21C /* EventKit.framework in Frameworks */,
 				6A1E3D39180D7AE90082D70C /* Security.framework in Frameworks */,
 				6A1E3CDB180D6A690082D70C /* SystemConfiguration.framework in Frameworks */,
 				6A1E3CD9180D6A520082D70C /* MobileCoreServices.framework in Frameworks */,
@@ -520,6 +523,7 @@
 		A0D23BCD17E6E27D0020BB6E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				A074B932181E0C7C0062F21C /* EventKit.framework */,
 				6A1E3D38180D7AE90082D70C /* Security.framework */,
 				6A1E3CDA180D6A690082D70C /* SystemConfiguration.framework */,
 				6A1E3CD8180D6A520082D70C /* MobileCoreServices.framework */,

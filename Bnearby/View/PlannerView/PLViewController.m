@@ -35,7 +35,6 @@
 @synthesize sectionDateFormatter;
 @synthesize cellDateFormatter;
 
-int testtt = 0;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -43,7 +42,7 @@ int testtt = 0;
     // Pull to Refresh Controls
     UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];
     refreshControl.tintColor = [UIColor cyanColor];
-    [refreshControl addTarget:self action:@selector(refreshPlanner) forControlEvents:UIControlEventValueChanged];
+    [refreshControl addTarget:self action:@selector(refresh:) forControlEvents:UIControlEventValueChanged];
     self.refreshControl = refreshControl;
     
     
@@ -60,47 +59,49 @@ int testtt = 0;
     // Put fetchedResuts into an array
     [self eventsToArray];
     
-    // Begin organising events
-    NSDate *now = [NSDate date];
-    NSDate *startDate = [self dateAtBeginningOfDayForDate:now];
-    NSDate *endDate = [self dateByAddingYears:1 toDate:startDate];
+    [self plannerSetUp];
     
-    self.selectedEvents = [[NSMutableArray alloc] init];
-    for (BNEvent* event in self.allEvents) {
-        if ([self date:event.date isBetweenDate:startDate andDate:endDate]) {
-            [self.selectedEvents addObject:event];
-        }
-    }
-    
-    self.sections = [NSMutableDictionary dictionary];
-    for (BNEvent *event in selectedEvents) {
-        // Reduce event start date to date components (year, month, day)
-        NSDate *dateRepresentingThisDay = [self dateAtBeginningOfDayForDate:event.date];
-        
-        // If we don't yet have an array to hold the events for this day, create one
-        NSMutableArray *eventsOnThisDay = [self.sections objectForKey:dateRepresentingThisDay];
-        if (eventsOnThisDay == nil) {
-            eventsOnThisDay = [NSMutableArray array];
-            
-            // Use the reduced date as dictionary key to later retrieve the event list this day
-            [self.sections setObject:eventsOnThisDay forKey:dateRepresentingThisDay];
-        }
-        
-        // Add the event to the list for this day
-        [eventsOnThisDay addObject:event];
-    }
-    
-    // Create a sorted list of days
-    NSArray *unsortedDays = [self.sections allKeys];
-    self.sortedDays = [unsortedDays sortedArrayUsingSelector:@selector(compare:)];
-    
-    self.sectionDateFormatter = [[NSDateFormatter alloc] init];
-    [self.sectionDateFormatter setDateStyle:NSDateFormatterLongStyle];
-    [self.sectionDateFormatter setTimeStyle:NSDateFormatterNoStyle];
-    
-    self.cellDateFormatter = [[NSDateFormatter alloc] init];
-    [self.cellDateFormatter setDateStyle:NSDateFormatterNoStyle];
-    [self.cellDateFormatter setTimeStyle:NSDateFormatterShortStyle];
+//    // Begin organising events
+//    NSDate *now = [NSDate date];
+//    NSDate *startDate = [self dateAtBeginningOfDayForDate:now];
+//    NSDate *endDate = [self dateByAddingYears:1 toDate:startDate];
+//    
+//    self.selectedEvents = [[NSMutableArray alloc] init];
+//    for (BNEvent* event in self.allEvents) {
+//        if ([self date:event.date isBetweenDate:startDate andDate:endDate]) {
+//            [self.selectedEvents addObject:event];
+//        }
+//    }
+//    
+//    self.sections = [NSMutableDictionary dictionary];
+//    for (BNEvent *event in selectedEvents) {
+//        // Reduce event start date to date components (year, month, day)
+//        NSDate *dateRepresentingThisDay = [self dateAtBeginningOfDayForDate:event.date];
+//        
+//        // If we don't yet have an array to hold the events for this day, create one
+//        NSMutableArray *eventsOnThisDay = [self.sections objectForKey:dateRepresentingThisDay];
+//        if (eventsOnThisDay == nil) {
+//            eventsOnThisDay = [NSMutableArray array];
+//            
+//            // Use the reduced date as dictionary key to later retrieve the event list this day
+//            [self.sections setObject:eventsOnThisDay forKey:dateRepresentingThisDay];
+//        }
+//        
+//        // Add the event to the list for this day
+//        [eventsOnThisDay addObject:event];
+//    }
+//    
+//    // Create a sorted list of days
+//    NSArray *unsortedDays = [self.sections allKeys];
+//    self.sortedDays = [unsortedDays sortedArrayUsingSelector:@selector(compare:)];
+//    
+//    self.sectionDateFormatter = [[NSDateFormatter alloc] init];
+//    [self.sectionDateFormatter setDateStyle:NSDateFormatterLongStyle];
+//    [self.sectionDateFormatter setTimeStyle:NSDateFormatterNoStyle];
+//    
+//    self.cellDateFormatter = [[NSDateFormatter alloc] init];
+//    [self.cellDateFormatter setDateStyle:NSDateFormatterNoStyle];
+//    [self.cellDateFormatter setTimeStyle:NSDateFormatterShortStyle];
     
     // side menu setup
     [self.menuBtn addTarget:self action:@selector(revealMenu:) forControlEvents:UIControlEventTouchUpInside];
@@ -109,6 +110,14 @@ int testtt = 0;
 }
 
 - (void)viewWillAppear:(BOOL)animated {
+    NSError *error;
+    if (![[self fetchedResultsController] performFetch:&error]) {
+        NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+        exit(-1);       // fail
+    }
+    
+    [self eventsToArray];
+    [self plannerSetUp];
     [self.tableView reloadData];
 }
 
@@ -206,6 +215,12 @@ int testtt = 0;
 //        NSLog(@"Number of events in one day after all: %d", [test2 count]);
 //        [self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
         
+        NSError *error = nil;
+        [context save:&error];
+        if (error) {
+            //inform user
+            NSLog(@"Error: not saved");
+        }
         
         [self.tableView reloadData];
     }
@@ -215,9 +230,9 @@ int testtt = 0;
     static NSString *CellIdentifier = @"PlannedEventCell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
-//    if (cell == nil) {
-//        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-//    }
+    if (cell == nil) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+    }
     
     NSDate *dateRepresentingThisDay = [self.sortedDays objectAtIndex:indexPath.section];
     NSArray *eventsOnThisDay = [self.sections objectForKey:dateRepresentingThisDay];
@@ -261,26 +276,54 @@ int testtt = 0;
     for (int i = 0; i < [fetchedResultsController.fetchedObjects count]; i++) {
         NSIndexPath *indexPath = [NSIndexPath indexPathForRow:i inSection:0];
         BNEvent *event = [fetchedResultsController objectAtIndexPath:indexPath];
-        if (i == 0 && testtt == 0) {
-            event.date = [NSDate date];
-            testtt = 0;
-        }
-        if (i == 1 && testtt == 0) {
-            event.date = [NSDate date];
-            testtt = 0;
-        }
-        if (i == 2 && testtt == 0) {
-            event.date = [NSDate dateWithTimeInterval:(24*60*60) sinceDate:[NSDate date]];
-            testtt = 0;
-        }
-        if (i == 3 && testtt == 0) {
-            event.date = [NSDate dateWithTimeInterval:(24*60*60) sinceDate:[NSDate date]];
-            testtt = 1;
-        }
         if (event.date != Nil) {
             [self.allEvents addObject:event];
         }
     }
+}
+
+- (void)plannerSetUp {
+    // Begin organising events
+    NSDate *now = [NSDate date];
+    NSDate *startDate = [self dateAtBeginningOfDayForDate:now];
+    NSDate *endDate = [self dateByAddingYears:1 toDate:startDate];
+    
+    self.selectedEvents = [[NSMutableArray alloc] init];
+    for (BNEvent* event in self.allEvents) {
+        if ([self date:event.date isBetweenDate:startDate andDate:endDate]) {
+            [self.selectedEvents addObject:event];
+        }
+    }
+    
+    self.sections = [NSMutableDictionary dictionary];
+    for (BNEvent *event in selectedEvents) {
+        // Reduce event start date to date components (year, month, day)
+        NSDate *dateRepresentingThisDay = [self dateAtBeginningOfDayForDate:event.date];
+        
+        // If we don't yet have an array to hold the events for this day, create one
+        NSMutableArray *eventsOnThisDay = [self.sections objectForKey:dateRepresentingThisDay];
+        if (eventsOnThisDay == nil) {
+            eventsOnThisDay = [NSMutableArray array];
+            
+            // Use the reduced date as dictionary key to later retrieve the event list this day
+            [self.sections setObject:eventsOnThisDay forKey:dateRepresentingThisDay];
+        }
+        
+        // Add the event to the list for this day
+        [eventsOnThisDay addObject:event];
+    }
+    
+    // Create a sorted list of days
+    NSArray *unsortedDays = [self.sections allKeys];
+    self.sortedDays = [unsortedDays sortedArrayUsingSelector:@selector(compare:)];
+    
+    self.sectionDateFormatter = [[NSDateFormatter alloc] init];
+    [self.sectionDateFormatter setDateStyle:NSDateFormatterLongStyle];
+    [self.sectionDateFormatter setTimeStyle:NSDateFormatterNoStyle];
+    
+    self.cellDateFormatter = [[NSDateFormatter alloc] init];
+    [self.cellDateFormatter setDateStyle:NSDateFormatterNoStyle];
+    [self.cellDateFormatter setTimeStyle:NSDateFormatterShortStyle];
 }
 
 - (BOOL)date:(NSDate*)date isBetweenDate:(NSDate*)beginDate andDate:(NSDate*)endDate {
@@ -367,16 +410,31 @@ int testtt = 0;
 //    [self.cellDateFormatter setTimeStyle:NSDateFormatterShortStyle];
 //}
 
-- (void)refreshPlanner {
-//    _refresh = !_refresh;
-    [self performSelector:@selector(updateTable) withObject:nil
-               afterDelay:1];
-}
+//- (void)refreshPlanner {
+////    _refresh = !_refresh;
+//    [self performSelector:@selector(updateTable) withObject:nil
+//               afterDelay:1];
+//}
 
-- (void)updateTable {
+- (void)refresh:(UIRefreshControl *)refreshControl {
+    NSError *error;
+    if (![[self fetchedResultsController] performFetch:&error]) {
+        NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+        exit(-1);       // fail
+    }
+
+    [self eventsToArray];
+    [self plannerSetUp];
     [self.tableView reloadData];
     [self.refreshControl endRefreshing];
 }
+
+//- (void)updateTable {
+//    [self.tableView reloadData];
+//    NSLog(@"Loading");
+//    [self.tableView reloadData];
+//    [self.refreshControl endRefreshing];
+//}
 
 // transfers event object to the destination VC
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
