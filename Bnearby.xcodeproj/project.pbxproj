@@ -107,6 +107,7 @@
 		A0B2697D1809127000EACCBA /* NWWeatherCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A0B2697C1809127000EACCBA /* NWWeatherCell.m */; };
 		A0BB6D59180A32DC0037BD5F /* Weather.m in Sources */ = {isa = PBXBuildFile; fileRef = A0BB6D58180A32DC0037BD5F /* Weather.m */; };
 		A0BB6D62180A39380037BD5F /* WeatherParser.m in Sources */ = {isa = PBXBuildFile; fileRef = A0BB6D61180A39380037BD5F /* WeatherParser.m */; };
+		A0CD2E35181E842500157BA7 /* background.png in Resources */ = {isa = PBXBuildFile; fileRef = A0CD2E34181E842500157BA7 /* background.png */; };
 		A0D23BCF17E6E27D0020BB6E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A0D23BCE17E6E27D0020BB6E /* UIKit.framework */; };
 		A0D23BD117E6E27D0020BB6E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A0D23BD017E6E27D0020BB6E /* Foundation.framework */; };
 		A0D23BD317E6E27D0020BB6E /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A0D23BD217E6E27D0020BB6E /* CoreGraphics.framework */; };
@@ -266,6 +267,7 @@
 		A0BB6D58180A32DC0037BD5F /* Weather.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Weather.m; path = Model/Weather.m; sourceTree = "<group>"; };
 		A0BB6D60180A39380037BD5F /* WeatherParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WeatherParser.h; path = Model/WeatherParser.h; sourceTree = "<group>"; };
 		A0BB6D61180A39380037BD5F /* WeatherParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WeatherParser.m; path = Model/WeatherParser.m; sourceTree = "<group>"; };
+		A0CD2E34181E842500157BA7 /* background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = background.png; path = Images/background.png; sourceTree = "<group>"; };
 		A0D23BCB17E6E27D0020BB6E /* Bnearby.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Bnearby.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A0D23BCE17E6E27D0020BB6E /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		A0D23BD017E6E27D0020BB6E /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -464,6 +466,7 @@
 		A0A77BAE17E70E6200CF91FF /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				A0CD2E34181E842500157BA7 /* background.png */,
 				A0E549FA181E2F810057A770 /* Explore_Data_Customs_House_Restaurant_None.png */,
 				A0E549FB181E2F810057A770 /* Explore_Data_Emporium_Hotel_None.png */,
 				A0E549FC181E2F810057A770 /* Explore_Data_Gallery_of_Modern_Art_None.png */,
@@ -769,6 +772,7 @@
 				A0E54A11181E2F810057A770 /* Explore_Data_Reserve_Restaurant_Milton_None.png in Resources */,
 				A0413CC417EA65B700EBC215 /* star@2x.png in Resources */,
 				A0E54A17181E2F810057A770 /* Explore_Data_Spice_Avenue_Balti_Restaurant_None.png in Resources */,
+				A0CD2E35181E842500157BA7 /* background.png in Resources */,
 				6A1E3CFA180D6D730082D70C /* eventdata.xml in Resources */,
 				A02A30A6181B3B01000D688B /* Distance_Filter_Used.png in Resources */,
 				A0413CBD17EA65B700EBC215 /* 021.png in Resources */,

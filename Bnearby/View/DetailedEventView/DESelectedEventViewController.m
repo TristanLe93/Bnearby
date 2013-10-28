@@ -13,6 +13,9 @@
 @interface DESelectedEventViewController ()
 @property (nonatomic, strong) EKEventStore *eventStore;
 @property BOOL eventStoreAccessGranted;
+@property (assign, nonatomic) BOOL alertType;
+//@property (assign, nonatomic) BOOL beReminded;
+//@property (assign, nonatomic) BOOL doneConfig;
 @end
 
 @implementation DESelectedEventViewController
@@ -29,6 +32,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 	
+    self.alertType = YES;
+//    self.beReminded = NO;
+//    self.doneConfig = NO;
+    
     BnearbyAppDelegate *delegate = [[UIApplication sharedApplication] delegate];
     context = delegate.managedObjectContext;
     
@@ -91,7 +98,6 @@
             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Save Venue" message:message delegate:self cancelButtonTitle:@"Done" otherButtonTitles:@"Remind Me", nil];
             [alert show];
             
-            [self dismissViewControllerAnimated:TRUE completion:nil];
             break;}
         default:
             NSLog(@"ERROR");
@@ -136,68 +142,95 @@ address;
 */
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
-    NSLog(@"pressed!");
-    if (buttonIndex != [alertView cancelButtonIndex]){
-        [self addReminder];
+    if (self.alertType) {
+        if (buttonIndex != [alertView cancelButtonIndex]){
+            self.alertType = NO;
+            [self addReminder];
+        }
+    }
+    else {
+        if (buttonIndex != [alertView cancelButtonIndex]){
+//            self.beReminded = YES;
+            [self addAReminderWithAlarm];
+            [self doneAndExit];
+        }
+    }
+}
+
+- (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
+    if (self.alertType) {
+        if (buttonIndex == [alertView cancelButtonIndex]){
+            [self doneAndExit];
+        }
+    }
+    else {
+        if (buttonIndex == [alertView cancelButtonIndex]){
+            [self addReminderWithoutAlarm];
+            [self doneAndExit];
+        }
     }
 }
 
 - (void)addReminder {
-    if(!self.eventStoreAccessGranted)
+    if(!self.eventStoreAccessGranted) {
 		return;
-    
-	EKReminder *newReminder = [EKReminder reminderWithEventStore:self.eventStore];
-	newReminder.title = [NSString stringWithFormat:@"%@", self.event.title];
-	newReminder.calendar = [_eventStore defaultCalendarForNewReminders];
-	NSError *error = nil;
-	[self.eventStore saveReminder:newReminder
-                           commit:YES
-                            error:&error];
+    }
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Reminder" message:@"Would you like to set an alarm for this reminder?" delegate:self cancelButtonTitle:@"No" otherButtonTitles:@"1 Hour before", nil];
+    [alert show];
+}
+
+- (void)doneAndExit {
+    [self dismissViewControllerAnimated:YES completion:nil];
+//    NSLog(@"EXITING");
 }
 
 
-//- (IBAction)addAReminder:(id)sender
-//{
-//    
-//	if(!self.eventStoreAccessGranted)
-//		return;
-//    
-//	EKReminder *newReminder = [EKReminder reminderWithEventStore:self.eventStore];
-//    
-//	newReminder.title = @"Queensland Art Gallery";
-//	newReminder.calendar = [_eventStore defaultCalendarForNewReminders];
-//    
-//	NSError *error = nil;
-//    
-//	[self.eventStore saveReminder:newReminder
-//                           commit:YES
-//                            error:&error];
-//}
-//
-//
-//- (IBAction)addAReminderWithAlarm:(id)sender
-//{
-//    
-//	if(!self.eventStoreAccessGranted)
-//		return;
-//    
-//	NSDate *now = [NSDate date];
-//    
-//	NSDate *alarmDate = [now dateByAddingTimeInterval:120];
-//	
-//	EKAlarm *ourAlarm = [EKAlarm alarmWithAbsoluteDate:alarmDate];
-//    
-//	EKReminder *newReminder = [EKReminder reminderWithEventStore:self.eventStore];
-//    
-//	newReminder.title = @"Queensland Art Gallery";
-//	newReminder.calendar = [_eventStore defaultCalendarForNewReminders];
-//    
-//	[newReminder addAlarm:ourAlarm];
-//    
-//	NSError *error = nil;
-//    
-//	[self.eventStore saveReminder:newReminder
-//                           commit:YES
-//                            error:&error];
-//}
+- (void)addReminderWithoutAlarm {
+    if(!self.eventStoreAccessGranted)
+		return;
+    
+    unsigned unitFlags = NSYearCalendarUnit | NSMonthCalendarUnit |  NSDayCalendarUnit | NSHourCalendarUnit | NSMinuteCalendarUnit;
+    
+    NSCalendar * cal = [NSCalendar currentCalendar];
+    NSDateComponents *comps = [cal components:unitFlags fromDate:self.event.date];
+    
+    EKReminder *newReminder = [EKReminder reminderWithEventStore:self.eventStore];
+    newReminder.title = [NSString stringWithFormat:@"%@", self.event.title];
+    newReminder.dueDateComponents = comps;
+    newReminder.calendar = [_eventStore defaultCalendarForNewReminders];
+    NSError *error = nil;
+    [self.eventStore saveReminder:newReminder
+                           commit:YES
+                            error:&error];
+    
+
+}
+
+
+- (void)addAReminderWithAlarm {
+    if(!self.eventStoreAccessGranted)
+		return;
+    
+    NSDate *alarmDate = [self.event.date dateByAddingTimeInterval:-3600];
+    EKAlarm *ourAlarm = [EKAlarm alarmWithAbsoluteDate:alarmDate];
+    EKReminder *newReminder = [EKReminder reminderWithEventStore:self.eventStore];
+    
+    unsigned unitFlags = NSYearCalendarUnit | NSMonthCalendarUnit |  NSDayCalendarUnit | NSHourCalendarUnit | NSMinuteCalendarUnit;
+    
+    NSCalendar * cal = [NSCalendar currentCalendar];
+    NSDateComponents *comps = [cal components:unitFlags fromDate:self.event.date];
+    
+    newReminder.title = [NSString stringWithFormat:@"%@", self.event.title];
+    newReminder.dueDateComponents = comps;
+    newReminder.calendar = [_eventStore defaultCalendarForNewReminders];
+    
+    [newReminder addAlarm:ourAlarm];
+    
+    NSError *error = nil;
+    
+    [self.eventStore saveReminder:newReminder
+                           commit:YES
+                            error:&error];
+
+}
 @end
