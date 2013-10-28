@@ -88,5 +88,10 @@
     }
 }
 
+-(IBAction)cancelUnwindSegue:(UIStoryboardSegue *)segue {
+    // When user taps cancel in the DESelectedEventViewConroller
+    // Nothing needed here.
+}
+
 @end
 

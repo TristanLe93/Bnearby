@@ -40,6 +40,13 @@ int testtt = 0;
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    // Pull to Refresh Controls
+    UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];
+    refreshControl.tintColor = [UIColor cyanColor];
+    [refreshControl addTarget:self action:@selector(refreshPlanner) forControlEvents:UIControlEventValueChanged];
+    self.refreshControl = refreshControl;
+    
+    
     // setup managedcontext
     BnearbyAppDelegate *delegate = [[UIApplication sharedApplication] delegate];
     context = delegate.managedObjectContext;
@@ -98,6 +105,10 @@ int testtt = 0;
     // side menu setup
     [self.menuBtn addTarget:self action:@selector(revealMenu:) forControlEvents:UIControlEventTouchUpInside];
     
+    [self.tableView reloadData];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
     [self.tableView reloadData];
 }
 
@@ -355,6 +366,17 @@ int testtt = 0;
 //    [self.cellDateFormatter setDateStyle:NSDateFormatterNoStyle];
 //    [self.cellDateFormatter setTimeStyle:NSDateFormatterShortStyle];
 //}
+
+- (void)refreshPlanner {
+//    _refresh = !_refresh;
+    [self performSelector:@selector(updateTable) withObject:nil
+               afterDelay:1];
+}
+
+- (void)updateTable {
+    [self.tableView reloadData];
+    [self.refreshControl endRefreshing];
+}
 
 // transfers event object to the destination VC
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
