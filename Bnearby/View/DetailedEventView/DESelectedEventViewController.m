@@ -152,24 +152,7 @@
     
     return address;
 }
-/*
-address;
-@property (nonatomic, retain) NSString * bannerurl;
-@property (nonatomic, retain) NSString * category;
-@property (nonatomic, retain) NSDate * date;
-@property (nonatomic, retain) NSNumber * idevent;
-@property (nonatomic, retain) NSNumber * maxprice;
-@property (nonatomic, retain) NSNumber * minprice;
-@property (nonatomic, retain) NSString * phonenumber;
-@property (nonatomic, retain) NSNumber * rating;
-@property (nonatomic, retain) NSString * source;
-@property (nonatomic, retain) NSString * sourceurl;
-@property (nonatomic, retain) NSString * summary;
-@property (nonatomic, retain) NSString * title;
-@property (nonatomic, retain) NSString * type;
-@property (nonatomic, retain) NSString * tileBanner;
-@property (nonatomic, retain) NSNumber * duration;
-*/
+
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
     if (self.alertType) {

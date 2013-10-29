@@ -14,6 +14,6 @@
 
 @interface VenueResultsView : UITableViewController
 
-@property (weak, nonatomic) NSString *categoryId;
+@property (strong, nonatomic) NSArray *venues;
 
 @end

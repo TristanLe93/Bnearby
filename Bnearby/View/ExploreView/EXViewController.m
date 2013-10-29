@@ -17,6 +17,7 @@
 #import "EXEventButton.h"
 #import "BNEvent.h"
 #import "BnearbyAppDelegate.h"
+#import "VenueResultsView.h"
 //#import "StarRatingControl.h"
 
 @interface EXViewController ()
@@ -44,8 +45,6 @@
 @property (assign, nonatomic) BOOL refined;
 @property (strong, nonatomic) NSMutableArray *refinedEvents;
 
-
-
 @end
 
 @implementation EXViewController
@@ -62,6 +61,8 @@ static NSString *CellIdentifier = @"CellIdentifier";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    mySearchBar.delegate = self;
     
     _starRatingControl.delegate = self;
     _timeRatingControl.delegate = self;
@@ -124,30 +125,30 @@ static NSString *CellIdentifier = @"CellIdentifier";
      * Failure: display the error message in a popup.
      */
     AFJSONRequestOperation *operation= [AFJSONRequestOperation JSONRequestOperationWithRequest:request
-                                                                                       success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON)
-                                        {
-                                            NSMutableArray *tempVenues = [[NSMutableArray alloc] init];
-                                            
-                                            NSArray *groups = [[JSON objectForKey:@"response"] objectForKey:@"groups"];
-                                            NSArray *items = [[groups objectAtIndex:0] objectForKey:@"items"];
-                                            
-                                            for (NSDictionary *item in items) {
-                                                [tempVenues addObject:[item objectForKey:@"venue"]];
-                                            }
-                                            
-                                            // sort the venues in alphabetical order
-                                            NSSortDescriptor *descriptor = [[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES];
-                                            NSArray *sortDescriptors = [NSArray arrayWithObject:descriptor];
-                                            
-                                            venues = [tempVenues sortedArrayUsingDescriptors:sortDescriptors];
-                                            
+                                   success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON)
+    {
+        NSMutableArray *tempVenues = [[NSMutableArray alloc] init];
+        
+        NSArray *groups = [[JSON objectForKey:@"response"] objectForKey:@"groups"];
+        NSArray *items = [[groups objectAtIndex:0] objectForKey:@"items"];
+        
+        for (NSDictionary *item in items) {
+            [tempVenues addObject:[item objectForKey:@"venue"]];
+        }
+        
+        // sort the venues in alphabetical order
+        NSSortDescriptor *descriptor = [[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES];
+        NSArray *sortDescriptors = [NSArray arrayWithObject:descriptor];
+        
+        venues = [tempVenues sortedArrayUsingDescriptors:sortDescriptors];
+        
 //                                            [self.tableView reloadData];
-                                            
-                                        } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
-                                            //Error Pop up
-                                            UIAlertView *av=[[UIAlertView alloc]initWithTitle:@"Error Retriveing Data" message:[NSString stringWithFormat:@"%@",error] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-                                            [av show];
-                                        }];
+        
+    } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
+        //Error Pop up
+        UIAlertView *av=[[UIAlertView alloc]initWithTitle:@"Error Retriveing Data" message:[NSString stringWithFormat:@"%@",error] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        [av show];
+    }];
     
     [operation start];
     [self stopUpdatingCurrentLocation];
@@ -980,6 +981,67 @@ static NSString *CellIdentifier = @"CellIdentifier";
             destinationView.type = @2;
         }
     }
+}
+
+#pragma mark - 
+#pragma mark - UISearchBar delegate
+
+
+static NSString *url = @"https://api.foursquare.com/v2/";
+static NSString *path = @"venues/explore?";
+
+- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
+    [searchBar resignFirstResponder];
+    
+    // setup client key and secret
+    NSString *clientID=[NSString stringWithUTF8String:kCLIENT_ID];
+    NSString *clientSecret=[NSString stringWithUTF8String:kCLIENT_SECRET];
+    
+    NSString *latlng = @"brisbane";
+    
+    NSString *fullUrl = [NSString stringWithFormat:@"%@%@near=%@&query=%@&client_id=%@&client_secret=%@",
+                         url, path, latlng, searchBar.text, clientID, clientSecret];
+    
+    NSURL *url = [NSURL URLWithString:fullUrl];
+    NSURLRequest *request = [NSURLRequest requestWithURL:url];
+    
+    /*
+     * Begin venue fetch operation.
+     *
+     * Success: fetch venue information from FourSquare API and stores it in a Array.
+     * Failure: display the error message in a popup.
+     */
+    AFJSONRequestOperation *operation= [AFJSONRequestOperation JSONRequestOperationWithRequest:request success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
+        
+        NSMutableArray *tempVenues = [[NSMutableArray alloc] init];
+
+        NSArray *groups = [[JSON objectForKey:@"response"] objectForKey:@"groups"];
+        NSArray *items = [[groups objectAtIndex:0] objectForKey:@"items"];
+
+        for (NSDictionary *item in items) {
+            [tempVenues addObject:[item objectForKey:@"venue"]];
+        }
+
+        // sort the venues in alphabetical order
+        NSSortDescriptor *descriptor = [[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES];
+        NSArray *sortDescriptors = [NSArray arrayWithObject:descriptor];
+
+        NSArray *venueResults = [tempVenues sortedArrayUsingDescriptors:sortDescriptors];
+        
+        // perform transition
+        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"MainStoryboard" bundle:nil];
+        VenueResultsView *destination = [storyboard instantiateViewControllerWithIdentifier:@"VenueResultsView"];
+        destination.venues = venueResults;
+        [destination.tableView reloadData];
+        [self.navigationController pushViewController:destination animated:YES];
+        
+    } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
+        //Error Pop up
+        UIAlertView *av=[[UIAlertView alloc]initWithTitle:@"Error Retriveing Data" message:[NSString stringWithFormat:@"%@",error] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        [av show];
+    }];
+    
+    [operation start];
 }
 
 @end

@@ -10,19 +10,13 @@
 #import "DEViewController.h"
 #import "AFNetworking.h"
 
-
-static NSString *baseurl = @"https://api.foursquare.com/v2/";
-static NSString *resourcePath = @"venues/explore?";
-
-@interface VenueResultsView () {
-    NSArray *venues;
-
-}
+@interface VenueResultsView ()
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *spinner;
-
 @end
 
+
 @implementation VenueResultsView
+@synthesize venues;
 
 - (id)initWithStyle:(UITableViewStyle)style {
     self = [super initWithStyle:style];
@@ -36,54 +30,6 @@ static NSString *resourcePath = @"venues/explore?";
     [super viewDidLoad];
 
     [self.spinner startAnimating];
-    venues = [[NSMutableArray alloc] init];
-    
-    // setup client key and secret
-    NSString *clientID=[NSString stringWithUTF8String:kCLIENT_ID];
-    NSString *clientSecret=[NSString stringWithUTF8String:kCLIENT_SECRET];
-    
-    NSString *currentLocation = @"Brisbane";
-    
-    NSString *fullUrl = [NSString stringWithFormat:@"%@%@near=%@&categoryId=%@&client_id=%@&client_secret=%@",
-                         baseurl, resourcePath, currentLocation, self.categoryId, clientID, clientSecret];
-    
-    NSURL *url = [NSURL URLWithString:fullUrl];
-    NSURLRequest *request = [NSURLRequest requestWithURL:url];
-    
-    /*
-     * Begin venue fetch operation.
-     *
-     * Success: fetch venue information from FourSquare API and stores it in a Array.
-     * Failure: display the error message in a popup.
-     */
-    AFJSONRequestOperation *operation= [AFJSONRequestOperation JSONRequestOperationWithRequest:request
-    success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON)
-    {
-        NSMutableArray *tempVenues = [[NSMutableArray alloc] init];
-        
-        NSArray *groups = [[JSON objectForKey:@"response"] objectForKey:@"groups"];
-        NSArray *items = [[groups objectAtIndex:0] objectForKey:@"items"];
-        
-        for (NSDictionary *item in items) {
-            [tempVenues addObject:[item objectForKey:@"venue"]];
-        }
-        
-        // sort the venues in alphabetical order
-        NSSortDescriptor *descriptor = [[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES];
-        NSArray *sortDescriptors = [NSArray arrayWithObject:descriptor];
-        
-        venues = [tempVenues sortedArrayUsingDescriptors:sortDescriptors];
-        
-        [self.tableView reloadData];
-        self.title = [NSString stringWithFormat:@"%i Results", venues.count];
-        
-    } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
-          //Error Pop up
-          UIAlertView *av=[[UIAlertView alloc]initWithTitle:@"Error Retriveing Data" message:[NSString stringWithFormat:@"%@",error] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-          [av show];
-    }];
-
-    [operation start];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -101,7 +47,7 @@ static NSString *resourcePath = @"venues/explore?";
 // Updates the tableview cell
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString *CellIdentifier = @"VenueCell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];

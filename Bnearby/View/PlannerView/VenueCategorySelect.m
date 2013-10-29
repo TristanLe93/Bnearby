@@ -50,20 +50,77 @@ static NSString *clothing_id = @"4bf58dd8d48988d103951735";
     return cell;
 }
 
+#pragma mark -
 #pragma mark - Navigation
 
-// In a story board-based application, you will often want to do a little preparation before navigation
+static NSString *baseurl = @"https://api.foursquare.com/v2/";
+static NSString *resourcePath = @"venues/explore?";
+
+/*
+ * Perform a segue to the VenueResultsView. 
+ * We pass an array of venues.
+ */
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    
     if ([segue.identifier isEqualToString:@"VenueResultsSegue"]) {
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
         NSString *key = [[venueCategories allKeys] objectAtIndex:indexPath.row];
         NSString *categoryId = [venueCategories objectForKey:key];
         
-        VenueResultsView *destinationView = segue.destinationViewController;
-        destinationView.categoryId = categoryId;
+        // setup client key and secret
+        NSString *clientID=[NSString stringWithUTF8String:kCLIENT_ID];
+        NSString *clientSecret=[NSString stringWithUTF8String:kCLIENT_SECRET];
+        
+        NSString *currentLocation = @"Brisbane";
+        
+        NSString *fullUrl = [NSString stringWithFormat:@"%@%@near=%@&categoryId=%@&client_id=%@&client_secret=%@",
+                             baseurl, resourcePath, currentLocation, categoryId, clientID, clientSecret];
+        
+        NSURL *url = [NSURL URLWithString:fullUrl];
+        NSURLRequest *request = [NSURLRequest requestWithURL:url];
+        
+        /*
+         * Begin venue fetch operation.
+         *
+         * Success: fetch venue information from FourSquare API and stores it in a Array.
+         * Failure: display the error message in a popup.
+         */
+        AFJSONRequestOperation *operation= [AFJSONRequestOperation JSONRequestOperationWithRequest:request
+           success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON)
+        {
+            NSMutableArray *tempVenues = [[NSMutableArray alloc] init];
+            
+            NSArray *groups = [[JSON objectForKey:@"response"] objectForKey:@"groups"];
+            NSArray *items = [[groups objectAtIndex:0] objectForKey:@"items"];
+            
+            for (NSDictionary *item in items) {
+                [tempVenues addObject:[item objectForKey:@"venue"]];
+            }
+            
+            // sort the venues in alphabetical order
+            NSSortDescriptor *descriptor = [[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES];
+            NSArray *sortDescriptors = [NSArray arrayWithObject:descriptor];
+            
+            NSArray *venues = [tempVenues sortedArrayUsingDescriptors:sortDescriptors];
+            
+            // pass view to destination
+            VenueResultsView *destinationView = segue.destinationViewController;
+            destinationView.venues = venues;
+            
+            [destinationView.tableView reloadData];
+            
+        } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
+            //Error Pop up
+            UIAlertView *av=[[UIAlertView alloc]initWithTitle:@"Error Retriveing Data" message:[NSString stringWithFormat:@"%@",error] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+            [av show];
+        }];
+        
+        [operation start];
+        
+
     }
 
 }
+
+
 
 @end

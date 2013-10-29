@@ -17,7 +17,7 @@
 #define baseurl "https://api.foursquare.com/v2/"
 #define resourcePath "venues/explore?"
 
-@interface EXViewController : UITableViewController <CLLocationManagerDelegate, StarRatingDelegate, TimeRatingDelegate, CostRatingDelegate> {
+@interface EXViewController : UITableViewController <CLLocationManagerDelegate, StarRatingDelegate, TimeRatingDelegate, CostRatingDelegate, UISearchBarDelegate> {
     NSFetchedResultsController *fetchedResultsController;
     NSManagedObjectContext *context;
 }
