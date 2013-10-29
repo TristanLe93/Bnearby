@@ -15,6 +15,7 @@
 @property (weak, nonatomic) IBOutlet UIScrollView *myScroller;
 @property (weak, nonatomic) IBOutlet UIView *myDetailsView;
 @property (weak, nonatomic) IBOutlet UIButton *myButton;
+@property (weak, nonatomic) IBOutlet UIButton *editButton;
 @property (weak, nonatomic) IBOutlet UIImageView *myImageView;
 @property (weak, nonatomic) IBOutlet UIView *summayView;
 @property (weak, nonatomic) IBOutlet UIView *datesView;
@@ -34,9 +35,18 @@
 @synthesize datesView;
 @synthesize addressView;
 @synthesize additionalInfoView;
+@synthesize editButton;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    if (event.date != Nil) {
+        [editButton addTarget:self action:@selector(editPlanner:) forControlEvents:UIControlEventTouchUpInside];
+    }
+    
+    if (event.date == Nil) {
+        editButton.hidden = YES;
+    }
     
     myScroller.contentSize = CGSizeMake(320, 583);
     
@@ -142,6 +152,11 @@
     
     }
 }
+
+-(IBAction)editPlanner:(id)sender {
+ [self performSegueWithIdentifier:@"venueSaveSegue" sender:self];
+}
+
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue.identifier isEqualToString:@"venueSaveSegue"] && theVenue != nil && [type isEqual:@2]) {
         DESelectedEventViewController *viewController = segue.destinationViewController;
@@ -154,6 +169,8 @@
         viewController.type = type;
     }
 }
+
+
 
 -(IBAction)cancelUnwindSegue:(UIStoryboardSegue *)segue {
     // When user taps cancel in the DESelectedEventViewConroller

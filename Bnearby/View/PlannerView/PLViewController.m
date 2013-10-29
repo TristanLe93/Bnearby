@@ -238,34 +238,36 @@
     NSArray *eventsOnThisDay = [self.sections objectForKey:dateRepresentingThisDay];
     BNEvent *event = [eventsOnThisDay objectAtIndex:indexPath.row];
     
-//    if (event != nil) {
-//        NSLog(@"Test");
-        // set event title
-        UILabel *eventTitle = (UILabel *)[cell viewWithTag:101];
-        eventTitle.text = event.title;
-        
-        // set event address
-        UILabel *eventAddress = (UILabel *)[cell viewWithTag:102];
-        eventAddress.text = event.address;
-        eventAddress.adjustsFontSizeToFitWidth = YES;
-        
-        // set image according to its event type
-        UIImageView *imageView = (UIImageView *)[cell viewWithTag:100];
-        UIImage *image;
-        
-        if ([event.type isEqualToString:@"Hotel"]) {
-            image = [UIImage imageNamed:@"Shopping Icons.png"];
-        }
-        else if ([event.type isEqualToString:@"Restaurant"]) {
-            image = [UIImage imageNamed:@"Food Icons.png"];
-        }
-        else if ([event.type isEqualToString:@"Attraction"]) {
-            image = [UIImage imageNamed:@"Entertainment Icons.png"];
-        }
-        imageView.image = image;
-//    }
+    // set event title
+    UILabel *eventTitle = (UILabel *)[cell viewWithTag:101];
+    eventTitle.text = event.title;
     
-
+    // Time planned
+    NSDateComponents *components = [[NSCalendar currentCalendar] components: NSHourCalendarUnit | NSMinuteCalendarUnit fromDate:event.date];
+    NSInteger hour = [components hour];
+    NSInteger minute = [components minute];
+    UILabel *timePlanned = (UILabel *)[cell viewWithTag:103];
+    timePlanned.text = [NSString stringWithFormat:@"@%d:%d", hour, minute];
+    
+    // set event address
+    UILabel *eventAddress = (UILabel *)[cell viewWithTag:102];
+    eventAddress.text = event.address;
+    eventAddress.adjustsFontSizeToFitWidth = YES;
+        
+    // set image according to its event type
+    UIImageView *imageView = (UIImageView *)[cell viewWithTag:100];
+    UIImage *image;
+        
+    if ([event.type isEqualToString:@"Hotel"]) {
+        image = [UIImage imageNamed:@"Shopping Icons.png"];
+    }
+    else if ([event.type isEqualToString:@"Restaurant"]) {
+        image = [UIImage imageNamed:@"Food Icons.png"];
+    }
+    else if ([event.type isEqualToString:@"Attraction"]) {
+        image = [UIImage imageNamed:@"Entertainment Icons.png"];
+    }
+    imageView.image = image;
     
     return cell;
 }

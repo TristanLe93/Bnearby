@@ -21,6 +21,7 @@
 @implementation DESelectedEventViewController
 @synthesize myDatePicker, theVenue;
 @synthesize type;
+@synthesize event;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -31,7 +32,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-	
+    
     self.alertType = YES;
 //    self.beReminded = NO;
 //    self.doneConfig = NO;
@@ -64,10 +65,38 @@
 // saves data
 - (IBAction)selectButtonPressed:(id)sender {
     NSDate *date = [myDatePicker date];
-    NSLog(@"TYPE %@", type);
     switch ([type integerValue]) {
         case 1:
-            NSLog(@"NOT YET IMPLEMENTED -- LUCAS");
+            if (event.date == nil) {
+                event.date = date;
+                
+                NSError *error;
+                NSString *message;
+                if (![context save:&error]) {
+                    message = @"Error: Not able to modify date";
+                } else {
+                    message = @"The Date has been modified";
+                    self.event = event;
+                }
+                
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Save Venue" message:message delegate:self cancelButtonTitle:@"Done" otherButtonTitles:@"Remind Me", nil];
+                [alert show];
+            }
+            else {
+                event.date = date;
+                
+                NSError *error;
+                NSString *message;
+                if (![context save:&error]) {
+                    message = @"Error: Not able to modify date";
+                } else {
+                    message = @"The Date has been modified";
+                    self.event = event;
+                }
+                
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Save Venue" message:message delegate:self cancelButtonTitle:@"Done" otherButtonTitles:@"Remind Me", nil];
+                [alert show];
+            }
             break;
         case 2:{
             NSDictionary *location = [theVenue objectForKey:@"location"];
@@ -80,7 +109,6 @@
             event.address = [self addressBuilder:location];
             event.date = [myDatePicker date];
             event.phonenumber = [contact objectForKey:@"formattedPhone"];
-            NSLog(@"%@", theVenue);
             event.latitude = [location objectForKey:@"lat"];
             event.longitude = [location objectForKey:@"lng"];
             NSLog(@"lat %@ lng %@", event.latitude, event.longitude);
@@ -109,8 +137,6 @@
 
 - (NSMutableString *)addressBuilder:(NSDictionary *)location {
     NSMutableString *address = [[NSMutableString alloc] init];
-    
-    NSLog(@"%@", location);
     
     [address appendString:[location objectForKey:@"address"]];
     [address appendString:@", "];
