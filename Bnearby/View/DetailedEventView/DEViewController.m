@@ -102,9 +102,14 @@
 //    [myDetailsView addSubview:contentView];
     
     switch ([type integerValue]) {
-        case 1:
-            NSLog(@"TYPE %@", type);
+        case 1:{
+//            NSLog(@"TYPE %@", type);
             //set core data information
+            UILabel *theName = [[UILabel alloc] initWithFrame:CGRectMake(20, 134, 280, 21)];
+            theName.text = event.title;
+            theName.textColor = [UIColor whiteColor];
+            [myScroller addSubview:theName];
+            
             myImageView.frame = CGRectMake(0, 0, 320, 168);
             myImageView.image = [UIImage imageNamed:[NSString stringWithFormat:@"%@", event.tileBanner]];
 
@@ -132,10 +137,15 @@
             phone.text = event.phonenumber;
             price.text = [NSString stringWithFormat:@"min %@ and max %@", event.minprice, event.maxprice];
             category.text = event.category;
-            break;
+            break;}
             
-        case 2:
+        case 2:{
             // set foursquare information
+            UILabel *theName = [[UILabel alloc] initWithFrame:CGRectMake(20, 134, 280, 21)];
+            theName.text = [theVenue objectForKey:@"name"];
+            theName.textColor = [UIColor whiteColor];
+            [myScroller addSubview:theName];
+            
             myImageView.frame = CGRectMake(0, 0, 320, 168);
             myImageView.image = [UIImage imageNamed:[NSString stringWithFormat:@"Loading_Variation_One.png"]];
 
@@ -148,7 +158,7 @@
             date.text = @"This venue is not in the Planner";
             address.text = [NSString stringWithFormat:@"%@", venueAddress];
             phone.text = [contact objectForKey:@"formattedPhone"];
-            break;
+            break;}
     
     }
 }

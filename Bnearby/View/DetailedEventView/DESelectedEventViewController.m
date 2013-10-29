@@ -102,15 +102,15 @@
             NSDictionary *location = [theVenue objectForKey:@"location"];
             NSDictionary *contact = [theVenue objectForKey:@"contact"];
             
-            BNEvent *event = [NSEntityDescription insertNewObjectForEntityForName:@"BNEvent" inManagedObjectContext:context];
+            BNEvent *thisEvent = [NSEntityDescription insertNewObjectForEntityForName:@"BNEvent" inManagedObjectContext:context];
             
             //set data
-            event.title = [theVenue objectForKey:@"name"];
-            event.address = [self addressBuilder:location];
-            event.date = [myDatePicker date];
-            event.phonenumber = [contact objectForKey:@"formattedPhone"];
-            event.latitude = [location objectForKey:@"lat"];
-            event.longitude = [location objectForKey:@"lng"];
+            thisEvent.title = [theVenue objectForKey:@"name"];
+            thisEvent.address = [self addressBuilder:location];
+            thisEvent.date = [myDatePicker date];
+            thisEvent.phonenumber = [contact objectForKey:@"formattedPhone"];
+            thisEvent.latitude = [location objectForKey:@"lat"];
+            thisEvent.longitude = [location objectForKey:@"lng"];
             NSLog(@"lat %@ lng %@", event.latitude, event.longitude);
             
             

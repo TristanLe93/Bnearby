@@ -12,7 +12,10 @@
 #import "BnearbyAppDelegate.h"
 #import "Weather.h"
 
-@interface NWTableViewController : UITableViewController <MKMapViewDelegate>
+@interface NWTableViewController : UITableViewController <MKMapViewDelegate> {
+    NSFetchedResultsController *fetchedResultsController;
+    NSManagedObjectContext *context;
+}
 
 @property (weak, nonatomic) IBOutlet UIButton *menuBtn;
 

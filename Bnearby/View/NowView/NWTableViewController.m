@@ -15,29 +15,32 @@
 #import "NWWeatherCell.h"
 #import "WeatherParser.h"
 #import "ILTranslucentView.h"
+#import "BNEvent.h"
+#import "DEViewController.h"
 
 @interface NWTableViewController ()
-//@property (strong, nonatomic) UILabel *weatherLabel;
-//@property (strong, nonatomic) UILabel *detailedWeatherLabel;
-//@property (strong, nonatomic) UIImageView *weatherIcon;
 @property (strong, nonatomic) MKMapView *theMap;
-//@property (strong, nonatomic) NWWeatherCell *weatherCell;
-//@property (strong, nonatomic) NSString *weatherText;
-//@property (strong, nonatomic) NSString *detailedWeatherText;
 @property (assign, nonatomic) BOOL refresh;
 @property (assign, nonatomic) BOOL once;
-
+@property (strong, nonatomic) NSArray *plannedEvents;
+@property (strong, nonatomic) NSDateComponents *components;
+@property (strong, nonatomic) UIButton *event1;
+@property (strong, nonatomic) UIButton *event2;
+@property (strong, nonatomic) UIButton *event3;
+@property (strong, nonatomic) UIButton *event4;
+@property (readwrite, nonatomic) NSInteger position;
 
 @end
 
 @implementation NWTableViewController {
 }
-
 @synthesize menuBtn;
 @synthesize WeatherBT;
 @synthesize locationManager;
 @synthesize app;
 @synthesize weather;
+@synthesize plannedEvents;
+@synthesize components;
 
 //NSString * temperature;
 
@@ -53,13 +56,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
-
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
- 
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
     // Pull to Refresh Controls
     UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];
@@ -71,6 +67,16 @@
 //    UIImageView *tempImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"background.png"]];
 //    [tempImageView setFrame:self.tableView.frame];
 //    self.tableView.backgroundView = tempImageView;
+    
+    // setup managedcontext
+    BnearbyAppDelegate *delegate = [[UIApplication sharedApplication] delegate];
+    context = delegate.managedObjectContext;
+    
+    NSError *error;
+    if (![[self fetchedResultsController] performFetch:&error]) {
+        NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+        exit(-1);       // fail
+    }
     
     // Sliding Menu Controls
     self.view.layer.shadowOpacity = 0.75f;
@@ -89,11 +95,12 @@
     self.locationManager = [[CLLocationManager alloc]init];
     self.locationManager.distanceFilter = kCLDistanceFilterNone;
     self.locationManager.desiredAccuracy = kCLLocationAccuracyBestForNavigation;
-//    [self.locationManager startUpdatingLocation];
     [self.theMap setMapType:MKMapTypeStandard];
     [self.theMap setZoomEnabled:YES];
     [self.theMap setScrollEnabled: YES];
 
+    [self getPlannedEvents];
+    
     [self.tableView reloadData];
 }
 
@@ -104,6 +111,28 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (NSFetchedResultsController *)fetchedResultsController {
+    if (fetchedResultsController != nil) {
+        return fetchedResultsController;
+    }
+    
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"BNEvent" inManagedObjectContext:context];
+    [fetchRequest setEntity:entity];
+    
+    NSSortDescriptor *sort = [[NSSortDescriptor alloc] initWithKey:@"date" ascending:NO];
+    [fetchRequest setSortDescriptors:[NSArray arrayWithObject:sort]];
+    
+    NSFetchedResultsController *theFetchedResultsController = [[NSFetchedResultsController alloc]
+                                                               initWithFetchRequest:fetchRequest
+                                                               managedObjectContext:context
+                                                               sectionNameKeyPath:nil
+                                                               cacheName:@"Root"];
+    
+    fetchedResultsController = theFetchedResultsController;
+    return theFetchedResultsController;
 }
 
 #pragma mark - Table view data source
@@ -191,8 +220,49 @@
             translucentView.translucentTintColor = [UIColor colorWithRed:255/255.0f green:102/255.0f blue:102/255.0f alpha:1.0f];
             translucentView.backgroundColor = [UIColor clearColor];
             
-        
-            
+            if (plannedEvents != nil) {
+                if (plannedEvents.count > 0) {
+                    for (int i =  0; i < plannedEvents.count; i++) {
+                        
+                        UIButton *eventButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 25 + (i*20 + i*5), 300, 20)];
+                        BNEvent *addEvent = [plannedEvents objectAtIndex:i];
+                        components = [[NSCalendar currentCalendar] components: NSYearCalendarUnit | NSMonthCalendarUnit |  NSDayCalendarUnit | NSHourCalendarUnit | NSMinuteCalendarUnit fromDate:addEvent.date];
+                        NSInteger hour = [components hour];
+                        NSInteger minute = [components minute];
+
+                        [eventButton setTitle:[NSString stringWithFormat:@"%d:%d - %@", hour, minute ,addEvent.title] forState:UIControlStateNormal];
+                        
+                        
+                        switch (i) {
+                            case 0:
+                                self.event1 = eventButton;
+                                [self.event1 addTarget:self action:@selector(eventSelected:) forControlEvents:UIControlEventTouchUpInside];
+                                [translucentView addSubview:self.event1];
+                                break;
+                            case 1:
+                                self.event2 = eventButton;
+                                [self.event2 addTarget:self action:@selector(eventSelected:) forControlEvents:UIControlEventTouchUpInside];
+                                [translucentView addSubview:self.event2];
+                                break;
+                            case 2:
+                                self.event3 = eventButton;
+                                [self.event3 addTarget:self action:@selector(eventSelected:) forControlEvents:UIControlEventTouchUpInside];
+                                [translucentView addSubview:self.event3];
+                                break;
+                            case 3:
+                                self.event4 = eventButton;
+                                [self.event4 addTarget:self action:@selector(eventSelected:) forControlEvents:UIControlEventTouchUpInside];
+                                [translucentView addSubview:self.event4];
+                                break;
+                            default:
+                                break;
+                        }
+                        if (i == 3) {
+                            break;
+                        }
+                    }
+                }
+            }
             
             [translucentView addSubview:plannerLabel];
             [plannerView addSubview:translucentView];
@@ -285,6 +355,74 @@
     return height;
 }
 
+- (IBAction)eventSelected:(id)sender {
+    UIButton *thisButton = (UIButton*)sender;
+    self.position = ((thisButton.frame.origin.y/25) - 1);
+    [self performSegueWithIdentifier:@"miniPlannerSegue" sender:self];
+}
+
+
+
+- (void)getPlannedEvents {
+    NSMutableArray *planned = [[NSMutableArray alloc] init];
+    NSInteger numbRows = 0;
+    for (int j = 0; j < fetchedResultsController.sections.count; j++) {
+        id sectionInfo = [[fetchedResultsController sections] objectAtIndex:j];
+        NSInteger count = [sectionInfo numberOfObjects];
+        numbRows = numbRows + count;
+    }
+    if (numbRows > 0) {
+        for (int i = 0; i < numbRows; i++) {
+            NSIndexPath *indexPath2 = [NSIndexPath indexPathForRow:i inSection:0];
+            BNEvent *event = [fetchedResultsController objectAtIndexPath:indexPath2];
+            
+            if (event.date != nil) {
+                NSDate *now = [NSDate date];
+                NSDate *endDate = [self dateAtEndOfDayForDate:now];
+                
+                if (event.date != nil && [self date:event.date isBetweenDate:now andDate:endDate]) {
+                    [planned addObject:event];
+                }
+            }
+        }
+        if (planned.count > 0) {
+            NSArray* reversedArray = [[planned reverseObjectEnumerator] allObjects];
+            plannedEvents = [[NSArray alloc] initWithArray:reversedArray];
+        }
+    }
+    
+//    plannedEvents = [planned sortedArrayUsingSelector:@selector(compare:)];
+}
+
+- (NSDate *)dateAtEndOfDayForDate:(NSDate *)inputDate {
+    // Use the user's current calendar and time zone
+    NSCalendar *calendar = [NSCalendar currentCalendar];
+    NSTimeZone *timeZone = [NSTimeZone systemTimeZone];
+    [calendar setTimeZone:timeZone];
+    
+    // Selectively convert the date components (year, month, day) of the input date
+    NSDateComponents *dateComps = [calendar components:NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit fromDate:inputDate];
+    
+    // Set the time components manually
+    [dateComps setHour:23];
+    [dateComps setMinute:59];
+    [dateComps setSecond:59];
+    
+    // Convert back
+    NSDate *endOfDay = [calendar dateFromComponents:dateComps];
+    return endOfDay;
+}
+
+- (BOOL)date:(NSDate*)date isBetweenDate:(NSDate*)beginDate andDate:(NSDate*)endDate {
+    if ([date compare:beginDate] == NSOrderedAscending) {
+    	return NO;
+    }
+    if ([date compare:endDate] == NSOrderedDescending) {
+    	return NO;
+    }
+    return YES;
+}
+
 - (NSString*)iconForWeather: (NSString*)iconId {
     NSString *image;
     if ([iconId isEqualToString:@"01d"]) {
@@ -320,37 +458,6 @@
     [self.slidingViewController anchorTopViewTo:ECRight];
 }
 
-//- (IBAction)func:(id)sender {
-//    
-////    [self.theMap setMapType:MKMapTypeStandard];
-////    [self.theMap setZoomEnabled:YES];
-////    [self.theMap setScrollEnabled: YES];
-//    MKCoordinateRegion region = {{0.0, 0.0}, {0.0, 0.0}};
-//    region.center.latitude = self.locationManager.location.coordinate.latitude;
-//    region.center.longitude = self.locationManager.location.coordinate.longitude;
-//    
-//    region.span.longitudeDelta = 0.007f;
-//    region.span.latitudeDelta = 0.007f;
-//    [self.theMap setRegion:region animated:YES];
-//    [self.theMap setDelegate:sender];
-//    self.theMap.showsUserLocation = YES;
-//    return;
-//  }
-
-//-(void)displayLocation {
-//    MKCoordinateRegion region = {{0.0, 0.0}, {0.0, 0.0}};
-//    region.center.latitude = self.locationManager.location.coordinate.latitude;
-//    region.center.longitude = self.locationManager.location.coordinate.longitude;
-//    
-//    NSLog(@"Latitude: %f", region.center.latitude);
-//    NSLog(@"Longitude: %f", region.center.longitude);
-//    
-//    region.span.longitudeDelta = 0.007f;
-//    region.span.latitudeDelta = 0.007f;
-//    [self.theMap setRegion:region animated:YES];
-////    [self.theMap setDelegate:sender];
-//    self.theMap.showsUserLocation = YES;
-//}
 
 /*
 // Override to support conditional editing of the table view.
@@ -391,16 +498,27 @@
 }
 */
 
-/*
+
 #pragma mark - Navigation
 
 // In a story board-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
-}
+    
+    if ([[segue identifier] isEqualToString:@"miniPlannerSegue"]) {
+        // Get reference to the destination view controller
+        
+        
+         DEViewController *vc = [segue destinationViewController];
+        
+        // Pass any objects to the view controller here, like...
 
- */
+        BNEvent *sendThisEvent = [plannedEvents objectAtIndex:self.position];
+        vc.event = sendThisEvent;
+        vc.type = @1;
+    }
+}
+ 
 
 @end

@@ -30,6 +30,7 @@
 @property (strong, nonatomic) NSArray *venues;
 @property (readwrite, nonatomic) NSInteger tilePosition;
 @property (assign, nonatomic) BOOL normalTile;
+
 @property (strong, nonatomic) NSMutableArray *row0;
 @property (strong, nonatomic) NSMutableArray *row1;
 @property (strong, nonatomic) NSMutableArray *row2;
@@ -235,17 +236,12 @@ static NSString *CellIdentifier = @"CellIdentifier";
                 NSIndexPath *indexPath2 = [NSIndexPath indexPathForRow:i inSection:0];
                 BNEvent *event;
                 if (self.refined) {
-//                    if (i+1 == self.refinedEvents.count) {
-//                        break;
-//                    }
-//                    else {
                         event = [self.refinedEvents objectAtIndex:i];
-//                    }
                 }
                 else {
                     event = [fetchedResultsController objectAtIndexPath:indexPath2];
                 }
-                if ([event.type isEqualToString:@"Attraction"]) {
+                if ([event.category isEqualToString:@"Attraction"] || [event.type isEqualToString:@"Free"]) {
                     // Prepare Scroll View for new event
                     [cell.myScrollView setContentSize:(CGSizeMake(cell.myScrollView.myView.frame.size.width + 320, 168))];
                     // Prepare Event View for new event
@@ -256,13 +252,19 @@ static NSString *CellIdentifier = @"CellIdentifier";
                     // Create a new Image View
                     UIButton *newTile = [[UIButton alloc] initWithFrame:CGRectMake(cell.myScrollView.myView.frame.size.width - 320, 0, 320, 168)];
                     [newTile setBackgroundImage:[UIImage imageNamed:[NSString stringWithFormat:@"%@", event.tileBanner]] forState:UIControlStateNormal];
-                    UILabel *newLabel = [[UILabel alloc] initWithFrame:CGRectMake(cell.myScrollView.myView.frame.origin.x + 20, 127, 204, 40)];
-                    newLabel.text = [NSString stringWithFormat:@"%@\nMore Details Here", event.title];
+                    UILabel *newLabel = [[UILabel alloc] initWithFrame:CGRectMake(cell.myScrollView.myView.frame.origin.x + 20, 126, 204, 21)];
+                    UILabel *newLabel2 = [[UILabel alloc] initWithFrame:CGRectMake(cell.myScrollView.myView.frame.origin.x + 20, 147, 204, 21)];
+                    newLabel.text = [NSString stringWithFormat:@"%@", event.title];
+                    newLabel2.text = [NSString stringWithFormat:@"%@",  event.address];
                     newLabel.textColor = [UIColor whiteColor];
                     newLabel.numberOfLines = 0;
                     newLabel.adjustsFontSizeToFitWidth = YES;
-                    newLabel.minimumScaleFactor = 0;
+                    newLabel2.textColor = [UIColor whiteColor];
+                    newLabel2.numberOfLines = 0;
+                    newLabel2.adjustsFontSizeToFitWidth = YES;
+//                    newLabel.minimumScaleFactor = 0;
                     [newTile addSubview:newLabel];
+                    [newTile addSubview:newLabel2];
                     
                     [newTile addTarget:self action:@selector(tileTapped:) forControlEvents:UIControlEventTouchUpInside];
                     if (self.row0 == nil) {
@@ -304,13 +306,20 @@ static NSString *CellIdentifier = @"CellIdentifier";
                     // Create a new button Tile
                     UIButton *newTile = [[UIButton alloc] initWithFrame:CGRectMake(cell.myScrollView.myView.frame.size.width - 320, 0, 320, 168)];
                     [newTile setBackgroundImage:[UIImage imageNamed:[NSString stringWithFormat:@"%@", event.tileBanner]] forState:UIControlStateNormal];
-                    UILabel *newLabel = [[UILabel alloc] initWithFrame:CGRectMake(cell.myScrollView.myView.frame.origin.x + 20, 127, 204, 40)];
-                    newLabel.text = [NSString stringWithFormat:@"%@\nMore Details Here", event.title];
+                    UILabel *newLabel = [[UILabel alloc] initWithFrame:CGRectMake(cell.myScrollView.myView.frame.origin.x + 20, 126, 204, 21)];
+                    UILabel *newLabel2 = [[UILabel alloc] initWithFrame:CGRectMake(cell.myScrollView.myView.frame.origin.x + 20, 147, 204, 21)];
+                    newLabel.text = [NSString stringWithFormat:@"%@", event.title];
+                    newLabel2.text = [NSString stringWithFormat:@"%@",  event.address];
                     newLabel.textColor = [UIColor whiteColor];
                     newLabel.numberOfLines = 0;
                     newLabel.adjustsFontSizeToFitWidth = YES;
-                    newLabel.minimumScaleFactor = 0;
+                    newLabel2.textColor = [UIColor whiteColor];
+                    newLabel2.numberOfLines = 0;
+                    newLabel2.adjustsFontSizeToFitWidth = YES;
+                    //                    newLabel.minimumScaleFactor = 0;
                     [newTile addSubview:newLabel];
+                    [newTile addSubview:newLabel2];
+                    
                     [newTile addTarget:self action:@selector(tileTapped:) forControlEvents:UIControlEventTouchUpInside];
                     if (self.row1 == nil) {
                         self.row1 = [[NSMutableArray alloc] init];
@@ -351,13 +360,20 @@ static NSString *CellIdentifier = @"CellIdentifier";
                     // Create a new button Tile
                     UIButton *newTile = [[UIButton alloc] initWithFrame:CGRectMake(cell.myScrollView.myView.frame.size.width - 320, 0, 320, 168)];
                     [newTile setBackgroundImage:[UIImage imageNamed:[NSString stringWithFormat:@"%@", event.tileBanner]] forState:UIControlStateNormal];
-                    UILabel *newLabel = [[UILabel alloc] initWithFrame:CGRectMake(cell.myScrollView.myView.frame.origin.x + 20, 127, 204, 40)];
-                    newLabel.text = [NSString stringWithFormat:@"%@\nMore Details Here", event.title];
+                    UILabel *newLabel = [[UILabel alloc] initWithFrame:CGRectMake(cell.myScrollView.myView.frame.origin.x + 20, 126, 204, 21)];
+                    UILabel *newLabel2 = [[UILabel alloc] initWithFrame:CGRectMake(cell.myScrollView.myView.frame.origin.x + 20, 147, 204, 21)];
+                    newLabel.text = [NSString stringWithFormat:@"%@", event.title];
+                    newLabel2.text = [NSString stringWithFormat:@"%@",  event.address];
                     newLabel.textColor = [UIColor whiteColor];
                     newLabel.numberOfLines = 0;
                     newLabel.adjustsFontSizeToFitWidth = YES;
-                    newLabel.minimumScaleFactor = 0;
+                    newLabel2.textColor = [UIColor whiteColor];
+                    newLabel2.numberOfLines = 0;
+                    newLabel2.adjustsFontSizeToFitWidth = YES;
+                    //                    newLabel.minimumScaleFactor = 0;
                     [newTile addSubview:newLabel];
+                    [newTile addSubview:newLabel2];
+                    
                     [newTile addTarget:self action:@selector(tileTapped:) forControlEvents:UIControlEventTouchUpInside];
                     if (self.row2 == nil) {
                         self.row2 = [[NSMutableArray alloc] init];
@@ -371,12 +387,153 @@ static NSString *CellIdentifier = @"CellIdentifier";
             [cell.myScrollView.myView.myImage setBackgroundImage:[UIImage imageNamed:[NSString stringWithFormat:@"Explore_Accomodation.png"]] forState:UIControlStateNormal];
             break;
         case 3:
+            if (self.refined) {
+                numbRows = self.refinedEvents.count;
+            }
+            for (int i = 0; i < numbRows; i++) {
+                NSIndexPath *indexPath2 = [NSIndexPath indexPathForRow:i inSection:0];
+                BNEvent *event;
+                if (self.refined) {
+                    event = [self.refinedEvents objectAtIndex:i];
+                }
+                else {
+                    event = [fetchedResultsController objectAtIndexPath:indexPath2];
+                }
+                if ([event.category isEqualToString:@"Free"]) {
+                    // Prepare Scroll View for new event
+                    [cell.myScrollView setContentSize:(CGSizeMake(cell.myScrollView.myView.frame.size.width + 320, 168))];
+                    // Prepare Event View for new event
+                    cell.myScrollView.myView.frame = CGRectMake(cell.myScrollView.myView.frame.origin.x, cell.myScrollView.myView.frame.origin.y, cell.myScrollView.myView.frame.size.width + 320, cell.myScrollView.myView.frame.size.height);
+                    // Make sure Image view isn't distorted
+                    cell.myScrollView.myView.myImage.frame = CGRectMake(0, 0, 320, 168);
+                    
+                    // Create a new button Tile
+                    UIButton *newTile = [[UIButton alloc] initWithFrame:CGRectMake(cell.myScrollView.myView.frame.size.width - 320, 0, 320, 168)];
+                    [newTile setBackgroundImage:[UIImage imageNamed:[NSString stringWithFormat:@"%@", event.tileBanner]] forState:UIControlStateNormal];
+                    UILabel *newLabel = [[UILabel alloc] initWithFrame:CGRectMake(cell.myScrollView.myView.frame.origin.x + 20, 126, 204, 21)];
+                    UILabel *newLabel2 = [[UILabel alloc] initWithFrame:CGRectMake(cell.myScrollView.myView.frame.origin.x + 20, 147, 204, 21)];
+                    newLabel.text = [NSString stringWithFormat:@"%@", event.title];
+                    newLabel2.text = [NSString stringWithFormat:@"%@",  event.address];
+                    newLabel.textColor = [UIColor whiteColor];
+                    newLabel.numberOfLines = 0;
+                    newLabel.adjustsFontSizeToFitWidth = YES;
+                    newLabel2.textColor = [UIColor whiteColor];
+                    newLabel2.numberOfLines = 0;
+                    newLabel2.adjustsFontSizeToFitWidth = YES;
+                    //                    newLabel.minimumScaleFactor = 0;
+                    [newTile addSubview:newLabel];
+                    [newTile addSubview:newLabel2];
+                    
+                    [newTile addTarget:self action:@selector(tileTapped:) forControlEvents:UIControlEventTouchUpInside];
+                    if (self.row1 == nil) {
+                        self.row1 = [[NSMutableArray alloc] init];
+                    }
+                    
+                    newTile.tag = indexPath.row;
+                    [self.row1 addObject:event];
+                    [cell.myScrollView.myView addSubview:newTile];
+                }
+            }
             [cell.myScrollView.myView.myImage setBackgroundImage:[UIImage imageNamed:[NSString stringWithFormat:@"Explore_FreeFun.png"]] forState:UIControlStateNormal];
             break;
         case 4:
+            if (self.refined) {
+                numbRows = self.refinedEvents.count;
+            }
+            for (int i = 0; i < numbRows; i++) {
+                NSIndexPath *indexPath2 = [NSIndexPath indexPathForRow:i inSection:0];
+                BNEvent *event;
+                if (self.refined) {
+                    event = [self.refinedEvents objectAtIndex:i];
+                }
+                else {
+                    event = [fetchedResultsController objectAtIndexPath:indexPath2];
+                }
+                if ([event.category isEqualToString:@"Attractions"]) {
+                    // Prepare Scroll View for new event
+                    [cell.myScrollView setContentSize:(CGSizeMake(cell.myScrollView.myView.frame.size.width + 320, 168))];
+                    // Prepare Event View for new event
+                    cell.myScrollView.myView.frame = CGRectMake(cell.myScrollView.myView.frame.origin.x, cell.myScrollView.myView.frame.origin.y, cell.myScrollView.myView.frame.size.width + 320, cell.myScrollView.myView.frame.size.height);
+                    // Make sure Image view isn't distorted
+                    cell.myScrollView.myView.myImage.frame = CGRectMake(0, 0, 320, 168);
+                    
+                    // Create a new button Tile
+                    UIButton *newTile = [[UIButton alloc] initWithFrame:CGRectMake(cell.myScrollView.myView.frame.size.width - 320, 0, 320, 168)];
+                    [newTile setBackgroundImage:[UIImage imageNamed:[NSString stringWithFormat:@"%@", event.tileBanner]] forState:UIControlStateNormal];
+                    UILabel *newLabel = [[UILabel alloc] initWithFrame:CGRectMake(cell.myScrollView.myView.frame.origin.x + 20, 126, 204, 21)];
+                    UILabel *newLabel2 = [[UILabel alloc] initWithFrame:CGRectMake(cell.myScrollView.myView.frame.origin.x + 20, 147, 204, 21)];
+                    newLabel.text = [NSString stringWithFormat:@"%@", event.title];
+                    newLabel2.text = [NSString stringWithFormat:@"%@",  event.address];
+                    newLabel.textColor = [UIColor whiteColor];
+                    newLabel.numberOfLines = 0;
+                    newLabel.adjustsFontSizeToFitWidth = YES;
+                    newLabel2.textColor = [UIColor whiteColor];
+                    newLabel2.numberOfLines = 0;
+                    newLabel2.adjustsFontSizeToFitWidth = YES;
+                    //                    newLabel.minimumScaleFactor = 0;
+                    [newTile addSubview:newLabel];
+                    [newTile addSubview:newLabel2];
+                    
+                    [newTile addTarget:self action:@selector(tileTapped:) forControlEvents:UIControlEventTouchUpInside];
+                    if (self.row1 == nil) {
+                        self.row1 = [[NSMutableArray alloc] init];
+                    }
+                    
+                    newTile.tag = indexPath.row;
+                    [self.row1 addObject:event];
+                    [cell.myScrollView.myView addSubview:newTile];
+                }
+            }
             [cell.myScrollView.myView.myImage setBackgroundImage:[UIImage imageNamed:[NSString stringWithFormat:@"Explore_Attractions.png"]] forState:UIControlStateNormal];
             break;
         case 5:
+            if (self.refined) {
+                numbRows = self.refinedEvents.count;
+            }
+            for (int i = 0; i < numbRows; i++) {
+                NSIndexPath *indexPath2 = [NSIndexPath indexPathForRow:i inSection:0];
+                BNEvent *event;
+                if (self.refined) {
+                    event = [self.refinedEvents objectAtIndex:i];
+                }
+                else {
+                    event = [fetchedResultsController objectAtIndexPath:indexPath2];
+                }
+                if ([event.category isEqualToString:@"Free"] || [event.type isEqualToString:@"Art"] || [event.type isEqualToString:@"Nature"]) {
+                    // Prepare Scroll View for new event
+                    [cell.myScrollView setContentSize:(CGSizeMake(cell.myScrollView.myView.frame.size.width + 320, 168))];
+                    // Prepare Event View for new event
+                    cell.myScrollView.myView.frame = CGRectMake(cell.myScrollView.myView.frame.origin.x, cell.myScrollView.myView.frame.origin.y, cell.myScrollView.myView.frame.size.width + 320, cell.myScrollView.myView.frame.size.height);
+                    // Make sure Image view isn't distorted
+                    cell.myScrollView.myView.myImage.frame = CGRectMake(0, 0, 320, 168);
+                    
+                    // Create a new button Tile
+                    UIButton *newTile = [[UIButton alloc] initWithFrame:CGRectMake(cell.myScrollView.myView.frame.size.width - 320, 0, 320, 168)];
+                    [newTile setBackgroundImage:[UIImage imageNamed:[NSString stringWithFormat:@"%@", event.tileBanner]] forState:UIControlStateNormal];
+                    UILabel *newLabel = [[UILabel alloc] initWithFrame:CGRectMake(cell.myScrollView.myView.frame.origin.x + 20, 126, 204, 21)];
+                    UILabel *newLabel2 = [[UILabel alloc] initWithFrame:CGRectMake(cell.myScrollView.myView.frame.origin.x + 20, 147, 204, 21)];
+                    newLabel.text = [NSString stringWithFormat:@"%@", event.title];
+                    newLabel2.text = [NSString stringWithFormat:@"%@",  event.address];
+                    newLabel.textColor = [UIColor whiteColor];
+                    newLabel.numberOfLines = 0;
+                    newLabel.adjustsFontSizeToFitWidth = YES;
+                    newLabel2.textColor = [UIColor whiteColor];
+                    newLabel2.numberOfLines = 0;
+                    newLabel2.adjustsFontSizeToFitWidth = YES;
+                    //                    newLabel.minimumScaleFactor = 0;
+                    [newTile addSubview:newLabel];
+                    [newTile addSubview:newLabel2];
+                    
+                    [newTile addTarget:self action:@selector(tileTapped:) forControlEvents:UIControlEventTouchUpInside];
+                    if (self.row1 == nil) {
+                        self.row1 = [[NSMutableArray alloc] init];
+                    }
+                    
+                    newTile.tag = indexPath.row;
+                    [self.row1 addObject:event];
+                    [cell.myScrollView.myView addSubview:newTile];
+                }
+            }
             [cell.myScrollView.myView.myImage setBackgroundImage:[UIImage imageNamed:[NSString stringWithFormat:@"Explore_Kids.png"]] forState:UIControlStateNormal];
             break;
         case 6:{
@@ -790,6 +947,16 @@ static NSString *CellIdentifier = @"CellIdentifier";
 //                    theVenue = [self.row3 objectAtIndex:self.tilePosition];
                     eventToSend = [self.row3 objectAtIndex:self.tilePosition];
 //                    [theVenue setObject:[self.row3 objectAtIndex:self.tilePosition] forKey:0];
+                    break;}
+                case 4:{
+                    //                    theVenue = [self.row3 objectAtIndex:self.tilePosition];
+                    eventToSend = [self.row4 objectAtIndex:self.tilePosition];
+                    //                    [theVenue setObject:[self.row3 objectAtIndex:self.tilePosition] forKey:0];
+                    break;}
+                case 5:{
+                    //                    theVenue = [self.row3 objectAtIndex:self.tilePosition];
+                    eventToSend = [self.row5 objectAtIndex:self.tilePosition];
+                    //                    [theVenue setObject:[self.row3 objectAtIndex:self.tilePosition] forKey:0];
                     break;}
                 default:
 //                    theVenue = [self.row0 objectAtIndex:self.tilePosition];

@@ -41,7 +41,6 @@
 		99AF6C9F1819421A0080D881 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 99AF6C9E1819421A0080D881 /* Images.xcassets */; };
 		99AF6CA1181942820080D881 /* Logo.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 99AF6CA0181942820080D881 /* Logo.jpg */; };
 		A006CD09181BBF55006782E3 /* BNearby Logo 2_invert.png in Resources */ = {isa = PBXBuildFile; fileRef = A006CD07181BBF55006782E3 /* BNearby Logo 2_invert.png */; };
-		A006CD0A181BBF55006782E3 /* BNearby Logo 2.png in Resources */ = {isa = PBXBuildFile; fileRef = A006CD08181BBF55006782E3 /* BNearby Logo 2.png */; };
 		A011BE11181A59000032F8CD /* Explore_Accomodation.png in Resources */ = {isa = PBXBuildFile; fileRef = A011BE10181A59000032F8CD /* Explore_Accomodation.png */; };
 		A011BE24181A60670032F8CD /* Distance_Filter_Unused.png in Resources */ = {isa = PBXBuildFile; fileRef = A011BE22181A60670032F8CD /* Distance_Filter_Unused.png */; };
 		A011BE25181A60670032F8CD /* Distance_Filter_Used.png in Resources */ = {isa = PBXBuildFile; fileRef = A011BE23181A60670032F8CD /* Distance_Filter_Used.png */; };
@@ -62,9 +61,6 @@
 		A0413CC217EA65B700EBC215 /* star_highlighted@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A0413CBA17EA65B700EBC215 /* star_highlighted@2x.png */; };
 		A0413CC317EA65B700EBC215 /* star.png in Resources */ = {isa = PBXBuildFile; fileRef = A0413CBB17EA65B700EBC215 /* star.png */; };
 		A0413CC417EA65B700EBC215 /* star@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A0413CBC17EA65B700EBC215 /* star@2x.png */; };
-		A045FC5517F1969B0049D91C /* Entertainment Icons.png in Resources */ = {isa = PBXBuildFile; fileRef = A045FC5217F1969B0049D91C /* Entertainment Icons.png */; };
-		A045FC5617F1969B0049D91C /* Food Icons.png in Resources */ = {isa = PBXBuildFile; fileRef = A045FC5317F1969B0049D91C /* Food Icons.png */; };
-		A045FC5717F1969B0049D91C /* Shopping Icons.png in Resources */ = {isa = PBXBuildFile; fileRef = A045FC5417F1969B0049D91C /* Shopping Icons.png */; };
 		A05BFB6F181D3607000DBF40 /* DESelectedEventViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A05BFB6E181D3607000DBF40 /* DESelectedEventViewController.m */; };
 		A0620FF8181E44460023894B /* ILTranslucentView.m in Sources */ = {isa = PBXBuildFile; fileRef = A0620FF7181E44460023894B /* ILTranslucentView.m */; };
 		A06BAAC317F2EEAB0053A9FD /* NWPhotoCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = A06BAAC217F2EEAB0053A9FD /* NWPhotoCellView.m */; };
@@ -84,18 +80,8 @@
 		A0A77BAB17E70D6800CF91FF /* UIImage+ImageWithUIView.m in Sources */ = {isa = PBXBuildFile; fileRef = A0A222D117E6ECB7009F0315 /* UIImage+ImageWithUIView.m */; };
 		A0A77BAC17E70D7700CF91FF /* InitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A0A222D417E6ED99009F0315 /* InitViewController.m */; };
 		A0A77BAD17E70DA900CF91FF /* NavBarMenuButton.m in Sources */ = {isa = PBXBuildFile; fileRef = A0EDCD2917E6FEB100819F49 /* NavBarMenuButton.m */; };
-		A0A77BF517E70F7100CF91FF /* Art_Gallery_Explore.png in Resources */ = {isa = PBXBuildFile; fileRef = A0A77BE717E70F7100CF91FF /* Art_Gallery_Explore.png */; };
-		A0A77BF617E70F7100CF91FF /* Beastie_Burgers_Explore.png in Resources */ = {isa = PBXBuildFile; fileRef = A0A77BE817E70F7100CF91FF /* Beastie_Burgers_Explore.png */; };
-		A0A77BF717E70F7100CF91FF /* Explore_Entertainment.png in Resources */ = {isa = PBXBuildFile; fileRef = A0A77BE917E70F7100CF91FF /* Explore_Entertainment.png */; };
-		A0A77BF817E70F7100CF91FF /* Explore_FreeFun.png in Resources */ = {isa = PBXBuildFile; fileRef = A0A77BEA17E70F7100CF91FF /* Explore_FreeFun.png */; };
-		A0A77BF917E70F7100CF91FF /* Explore_Kids.png in Resources */ = {isa = PBXBuildFile; fileRef = A0A77BEB17E70F7100CF91FF /* Explore_Kids.png */; };
-		A0A77BFA17E70F7100CF91FF /* Explore_Resturants.png in Resources */ = {isa = PBXBuildFile; fileRef = A0A77BEC17E70F7100CF91FF /* Explore_Resturants.png */; };
 		A0A77BFB17E70F7100CF91FF /* Loading_Variation_One.png in Resources */ = {isa = PBXBuildFile; fileRef = A0A77BED17E70F7100CF91FF /* Loading_Variation_One.png */; };
 		A0A77BFC17E70F7100CF91FF /* menuButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A0A77BEE17E70F7100CF91FF /* menuButton@2x.png */; };
-		A0A77BFD17E70F7100CF91FF /* Now_View_placeholder.png in Resources */ = {isa = PBXBuildFile; fileRef = A0A77BEF17E70F7100CF91FF /* Now_View_placeholder.png */; };
-		A0A77BFE17E70F7100CF91FF /* Now_View_Placeholder_art.png in Resources */ = {isa = PBXBuildFile; fileRef = A0A77BF017E70F7100CF91FF /* Now_View_Placeholder_art.png */; };
-		A0A77BFF17E70F7100CF91FF /* Planner_ExampleTile1.png in Resources */ = {isa = PBXBuildFile; fileRef = A0A77BF117E70F7100CF91FF /* Planner_ExampleTile1.png */; };
-		A0A77C0017E70F7100CF91FF /* Planner_ExampleTile2.png in Resources */ = {isa = PBXBuildFile; fileRef = A0A77BF217E70F7100CF91FF /* Planner_ExampleTile2.png */; };
 		A0A77C0117E70F7100CF91FF /* plus sign.png in Resources */ = {isa = PBXBuildFile; fileRef = A0A77BF317E70F7100CF91FF /* plus sign.png */; };
 		A0A77C0217E70F7100CF91FF /* search_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = A0A77BF417E70F7100CF91FF /* search_icon.png */; };
 		A0A77C0317E7132000CF91FF /* EXScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = A0EDCD2317E6FD0E00819F49 /* EXScrollView.m */; };
@@ -103,7 +89,6 @@
 		A0A7AB94181A001400C146BF /* Explore_Attractions.png in Resources */ = {isa = PBXBuildFile; fileRef = A0A7AB82181A001400C146BF /* Explore_Attractions.png */; };
 		A0A7ABA5181A001400C146BF /* Explore_Nearby.png in Resources */ = {isa = PBXBuildFile; fileRef = A0A7AB93181A001400C146BF /* Explore_Nearby.png */; };
 		A0ACF049180CFF24004956C2 /* NWMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A0ACF048180CFF24004956C2 /* NWMapViewController.m */; };
-		A0B2697A1808D83E00EACCBA /* ios7-location-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = A0B269791808D83E00EACCBA /* ios7-location-icon.png */; };
 		A0B2697D1809127000EACCBA /* NWWeatherCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A0B2697C1809127000EACCBA /* NWWeatherCell.m */; };
 		A0BB6D59180A32DC0037BD5F /* Weather.m in Sources */ = {isa = PBXBuildFile; fileRef = A0BB6D58180A32DC0037BD5F /* Weather.m */; };
 		A0BB6D62180A39380037BD5F /* WeatherParser.m in Sources */ = {isa = PBXBuildFile; fileRef = A0BB6D61180A39380037BD5F /* WeatherParser.m */; };
@@ -123,7 +108,12 @@
 		A0BFB9E8181F642D007C9958 /* Explore_Data_Spice_Avenue_Balti_Restaurant_None.png in Resources */ = {isa = PBXBuildFile; fileRef = A0BFB9D8181F642D007C9958 /* Explore_Data_Spice_Avenue_Balti_Restaurant_None.png */; };
 		A0BFB9E9181F642D007C9958 /* Explore_Data_Suncorp_Stadium_None.png in Resources */ = {isa = PBXBuildFile; fileRef = A0BFB9D9181F642D007C9958 /* Explore_Data_Suncorp_Stadium_None.png */; };
 		A0BFB9EA181F642D007C9958 /* Explore_Data_Zafron_on_Brunswick_None.png in Resources */ = {isa = PBXBuildFile; fileRef = A0BFB9DA181F642D007C9958 /* Explore_Data_Zafron_on_Brunswick_None.png */; };
-		A0CD2E35181E842500157BA7 /* background.png in Resources */ = {isa = PBXBuildFile; fileRef = A0CD2E34181E842500157BA7 /* background.png */; };
+		A0C3CB29181F726500AEB638 /* Accomodation_Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = A0C3CB22181F726500AEB638 /* Accomodation_Icon.png */; };
+		A0C3CB2A181F726500AEB638 /* Attractions_Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = A0C3CB23181F726500AEB638 /* Attractions_Icon.png */; };
+		A0C3CB2C181F726500AEB638 /* Entertainment_Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = A0C3CB25181F726500AEB638 /* Entertainment_Icon.png */; };
+		A0C3CB2D181F726500AEB638 /* Free_Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = A0C3CB26181F726500AEB638 /* Free_Icon.png */; };
+		A0C3CB2E181F726500AEB638 /* kids_Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = A0C3CB27181F726500AEB638 /* kids_Icon.png */; };
+		A0C3CB2F181F726500AEB638 /* Restaurant_Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = A0C3CB28181F726500AEB638 /* Restaurant_Icon.png */; };
 		A0D23BCF17E6E27D0020BB6E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A0D23BCE17E6E27D0020BB6E /* UIKit.framework */; };
 		A0D23BD117E6E27D0020BB6E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A0D23BD017E6E27D0020BB6E /* Foundation.framework */; };
 		A0D23BD317E6E27D0020BB6E /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A0D23BD217E6E27D0020BB6E /* CoreGraphics.framework */; };
@@ -193,7 +183,6 @@
 		99AF6C9E1819421A0080D881 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		99AF6CA0181942820080D881 /* Logo.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = Logo.jpg; path = Images/Logo.jpg; sourceTree = "<group>"; };
 		A006CD07181BBF55006782E3 /* BNearby Logo 2_invert.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "BNearby Logo 2_invert.png"; path = "Images/BNearby Logo 2_invert.png"; sourceTree = "<group>"; };
-		A006CD08181BBF55006782E3 /* BNearby Logo 2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "BNearby Logo 2.png"; path = "Images/BNearby Logo 2.png"; sourceTree = "<group>"; };
 		A011BE10181A59000032F8CD /* Explore_Accomodation.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Explore_Accomodation.png; path = Images/Explore_Accomodation.png; sourceTree = "<group>"; };
 		A011BE22181A60670032F8CD /* Distance_Filter_Unused.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Distance_Filter_Unused.png; path = Images/Distance_Filter_Unused.png; sourceTree = "<group>"; };
 		A011BE23181A60670032F8CD /* Distance_Filter_Used.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Distance_Filter_Used.png; path = Images/Distance_Filter_Used.png; sourceTree = "<group>"; };
@@ -215,9 +204,6 @@
 		A0413CBA17EA65B700EBC215 /* star_highlighted@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "star_highlighted@2x.png"; path = "View/ExploreView/RatingHeader/Images/star_highlighted@2x.png"; sourceTree = "<group>"; };
 		A0413CBB17EA65B700EBC215 /* star.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = star.png; path = View/ExploreView/RatingHeader/Images/star.png; sourceTree = "<group>"; };
 		A0413CBC17EA65B700EBC215 /* star@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "star@2x.png"; path = "View/ExploreView/RatingHeader/Images/star@2x.png"; sourceTree = "<group>"; };
-		A045FC5217F1969B0049D91C /* Entertainment Icons.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Entertainment Icons.png"; sourceTree = "<group>"; };
-		A045FC5317F1969B0049D91C /* Food Icons.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Food Icons.png"; sourceTree = "<group>"; };
-		A045FC5417F1969B0049D91C /* Shopping Icons.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Shopping Icons.png"; sourceTree = "<group>"; };
 		A05BFB6D181D3607000DBF40 /* DESelectedEventViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DESelectedEventViewController.h; path = View/DetailedEventView/DESelectedEventViewController.h; sourceTree = "<group>"; };
 		A05BFB6E181D3607000DBF40 /* DESelectedEventViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DESelectedEventViewController.m; path = View/DetailedEventView/DESelectedEventViewController.m; sourceTree = "<group>"; };
 		A0620FF6181E44460023894B /* ILTranslucentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ILTranslucentView.h; path = Model/ILTranslucentView/ILTranslucentView.h; sourceTree = "<group>"; };
@@ -240,18 +226,8 @@
 		A0A222D917E6EECD009F0315 /* EXViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EXViewController.h; path = View/ExploreView/EXViewController.h; sourceTree = "<group>"; };
 		A0A77BA117E70C1E00CF91FF /* EXViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = EXViewController.m; path = View/ExploreView/EXViewController.m; sourceTree = "<group>"; };
 		A0A77BA217E70C3300CF91FF /* PLViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = PLViewController.m; path = View/PlannerView/PLViewController.m; sourceTree = "<group>"; };
-		A0A77BE717E70F7100CF91FF /* Art_Gallery_Explore.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Art_Gallery_Explore.png; path = Images/Art_Gallery_Explore.png; sourceTree = "<group>"; };
-		A0A77BE817E70F7100CF91FF /* Beastie_Burgers_Explore.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Beastie_Burgers_Explore.png; path = Images/Beastie_Burgers_Explore.png; sourceTree = "<group>"; };
-		A0A77BE917E70F7100CF91FF /* Explore_Entertainment.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Explore_Entertainment.png; path = Images/Explore_Entertainment.png; sourceTree = "<group>"; };
-		A0A77BEA17E70F7100CF91FF /* Explore_FreeFun.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Explore_FreeFun.png; path = Images/Explore_FreeFun.png; sourceTree = "<group>"; };
-		A0A77BEB17E70F7100CF91FF /* Explore_Kids.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Explore_Kids.png; path = Images/Explore_Kids.png; sourceTree = "<group>"; };
-		A0A77BEC17E70F7100CF91FF /* Explore_Resturants.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Explore_Resturants.png; path = Images/Explore_Resturants.png; sourceTree = "<group>"; };
 		A0A77BED17E70F7100CF91FF /* Loading_Variation_One.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Loading_Variation_One.png; path = Images/Loading_Variation_One.png; sourceTree = "<group>"; };
 		A0A77BEE17E70F7100CF91FF /* menuButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "menuButton@2x.png"; path = "Images/menuButton@2x.png"; sourceTree = "<group>"; };
-		A0A77BEF17E70F7100CF91FF /* Now_View_placeholder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Now_View_placeholder.png; path = Images/Now_View_placeholder.png; sourceTree = "<group>"; };
-		A0A77BF017E70F7100CF91FF /* Now_View_Placeholder_art.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Now_View_Placeholder_art.png; path = Images/Now_View_Placeholder_art.png; sourceTree = "<group>"; };
-		A0A77BF117E70F7100CF91FF /* Planner_ExampleTile1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Planner_ExampleTile1.png; path = Images/Planner_ExampleTile1.png; sourceTree = "<group>"; };
-		A0A77BF217E70F7100CF91FF /* Planner_ExampleTile2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Planner_ExampleTile2.png; path = Images/Planner_ExampleTile2.png; sourceTree = "<group>"; };
 		A0A77BF317E70F7100CF91FF /* plus sign.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "plus sign.png"; path = "Images/plus sign.png"; sourceTree = "<group>"; };
 		A0A77BF417E70F7100CF91FF /* search_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = search_icon.png; path = Images/search_icon.png; sourceTree = "<group>"; };
 		A0A77C0417E7163C00CF91FF /* EXTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EXTableViewCell.h; path = View/ExploreView/EXTableViewCell.h; sourceTree = "<group>"; };
@@ -260,7 +236,6 @@
 		A0A7AB93181A001400C146BF /* Explore_Nearby.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Explore_Nearby.png; path = Images/Explore_Nearby.png; sourceTree = "<group>"; };
 		A0ACF047180CFF24004956C2 /* NWMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NWMapViewController.h; path = View/NowView/NWMapViewController.h; sourceTree = "<group>"; };
 		A0ACF048180CFF24004956C2 /* NWMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NWMapViewController.m; path = View/NowView/NWMapViewController.m; sourceTree = "<group>"; };
-		A0B269791808D83E00EACCBA /* ios7-location-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ios7-location-icon.png"; sourceTree = "<group>"; };
 		A0B2697B1809127000EACCBA /* NWWeatherCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NWWeatherCell.h; path = View/NowView/NWWeatherCell.h; sourceTree = "<group>"; };
 		A0B2697C1809127000EACCBA /* NWWeatherCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NWWeatherCell.m; path = View/NowView/NWWeatherCell.m; sourceTree = "<group>"; };
 		A0BB6D57180A32DC0037BD5F /* Weather.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Weather.h; path = Model/Weather.h; sourceTree = "<group>"; };
@@ -283,7 +258,12 @@
 		A0BFB9D8181F642D007C9958 /* Explore_Data_Spice_Avenue_Balti_Restaurant_None.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Explore_Data_Spice_Avenue_Balti_Restaurant_None.png; path = Images/Explore_Data_Spice_Avenue_Balti_Restaurant_None.png; sourceTree = "<group>"; };
 		A0BFB9D9181F642D007C9958 /* Explore_Data_Suncorp_Stadium_None.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Explore_Data_Suncorp_Stadium_None.png; path = Images/Explore_Data_Suncorp_Stadium_None.png; sourceTree = "<group>"; };
 		A0BFB9DA181F642D007C9958 /* Explore_Data_Zafron_on_Brunswick_None.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Explore_Data_Zafron_on_Brunswick_None.png; path = Images/Explore_Data_Zafron_on_Brunswick_None.png; sourceTree = "<group>"; };
-		A0CD2E34181E842500157BA7 /* background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = background.png; path = Images/background.png; sourceTree = "<group>"; };
+		A0C3CB22181F726500AEB638 /* Accomodation_Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Accomodation_Icon.png; path = Images/Accomodation_Icon.png; sourceTree = "<group>"; };
+		A0C3CB23181F726500AEB638 /* Attractions_Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Attractions_Icon.png; path = Images/Attractions_Icon.png; sourceTree = "<group>"; };
+		A0C3CB25181F726500AEB638 /* Entertainment_Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Entertainment_Icon.png; path = Images/Entertainment_Icon.png; sourceTree = "<group>"; };
+		A0C3CB26181F726500AEB638 /* Free_Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Free_Icon.png; path = Images/Free_Icon.png; sourceTree = "<group>"; };
+		A0C3CB27181F726500AEB638 /* kids_Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = kids_Icon.png; path = Images/kids_Icon.png; sourceTree = "<group>"; };
+		A0C3CB28181F726500AEB638 /* Restaurant_Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Restaurant_Icon.png; path = Images/Restaurant_Icon.png; sourceTree = "<group>"; };
 		A0D23BCB17E6E27D0020BB6E /* Bnearby.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Bnearby.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A0D23BCE17E6E27D0020BB6E /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		A0D23BD017E6E27D0020BB6E /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -466,7 +446,12 @@
 		A0A77BAE17E70E6200CF91FF /* Images */ = {
 			isa = PBXGroup;
 			children = (
-				A0CD2E34181E842500157BA7 /* background.png */,
+				A0C3CB22181F726500AEB638 /* Accomodation_Icon.png */,
+				A0C3CB23181F726500AEB638 /* Attractions_Icon.png */,
+				A0C3CB25181F726500AEB638 /* Entertainment_Icon.png */,
+				A0C3CB26181F726500AEB638 /* Free_Icon.png */,
+				A0C3CB27181F726500AEB638 /* kids_Icon.png */,
+				A0C3CB28181F726500AEB638 /* Restaurant_Icon.png */,
 				A0BFB9CB181F642D007C9958 /* Explore_Data_Customs_House_Restaurant_None.png */,
 				A0BFB9CC181F642D007C9958 /* Explore_Data_Emporium_Hotel_None.png */,
 				A0BFB9CD181F642D007C9958 /* Explore_Data_Gallery_of_Modern_Art_None.png */,
@@ -484,7 +469,6 @@
 				A0BFB9D9181F642D007C9958 /* Explore_Data_Suncorp_Stadium_None.png */,
 				A0BFB9DA181F642D007C9958 /* Explore_Data_Zafron_on_Brunswick_None.png */,
 				A006CD07181BBF55006782E3 /* BNearby Logo 2_invert.png */,
-				A006CD08181BBF55006782E3 /* BNearby Logo 2.png */,
 				A011BE10181A59000032F8CD /* Explore_Accomodation.png */,
 				A0A7AB82181A001400C146BF /* Explore_Attractions.png */,
 				A0A7AB93181A001400C146BF /* Explore_Nearby.png */,
@@ -496,22 +480,8 @@
 				A0F6B0FE1817889500936156 /* 31 - Clear Night.png */,
 				A0F6B0FF1817889500936156 /* 32 - Sunny.png */,
 				A0F6B1001817889500936156 /* Rainy.png */,
-				A0B269791808D83E00EACCBA /* ios7-location-icon.png */,
-				A045FC5217F1969B0049D91C /* Entertainment Icons.png */,
-				A045FC5317F1969B0049D91C /* Food Icons.png */,
-				A045FC5417F1969B0049D91C /* Shopping Icons.png */,
-				A0A77BE717E70F7100CF91FF /* Art_Gallery_Explore.png */,
-				A0A77BE817E70F7100CF91FF /* Beastie_Burgers_Explore.png */,
-				A0A77BE917E70F7100CF91FF /* Explore_Entertainment.png */,
-				A0A77BEA17E70F7100CF91FF /* Explore_FreeFun.png */,
-				A0A77BEB17E70F7100CF91FF /* Explore_Kids.png */,
-				A0A77BEC17E70F7100CF91FF /* Explore_Resturants.png */,
 				A0A77BED17E70F7100CF91FF /* Loading_Variation_One.png */,
 				A0A77BEE17E70F7100CF91FF /* menuButton@2x.png */,
-				A0A77BEF17E70F7100CF91FF /* Now_View_placeholder.png */,
-				A0A77BF017E70F7100CF91FF /* Now_View_Placeholder_art.png */,
-				A0A77BF117E70F7100CF91FF /* Planner_ExampleTile1.png */,
-				A0A77BF217E70F7100CF91FF /* Planner_ExampleTile2.png */,
 				A0A77BF317E70F7100CF91FF /* plus sign.png */,
 				A0A77BF417E70F7100CF91FF /* search_icon.png */,
 			);
@@ -754,7 +724,6 @@
 				99AF6C96181942120080D881 /* Icon-72@2x.png in Resources */,
 				A011BE11181A59000032F8CD /* Explore_Accomodation.png in Resources */,
 				A0F6B1021817889500936156 /* 26 - Cloudy.png in Resources */,
-				A006CD0A181BBF55006782E3 /* BNearby Logo 2.png in Resources */,
 				A0D23BE117E6E27D0020BB6E /* Default.png in Resources */,
 				A0D23BE317E6E27D0020BB6E /* Default@2x.png in Resources */,
 				A011BE24181A60670032F8CD /* Distance_Filter_Unused.png in Resources */,
@@ -772,29 +741,23 @@
 				A02A30A8181B3B01000D688B /* Fun_Filter_Used.png in Resources */,
 				A0D23BE817E6E27D0020BB6E /* MainStoryboard.storyboard in Resources */,
 				A0A7AB94181A001400C146BF /* Explore_Attractions.png in Resources */,
-				A0B2697A1808D83E00EACCBA /* ios7-location-icon.png in Resources */,
 				A0413CC417EA65B700EBC215 /* star@2x.png in Resources */,
-				A0CD2E35181E842500157BA7 /* background.png in Resources */,
+				A0C3CB2A181F726500AEB638 /* Attractions_Icon.png in Resources */,
 				6A1E3CFA180D6D730082D70C /* eventdata.xml in Resources */,
 				A02A30A6181B3B01000D688B /* Distance_Filter_Used.png in Resources */,
 				A0413CBD17EA65B700EBC215 /* 021.png in Resources */,
 				A0A7ABA5181A001400C146BF /* Explore_Nearby.png in Resources */,
-				A0A77BF517E70F7100CF91FF /* Art_Gallery_Explore.png in Resources */,
+				A0C3CB2D181F726500AEB638 /* Free_Icon.png in Resources */,
 				A02A30AA181B3B01000D688B /* Time_Filter_Used.png in Resources */,
 				A0BFB9DD181F642D007C9958 /* Explore_Data_Gallery_of_Modern_Art_None.png in Resources */,
 				A0BFB9E0181F642D007C9958 /* Explore_Data_Punthill_Brisbane_None.png in Resources */,
-				A0A77BF617E70F7100CF91FF /* Beastie_Burgers_Explore.png in Resources */,
 				A0413CC317EA65B700EBC215 /* star.png in Resources */,
 				99AF6C9B181942120080D881 /* Icon@2x.png in Resources */,
 				A0F6B1061817889500936156 /* Rainy.png in Resources */,
 				A0413CC117EA65B700EBC215 /* star_highlighted.png in Resources */,
-				A0A77BF717E70F7100CF91FF /* Explore_Entertainment.png in Resources */,
 				A0BFB9E8181F642D007C9958 /* Explore_Data_Spice_Avenue_Balti_Restaurant_None.png in Resources */,
-				A0A77BF817E70F7100CF91FF /* Explore_FreeFun.png in Resources */,
-				A0A77BF917E70F7100CF91FF /* Explore_Kids.png in Resources */,
-				A045FC5517F1969B0049D91C /* Entertainment Icons.png in Resources */,
+				A0C3CB2F181F726500AEB638 /* Restaurant_Icon.png in Resources */,
 				A02A30A7181B3B01000D688B /* Fun_Filter_Unused.png in Resources */,
-				A0A77BFA17E70F7100CF91FF /* Explore_Resturants.png in Resources */,
 				A0413CBF17EA65B700EBC215 /* 155.png in Resources */,
 				A0F6B1031817889500936156 /* 27 - Cloudy Night.png in Resources */,
 				A0BFB9DE181F642D007C9958 /* Explore_Data_Lone_Pine_Koala_Sanctuary_None.png in Resources */,
@@ -806,24 +769,21 @@
 				A011BE25181A60670032F8CD /* Distance_Filter_Used.png in Resources */,
 				A0F6B1011817889500936156 /* 4 - Thunderstorm.png in Resources */,
 				A0A77BFB17E70F7100CF91FF /* Loading_Variation_One.png in Resources */,
+				A0C3CB29181F726500AEB638 /* Accomodation_Icon.png in Resources */,
 				99AF6C9C181942120080D881 /* iTunesArtwork.png in Resources */,
 				99AF6C9F1819421A0080D881 /* Images.xcassets in Resources */,
 				A02A30A5181B3B01000D688B /* Distance_Filter_Unused.png in Resources */,
 				A0A77BFC17E70F7100CF91FF /* menuButton@2x.png in Resources */,
-				A0A77BFD17E70F7100CF91FF /* Now_View_placeholder.png in Resources */,
+				A0C3CB2C181F726500AEB638 /* Entertainment_Icon.png in Resources */,
 				A0BFB9E4181F642D007C9958 /* Explore_Data_Royal_On_The_Park_None.png in Resources */,
 				A0BFB9E5181F642D007C9958 /* Explore_Data_Sofitel_Brisbane_Central_None.png in Resources */,
-				A0A77BFE17E70F7100CF91FF /* Now_View_Placeholder_art.png in Resources */,
+				A0C3CB2E181F726500AEB638 /* kids_Icon.png in Resources */,
 				A0F6B1051817889500936156 /* 32 - Sunny.png in Resources */,
-				A045FC5717F1969B0049D91C /* Shopping Icons.png in Resources */,
 				A0BFB9E2181F642D007C9958 /* Explore_Data_Reserve_Restaurant_Milton_None.png in Resources */,
 				99AF6C99181942120080D881 /* Icon-Small@2x.png in Resources */,
 				A0BFB9E6181F642D007C9958 /* Explore_Data_Sono_Japanese_Restaurant_None.png in Resources */,
 				A0413CC217EA65B700EBC215 /* star_highlighted@2x.png in Resources */,
-				A045FC5617F1969B0049D91C /* Food Icons.png in Resources */,
-				A0A77BFF17E70F7100CF91FF /* Planner_ExampleTile1.png in Resources */,
 				99AF6C95181942120080D881 /* Icon-72.png in Resources */,
-				A0A77C0017E70F7100CF91FF /* Planner_ExampleTile2.png in Resources */,
 				99AF6C9D181942120080D881 /* iTunesArtwork@2x.png in Resources */,
 				A0A77C0117E70F7100CF91FF /* plus sign.png in Resources */,
 				A0BFB9E9181F642D007C9958 /* Explore_Data_Suncorp_Stadium_None.png in Resources */,
