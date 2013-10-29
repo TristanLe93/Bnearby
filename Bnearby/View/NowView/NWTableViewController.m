@@ -155,7 +155,7 @@
             self.navigationItem.title = [NSString stringWithFormat:@"%@", weather.name];
             
             
-            ILTranslucentView *translucentView = [[ILTranslucentView alloc] initWithFrame:CGRectMake(10, 10, 300, 78)];
+            ILTranslucentView *translucentView = [[ILTranslucentView alloc] initWithFrame:CGRectMake(0, 10, 320, 78)];
             [translucentView addSubview:weatherIcon];
             [translucentView addSubview:weatherLabel];
             [translucentView addSubview:detailedWeatherLabel];
@@ -183,7 +183,7 @@
             UILabel *plannerLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 320, 21)];
             plannerLabel.text = @"Next Events";
             
-            ILTranslucentView *translucentView = [[ILTranslucentView alloc] initWithFrame:CGRectMake(0, 0, 300, 122)];
+            ILTranslucentView *translucentView = [[ILTranslucentView alloc] initWithFrame:CGRectMake(0, 0, 320, 122)];
             
             //optional:
             translucentView.translucentAlpha = 0.5;
@@ -216,7 +216,7 @@
             }
             
             NWPhotoCellScroller *scroller = (NWPhotoCellScroller*)[cell viewWithTag:100];
-            [scroller setContentSize:(CGSizeMake(1115, 132))];
+            [scroller setContentSize:(CGSizeMake(1095, 132))];
             [scroller setScrollEnabled:YES];
             NWPhotoCellView *view = [[NWPhotoCellView alloc] initWithFrame:CGRectMake(0, 0, 1095, 122)];
             NSMutableArray *images = [[NSMutableArray alloc] init];
@@ -226,7 +226,7 @@
                 [images addObject:newImageView];
             }
             
-            ILTranslucentView *translucentView = [[ILTranslucentView alloc] initWithFrame:CGRectMake(10, 10, 1095, 122)];
+            ILTranslucentView *translucentView = [[ILTranslucentView alloc] initWithFrame:CGRectMake(0, 10, 1095, 122)];
             
             //optional:
             translucentView.translucentAlpha = 0.5;

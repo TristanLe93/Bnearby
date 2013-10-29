@@ -110,14 +110,18 @@
 - (NSMutableString *)addressBuilder:(NSDictionary *)location {
     NSMutableString *address = [[NSMutableString alloc] init];
     
+    NSLog(@"%@", location);
+    
     [address appendString:[location objectForKey:@"address"]];
     [address appendString:@", "];
     [address appendString:[location objectForKey:@"city"]];
     [address appendString:@" "];
     [address appendString:[location objectForKey:@"state"]];
     [address appendString:@" "];
-    [address appendString:[location objectForKey:@"postalCode"]];
-    [address appendString:@" "];
+    if ([location objectForKey:@"postalCode"] != nil) {
+        [address appendString:[location objectForKey:@"postalCode"]];
+        [address appendString:@" "];
+    }
     [address appendString:[location objectForKey:@"country"]];
     
     return address;
@@ -152,7 +156,8 @@ address;
         if (buttonIndex != [alertView cancelButtonIndex]){
 //            self.beReminded = YES;
             [self addAReminderWithAlarm];
-            [self doneAndExit];
+//            [NSTimer scheduledTimerWithTimeInterval:5.0 invocation:nil repeats:NO];
+//            [self doneAndExit];
         }
     }
 }
@@ -180,6 +185,7 @@ address;
 }
 
 - (void)doneAndExit {
+//    [self performSegueWithIdentifier:@"cancelSegue" sender:self];
     [self dismissViewControllerAnimated:YES completion:nil];
 //    NSLog(@"EXITING");
 }
@@ -231,6 +237,7 @@ address;
     [self.eventStore saveReminder:newReminder
                            commit:YES
                             error:&error];
+
 
 }
 @end

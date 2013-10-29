@@ -9,12 +9,17 @@
 #import "DEViewController.h"
 #import "DESelectedEventViewController.h"
 #import "BNEvent.h"
+#import "ILTranslucentView.h"
 
 @interface DEViewController ()
 @property (weak, nonatomic) IBOutlet UIScrollView *myScroller;
 @property (weak, nonatomic) IBOutlet UIView *myDetailsView;
 @property (weak, nonatomic) IBOutlet UIButton *myButton;
 @property (weak, nonatomic) IBOutlet UIImageView *myImageView;
+@property (weak, nonatomic) IBOutlet UIView *summayView;
+@property (weak, nonatomic) IBOutlet UIView *datesView;
+@property (weak, nonatomic) IBOutlet UIView *addressView;
+@property (weak, nonatomic) IBOutlet UIView *additionalInfoView;
 @end
 
 @implementation DEViewController
@@ -25,23 +30,66 @@
 @synthesize myDetailsView;
 @synthesize myImageView;
 @synthesize myScroller;
+@synthesize summayView;
+@synthesize datesView;
+@synthesize addressView;
+@synthesize additionalInfoView;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    UILabel *title = [[UILabel alloc] initWithFrame:(CGRectMake(0, 0, myDetailsView.frame.size.width, 30))];
-    UILabel *category = [[UILabel alloc] initWithFrame:(CGRectMake(0, 30, myDetailsView.frame.size.width, 21))];
-    UILabel *summary = [[UILabel alloc] initWithFrame:(CGRectMake(0, 51, myDetailsView.frame.size.width, 80))];
-    UILabel *address = [[UILabel alloc] initWithFrame:(CGRectMake(0, 131, myDetailsView.frame.size.width, 21))];
-    UILabel *phone = [[UILabel alloc] initWithFrame:(CGRectMake(0, 152, myDetailsView.frame.size.width, 21))];
-    UILabel *price = [[UILabel alloc] initWithFrame:(CGRectMake(0, 173, myDetailsView.frame.size.width, 21))];
+    myScroller.contentSize = CGSizeMake(320, 583);
     
-    [myDetailsView addSubview:title];
-    [myDetailsView addSubview:category];
-    [myDetailsView addSubview:summary];
-    [myDetailsView addSubview:address];
-    [myDetailsView addSubview:phone];
-    [myDetailsView addSubview:price];
+    ILTranslucentView *summayTlcView = [[ILTranslucentView alloc] initWithFrame:CGRectMake(0, 0, summayView.frame.size.width, summayView.frame.size.height)];
+    summayTlcView.translucentAlpha = 0.8;
+    summayTlcView.translucentStyle = UIBarStyleDefault;
+    summayTlcView.translucentTintColor = [UIColor clearColor];
+    summayTlcView.backgroundColor = [UIColor clearColor];
+    
+    ILTranslucentView *datesTlcView = [[ILTranslucentView alloc] initWithFrame:CGRectMake(0, 0, datesView.frame.size.width, datesView.frame.size.height)];
+    datesTlcView.translucentAlpha = 0.8;
+    datesTlcView.translucentStyle = UIBarStyleDefault;
+    datesTlcView.translucentTintColor = [UIColor clearColor];
+    datesTlcView.backgroundColor = [UIColor clearColor];
+    
+    ILTranslucentView *addressTlcView = [[ILTranslucentView alloc] initWithFrame:CGRectMake(0, 0, addressView.frame.size.width, addressView.frame.size.height)];
+    addressTlcView.translucentAlpha = 0.8;
+    addressTlcView.translucentStyle = UIBarStyleDefault;
+    addressTlcView.translucentTintColor = [UIColor clearColor];
+    addressTlcView.backgroundColor = [UIColor clearColor];
+    
+    ILTranslucentView *additionalInfoTlcView = [[ILTranslucentView alloc] initWithFrame:CGRectMake(0, 0, additionalInfoView.frame.size.width, additionalInfoView.frame.size.height)];
+    additionalInfoTlcView.translucentAlpha = 0.8;
+    additionalInfoTlcView.translucentStyle = UIBarStyleDefault;
+    additionalInfoTlcView.translucentTintColor = [UIColor clearColor];
+    additionalInfoTlcView.backgroundColor = [UIColor clearColor];
+    
+    UILabel *title = [[UILabel alloc] initWithFrame:(CGRectMake(0, 0, 320, 30))];
+    
+    UILabel *summary = [[UILabel alloc] initWithFrame:(CGRectMake(0, 0, 320, 80))];
+    UILabel *address = [[UILabel alloc] initWithFrame:(CGRectMake(0, 0, 320, 21))];
+    address.adjustsFontSizeToFitWidth = YES;
+    address.numberOfLines = 2;
+    UILabel *phone = [[UILabel alloc] initWithFrame:(CGRectMake(0, 0, 320, 21))];
+    UILabel *price = [[UILabel alloc] initWithFrame:(CGRectMake(0, 21, 320, 21))];
+    UILabel *category = [[UILabel alloc] initWithFrame:(CGRectMake(0, 42, 320, 21))];
+    UILabel *date = [[UILabel alloc] initWithFrame:(CGRectMake(0, 0, 320, 21))];
+   
+    
+//    [contentView addSubview:title];
+    [summayTlcView addSubview:summary];
+    [datesTlcView addSubview:date];
+    [addressTlcView addSubview:address];
+    [additionalInfoTlcView addSubview:phone];
+    [additionalInfoTlcView addSubview:price];
+    [additionalInfoTlcView addSubview:category];
+    
+    [summayView addSubview:summayTlcView];
+    [datesView addSubview:datesTlcView];
+    [addressView addSubview:addressTlcView];
+    [additionalInfoView addSubview:additionalInfoTlcView];
+    
+//    [myDetailsView addSubview:contentView];
     
     switch ([type integerValue]) {
         case 1:
@@ -50,16 +98,30 @@
             myImageView.frame = CGRectMake(0, 0, 320, 168);
             myImageView.image = [UIImage imageNamed:[NSString stringWithFormat:@"%@", event.tileBanner]];
 
-            if (event.date != nil) {
-                NSLog(@"Date: %@", event.date);
-            }
+            
             
             title.text = event.title;
-            category.text = event.category;
+            
             summary.text = event.summary;
+            if (event.date != nil) {
+                NSDateComponents *components = [[NSCalendar currentCalendar] components:NSCalendarUnitDay | NSCalendarUnitMonth | NSCalendarUnitYear| NSHourCalendarUnit | NSMinuteCalendarUnit fromDate:event.date];
+                NSInteger day = [components day];
+                NSInteger month = [components month];
+                NSInteger year = [components year];
+                NSInteger hour = [components hour];
+                NSInteger minute = [components minute];
+                NSDateFormatter *df = [[NSDateFormatter alloc] init];
+                NSString *monthName = [[df monthSymbols] objectAtIndex:month - 1];
+                
+                date.text = [NSString stringWithFormat:@"%d %@ %d, %d:%d", day, monthName, year, hour, minute];
+            }
+            else {
+                date.text = @"This venue is not in the Planner";
+            }
             address.text = event.address;
             phone.text = event.phonenumber;
             price.text = [NSString stringWithFormat:@"min %@ and max %@", event.minprice, event.maxprice];
+            category.text = event.category;
             break;
             
         case 2:
@@ -73,6 +135,7 @@
             NSDictionary *contact = [theVenue objectForKey:@"contact"];
             
             title.text = [theVenue objectForKey:@"name"];
+            date.text = @"This venue is not in the Planner";
             address.text = [NSString stringWithFormat:@"%@", venueAddress];
             phone.text = [contact objectForKey:@"formattedPhone"];
             break;

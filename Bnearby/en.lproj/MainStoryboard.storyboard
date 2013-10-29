@@ -243,7 +243,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <view tag="71" contentMode="scaleToFill" id="scd-8l-S3n">
-                                            <rect key="frame" x="10" y="10" width="300" height="112"/>
+                                            <rect key="frame" x="0.0" y="10" width="320" height="112"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         </view>
                                     </subviews>
@@ -271,7 +271,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <mapView clipsSubviews="YES" multipleTouchEnabled="YES" tag="30" contentMode="scaleToFill" mapType="standard" id="Jaq-OH-ZJW">
-                                            <rect key="frame" x="10" y="10" width="300" height="180"/>
+                                            <rect key="frame" x="0.0" y="10" width="320" height="180"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         </mapView>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="O9d-AH-MVG">
@@ -394,7 +394,7 @@
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     </imageView>
                                     <button opaque="NO" tag="122" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="CF4-K3-fZ1">
-                                        <rect key="frame" x="20" y="176" width="103" height="30"/>
+                                        <rect key="frame" x="197" y="176" width="103" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <state key="normal" title="Add to Planner">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -404,8 +404,53 @@
                                         </connections>
                                     </button>
                                     <view tag="123" contentMode="scaleToFill" id="kIi-Jb-ujG">
-                                        <rect key="frame" x="0.0" y="199" width="320" height="369"/>
+                                        <rect key="frame" x="0.0" y="199" width="320" height="384"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <subviews>
+                                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Summary" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="yhR-1V-Bem">
+                                                <rect key="frame" x="0.0" y="0.0" width="320" height="20"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <view tag="131" contentMode="scaleToFill" id="wc6-ob-Ujx">
+                                                <rect key="frame" x="0.0" y="20" width="320" height="88"/>
+                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                            </view>
+                                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Planned Dates" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="tEM-r6-gr3">
+                                                <rect key="frame" x="0.0" y="118" width="320" height="20"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <view tag="132" contentMode="scaleToFill" id="frA-er-0Ia">
+                                                <rect key="frame" x="0.0" y="138" width="320" height="44"/>
+                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                            </view>
+                                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Address" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="f7z-5E-fEV">
+                                                <rect key="frame" x="0.0" y="192" width="320" height="20"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <view tag="133" contentMode="scaleToFill" id="KcF-po-Upo">
+                                                <rect key="frame" x="0.0" y="212" width="320" height="44"/>
+                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                            </view>
+                                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Additional Information" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="J2r-wq-1ob">
+                                                <rect key="frame" x="0.0" y="266" width="320" height="20"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <view tag="134" contentMode="scaleToFill" id="oyp-CQ-ffH">
+                                                <rect key="frame" x="0.0" y="286" width="320" height="88"/>
+                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                            </view>
+                                        </subviews>
                                         <color key="backgroundColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
                                     </view>
                                 </subviews>
@@ -419,10 +464,14 @@ CFZlbnVlIERldGFpbHM
 </string>
                     </navigationItem>
                     <connections>
+                        <outlet property="additionalInfoView" destination="oyp-CQ-ffH" id="Ihh-tr-qwe"/>
+                        <outlet property="addressView" destination="KcF-po-Upo" id="ZiX-Ee-pRV"/>
+                        <outlet property="datesView" destination="frA-er-0Ia" id="nr4-Gv-MUj"/>
                         <outlet property="myButton" destination="CF4-K3-fZ1" id="CNi-do-55s"/>
                         <outlet property="myDetailsView" destination="kIi-Jb-ujG" id="5Ds-Uo-PNJ"/>
                         <outlet property="myImageView" destination="mbB-Ef-y6m" id="WKB-77-yqY"/>
                         <outlet property="myScroller" destination="ocM-Mh-Rvl" id="YfF-Cs-vfX"/>
+                        <outlet property="summayView" destination="wc6-ob-Ujx" id="Lpq-j2-Q3h"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ikH-nB-dLu" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -482,7 +531,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                                     <navigationItem title="Save Event" id="BJn-jj-oPd">
                                         <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="IZp-Ia-4Ab">
                                             <connections>
-                                                <segue destination="erN-7W-ZVl" kind="unwind" unwindAction="cancelUnwindSegue:" id="eiu-O6-g3c"/>
+                                                <segue destination="erN-7W-ZVl" kind="unwind" identifier="cancelSegue" unwindAction="cancelUnwindSegue:" id="eiu-O6-g3c"/>
                                             </connections>
                                         </barButtonItem>
                                     </navigationItem>
@@ -695,6 +744,6 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="cCI-Pp-UuJ"/>
+        <segue reference="fcL-qD-sRu"/>
     </inferredMetricsTieBreakers>
 </document>
