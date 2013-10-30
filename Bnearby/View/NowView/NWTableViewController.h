@@ -9,10 +9,11 @@
 #import <UIKit/UIKit.h>
 #import <MapKit/MapKit.h>
 #import <CoreLocation/CoreLocation.h>
+#import <Social/Social.h>
 #import "BnearbyAppDelegate.h"
 #import "Weather.h"
 
-@interface NWTableViewController : UITableViewController <MKMapViewDelegate> {
+@interface NWTableViewController : UITableViewController <MKMapViewDelegate, UIActionSheetDelegate> {
     NSFetchedResultsController *fetchedResultsController;
     NSManagedObjectContext *context;
 }

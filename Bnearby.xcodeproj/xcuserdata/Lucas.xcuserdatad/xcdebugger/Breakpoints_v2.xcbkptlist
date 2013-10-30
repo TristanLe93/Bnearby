@@ -148,11 +148,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Bnearby/View/NowView/NWTableViewController.m"
-            timestampString = "404834170.131026"
+            timestampString = "404836879.953691"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "386"
-            endingLineNumber = "386"
+            startingLineNumber = "369"
+            endingLineNumber = "369"
             landmarkName = "-tableView:cellForRowAtIndexPath:"
             landmarkType = "5">
          </BreakpointContent>
@@ -1124,11 +1124,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Bnearby/View/NowView/NWTableViewController.m"
-            timestampString = "404834170.131026"
+            timestampString = "404838001.601714"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "543"
-            endingLineNumber = "543"
+            startingLineNumber = "540"
+            endingLineNumber = "540"
             landmarkName = "-getPlannedEvents"
             landmarkType = "5">
          </BreakpointContent>
@@ -1156,11 +1156,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Bnearby/View/NowView/NWTableViewController.m"
-            timestampString = "404834170.131026"
+            timestampString = "404838001.601714"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "507"
-            endingLineNumber = "507"
+            startingLineNumber = "504"
+            endingLineNumber = "504"
             landmarkName = "-getPlannedEvents"
             landmarkType = "5">
          </BreakpointContent>
@@ -1172,11 +1172,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Bnearby/View/NowView/NWTableViewController.m"
-            timestampString = "404834170.131026"
+            timestampString = "404838001.601714"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "542"
-            endingLineNumber = "542"
+            startingLineNumber = "539"
+            endingLineNumber = "539"
             landmarkName = "-getPlannedEvents"
             landmarkType = "5">
             <Locations>
@@ -1234,11 +1234,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Bnearby/View/NowView/NWTableViewController.m"
-            timestampString = "404834170.131026"
+            timestampString = "404838001.601714"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "510"
-            endingLineNumber = "510"
+            startingLineNumber = "507"
+            endingLineNumber = "507"
             landmarkName = "-getPlannedEvents"
             landmarkType = "5">
             <Locations>
@@ -1390,11 +1390,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Bnearby/View/NowView/NWTableViewController.m"
-            timestampString = "404834170.131026"
+            timestampString = "404838001.601714"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "525"
-            endingLineNumber = "525"
+            startingLineNumber = "522"
+            endingLineNumber = "522"
             landmarkName = "-getPlannedEvents"
             landmarkType = "5">
          </BreakpointContent>
@@ -1422,11 +1422,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Bnearby/View/NowView/NWTableViewController.m"
-            timestampString = "404834170.131026"
+            timestampString = "404838001.601714"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "451"
-            endingLineNumber = "451"
+            startingLineNumber = "448"
+            endingLineNumber = "448"
             landmarkName = "-eventSelected:"
             landmarkType = "5">
          </BreakpointContent>
@@ -1438,11 +1438,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Bnearby/View/NowView/NWTableViewController.m"
-            timestampString = "404834170.131026"
+            timestampString = "404838001.601714"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "661"
-            endingLineNumber = "661"
+            startingLineNumber = "658"
+            endingLineNumber = "658"
             landmarkName = "-prepareForSegue:sender:"
             landmarkType = "5">
          </BreakpointContent>
@@ -1454,11 +1454,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Bnearby/View/NowView/NWTableViewController.m"
-            timestampString = "404834170.131026"
+            timestampString = "404838001.601714"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "450"
-            endingLineNumber = "450"
+            startingLineNumber = "447"
+            endingLineNumber = "447"
             landmarkName = "-eventSelected:"
             landmarkType = "5">
          </BreakpointContent>
@@ -1518,11 +1518,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Bnearby/View/NowView/NWTableViewController.m"
-            timestampString = "404834170.131026"
+            timestampString = "404838001.601714"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "455"
-            endingLineNumber = "455"
+            startingLineNumber = "452"
+            endingLineNumber = "452"
             landmarkName = "-imageTapped:"
             landmarkType = "5">
          </BreakpointContent>
@@ -1534,11 +1534,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Bnearby/View/NowView/NWTableViewController.m"
-            timestampString = "404834170.131026"
+            timestampString = "404838001.601714"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "456"
-            endingLineNumber = "456"
+            startingLineNumber = "453"
+            endingLineNumber = "453"
             landmarkName = "-imageTapped:"
             landmarkType = "5">
          </BreakpointContent>

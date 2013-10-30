@@ -321,7 +321,13 @@
                     [interEventsDisplayed addObject:selectedEvent];
                 }
                 UIImageView *newImageView = [[UIImageView alloc] initWithFrame:CGRectMake(((i+1)*5) + (i*213), 5, 213, 112)];
-                newImageView.image = [UIImage imageNamed:[NSString stringWithFormat:@"%@", selectedEvent.tileBanner]];
+                
+                if (selectedEvent.tileBanner != nil) {
+                    newImageView.image = [UIImage imageNamed:[NSString stringWithFormat:@"%@", selectedEvent.tileBanner]];
+                }
+                else {
+                    newImageView.image = [UIImage imageNamed:[NSString stringWithFormat:@"Loading_Variation_One.png"]];
+                }
                 newImageView.tag = i;
                 UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(imageTapped:)];
                 singleTap.numberOfTapsRequired = 1;
@@ -355,29 +361,6 @@
             view.images = images;
             [view initWithFrame:view.frame];
             
-//            int i = 0;
-//            for (UIImageView * aux in view.subviews) {
-//                aux.tag = i;
-//                UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(bannerTapped:)];
-//                singleTap.numberOfTapsRequired = 1;
-//                singleTap.numberOfTouchesRequired = 1;
-//                [aux addGestureRecognizer:singleTap];
-//                [aux setUserInteractionEnabled:YES];
-//                i = i + 1;
-//                [view addSubview:aux];
-//            }
-            
-//            int i = 0;
-//            for (UIImageView *aux in imageViews) {
-//                aux.tag = i;
-//                UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(bannerTapped:)];
-//                singleTap.numberOfTapsRequired = 1;
-//                singleTap.numberOfTouchesRequired = 1;
-//                [aux addGestureRecognizer:singleTap];
-//                [aux setUserInteractionEnabled:YES];
-//                i = i + 1;
-//            }
-            
             
             [translucentView addSubview:view];
             [scroller addSubview:translucentView];
@@ -385,12 +368,6 @@
             break;}
         case 4: {
             cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier4 forIndexPath:indexPath];
-            
-//            if (self.once) {
-//                NSArray *array = cell.contentView.subviews;
-//                [(ILTranslucentView*)[array objectAtIndex:0] removeFromSuperview];
-//            }
-            self.once = YES;
             
             self.theMap = (MKMapView*)[cell viewWithTag:30];
             self.theMap.zoomEnabled = NO;
@@ -402,11 +379,31 @@
             break;}
         case 5:{
             cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier5 forIndexPath:indexPath];
+            
+            if (self.once) {
+                NSArray *array = cell.contentView.subviews;
+                [(ILTranslucentView*)[array objectAtIndex:0] removeFromSuperview];
+            }
+            
+            self.once = YES;
+            
             cell.contentView.backgroundColor = [UIColor clearColor];
             cell.backgroundColor = [UIColor clearColor];
             
-            // Eddy -- Add your code here
+            ILTranslucentView *translucentView = [[ILTranslucentView alloc] initWithFrame:CGRectMake(0, 0, 320, 44)];
             
+            //optional:
+            translucentView.translucentAlpha = 0.8;
+            translucentView.translucentStyle = UIBarStyleDefault;
+            translucentView.translucentTintColor = [UIColor clearColor];
+            translucentView.backgroundColor = [UIColor clearColor];
+            
+            UIButton *shareButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 7, 320, 30)];
+            [shareButton setTitle:@"Share" forState:UIControlStateNormal];
+            shareButton.titleLabel.textColor = [UIColor darkTextColor];
+            [shareButton addTarget:self action:@selector(social:) forControlEvents:UIControlEventTouchUpInside];
+            [translucentView addSubview:shareButton];
+            [cell.contentView addSubview:translucentView];
             break;}
         default:{
             break;}
@@ -437,7 +434,7 @@
             height = 200;
             break;
         case 5:
-            height = 44;
+            height = 54;
             break;
         default:
             break;
@@ -678,5 +675,49 @@
     }
 }
  
+- (IBAction)social:(id)sender {
+    
+    UIActionSheet *share = [[UIActionSheet alloc]initWithTitle:@"Sharing Goodness" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Twitter", @"Facebook", nil];
+    
+    [share showInView:self.view];
+    
+}
+
+- (void) actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
+    
+    if(buttonIndex == 0) {
+        
+        if([SLComposeViewController isAvailableForServiceType:SLServiceTypeTwitter]) {
+            
+            SLComposeViewController *tweetSheet = [SLComposeViewController composeViewControllerForServiceType:SLServiceTypeTwitter];
+            
+//            [tweetSheet setInitialText:@"Tweet your friends how you feel!"];
+            
+            [self presentViewController:tweetSheet animated:YES completion:nil];
+        } else {
+            
+            UIAlertView *alertView1 = [[UIAlertView alloc] initWithTitle:@"Sorry" message:@"You can't send a tweet right now, make sure you have at least one Twitter account setup and your device is using iOS6 or later" delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
+            
+            [alertView1 show];
+        }
+    } else if(buttonIndex == 1) {
+        
+        if([SLComposeViewController isAvailableForServiceType:SLServiceTypeFacebook]) {
+            
+            SLComposeViewController *facebookSheet = [SLComposeViewController composeViewControllerForServiceType:SLServiceTypeFacebook];
+            
+//            [facebookSheet setInitialText:@"Enter how you feel on this place :)"];
+            
+            [self presentViewController:facebookSheet animated:YES completion:nil];
+        } else {
+            
+            UIAlertView *alertView2 = [[UIAlertView alloc] initWithTitle:@"Sorry" message:@"You can't make a Facebook session now, make sure you have at least one Facebook account setup and your device is using iOS6 or later" delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
+            
+            [alertView2 show];
+        }
+        
+    }
+    
+}
 
 @end
