@@ -330,8 +330,12 @@
                 [newImageView setUserInteractionEnabled:YES];
                 
                 [view addSubview:newImageView];
-                [imageViews addObject:newImageView];
-                [images addObject:selectedEvent.tileBanner];
+                if (newImageView != nil) {
+                    [imageViews addObject:newImageView];
+                }
+                if (selectedEvent.tileBanner != nil) {
+                    [images addObject:selectedEvent.tileBanner];
+                }
             }
             
             self.eventsDisplayed = [[NSArray alloc] initWithArray:interEventsDisplayed];
