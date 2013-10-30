@@ -156,7 +156,7 @@
 {
 
     // Return the number of rows in the section.
-    return 5;
+    return 6;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -166,6 +166,7 @@
     static NSString *CellIdentifier3 = @"photoCell";
     static NSString *CellIdentifier2 = @"plannerCell";
     static NSString *CellIdentifier4 = @"mapCell";
+    static NSString *CellIdentifier5 = @"socialCell";
     UITableViewCell *cell = nil;
 
     switch (indexPath.row) {
@@ -308,12 +309,14 @@
             NSMutableArray *imageViews = [[NSMutableArray alloc] init];
             NSMutableArray *interEventsDisplayed = [[NSMutableArray alloc] init];
             
-            int lowerBound = 0;
-            int upperBound = (unplannedEvents.count - 1);
+//            int lowerBound = 0;
+//            int upperBound = (unplannedEvents.count - 1);
+
+            NSArray *indexes = [self shuffle];
             
-            for (int i = 0; i < 5; i++) {
-                int rndValue = lowerBound + arc4random() % (upperBound - lowerBound);
-                BNEvent *selectedEvent = [unplannedEvents objectAtIndex:rndValue];
+            for (int i = 0; i < indexes.count; i++) {
+                int index = [[indexes objectAtIndex:i] integerValue];
+                BNEvent *selectedEvent = [unplannedEvents objectAtIndex:index];
                 [interEventsDisplayed addObject:selectedEvent];
                 UIImageView *newImageView = [[UIImageView alloc] initWithFrame:CGRectMake(((i+1)*5) + (i*213), 5, 213, 112)];
                 newImageView.image = [UIImage imageNamed:[NSString stringWithFormat:@"%@", selectedEvent.tileBanner]];
@@ -388,6 +391,14 @@
             [self.theMap setRegion:region animated:YES];
             cell.backgroundColor = [UIColor clearColor];
             break;}
+        case 5:{
+            cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier5 forIndexPath:indexPath];
+            cell.contentView.backgroundColor = [UIColor clearColor];
+            cell.backgroundColor = [UIColor clearColor];
+            
+            // Eddy -- Add your code here
+            
+            break;}
         default:{
             break;}
     }
@@ -415,6 +426,9 @@
             break;
         case 4:
             height = 200;
+            break;
+        case 5:
+            height = 44;
             break;
         default:
             break;
@@ -448,6 +462,34 @@
     }
     self.isFromPlanner = NO;
     [self performSegueWithIdentifier:@"miniPlannerSegue" sender:self];
+}
+
+- (NSArray*)shuffle {
+    NSMutableArray *one = [[NSMutableArray alloc] init];
+    for (int j = 0; j < unplannedEvents.count; j++) {
+        [one addObject:[NSNumber numberWithInt:j]];
+    }
+    // the 5 indexes, max.
+    NSMutableArray *three = [[NSMutableArray alloc] init];
+    NSMutableArray *two;
+    for (int i = 0; i < unplannedEvents.count; i++) {
+        two = [[NSMutableArray alloc] initWithArray:one];
+        int lowerBound = 0;
+        int upperBound = ((unplannedEvents.count - 1) - i);
+        int rndValue = lowerBound + arc4random() % (upperBound - lowerBound);
+        [three addObject:[two objectAtIndex:rndValue]];
+        [two removeObjectAtIndex:rndValue];
+        one = [[NSMutableArray alloc] initWithArray:two];
+        if (i == 4) {
+            break;
+        }
+    }
+    
+//    for (NSNumber *k in three) {
+//        NSLog(@"%d", [k integerValue]);
+//    }
+    
+    return three;
 }
 
 - (void)getPlannedEvents {

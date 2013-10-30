@@ -151,13 +151,13 @@
             theName.textColor = [UIColor whiteColor];
             [myScroller addSubview:theName];
             
-            NSLog(@"%@", theVenue);
+//            NSLog(@"%@", theVenue); 
             
              NSDictionary *categories = [theVenue objectForKey:@"categories"];
-            NSLog(@"categories %d", categories.count);
+//            NSLog(@"categories %d", categories.count);
             NSArray *inter = (NSArray*)categories;
             NSDictionary *inCategories = [inter objectAtIndex:0];
-            NSLog(@"inCategories %d", inCategories.count);
+//            NSLog(@"inCategories %d", inCategories.count);
             NSString *venueId = [inCategories objectForKey:@"icon"];
             NSURL *photoURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@", [NSString stringWithFormat:@"%@", venueId]]];
             UIImage* fsqrImage = [UIImage imageWithData:[NSData dataWithContentsOfURL:photoURL]];

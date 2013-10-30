@@ -117,7 +117,7 @@
             thisEvent.phonenumber = [contact objectForKey:@"formattedPhone"];
             thisEvent.latitude = [location objectForKey:@"lat"];
             thisEvent.longitude = [location objectForKey:@"lng"];
-            NSLog(@"lat %@ lng %@", event.latitude, event.longitude);
+//            NSLog(@"lat %@ lng %@", event.latitude, event.longitude);
             self.event = thisEvent;
             
             NSError *error;
@@ -255,7 +255,7 @@
 
     }
     else {
-        NSLog(@"Ooops");
+//        NSLog(@"Ooops");
     }
 }
 @end
