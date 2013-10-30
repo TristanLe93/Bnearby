@@ -7,13 +7,14 @@
 //
 
 #import "NWPhotoCellView.h"
+#import "NWTableViewController.h"
 
 @interface NWPhotoCellView()
-@property (nonatomic, strong) NSArray *images;
+//@property (nonatomic, strong) NSArray *images;
 @end
 
 @implementation NWPhotoCellView
-
+@synthesize images;
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
@@ -25,15 +26,22 @@
 }
 
 - (void)setUpView {
-    self.images = [NSArray arrayWithObjects:
-                       [UIImage imageNamed:@"Loading_Variation_One.png"],
-                       [UIImage imageNamed:@"Loading_Variation_One.png"],
-                       [UIImage imageNamed:@"Loading_Variation_One.png"],
-                       [UIImage imageNamed:@"Loading_Variation_One.png"],
-                       [UIImage imageNamed:@"Loading_Variation_One.png"],
+    NSMutableArray *interArray = [NSMutableArray arrayWithObjects:
+                       [UIImage imageNamed:[NSString stringWithFormat:@"%@", [images objectAtIndex:0]]],
+                       [UIImage imageNamed:[NSString stringWithFormat:@"%@", [images objectAtIndex:1]]],
+                       [UIImage imageNamed:[NSString stringWithFormat:@"%@", [images objectAtIndex:2]]],
+                       [UIImage imageNamed:[NSString stringWithFormat:@"%@", [images objectAtIndex:3]]],
+                       [UIImage imageNamed:[NSString stringWithFormat:@"%@", [images objectAtIndex:4]]],
                        nil];
     for (NSInteger i = 0; i < self.imageViews.count; i++) {
-        [[self.imageViews objectAtIndex:i] setImage:[self.images objectAtIndex:i]];
+//        [[self.imageViews objectAtIndex:i] setImage:[interArray objectAtIndex:i]];
+//        UIImageView *aux = [self.imageViews objectAtIndex:i];
+//        aux.tag = i;
+//        UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc] initWithTarget:[NWTableViewController class] action:@selector(bannerTapped:)];
+//        singleTap.numberOfTapsRequired = 1;
+//        singleTap.numberOfTouchesRequired = 1;
+//        [[self.imageViews objectAtIndex:i] addGestureRecognizer:singleTap];
+//        [[self.imageViews objectAtIndex:i] setUserInteractionEnabled:YES];
     }
 }
 

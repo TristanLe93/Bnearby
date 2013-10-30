@@ -61,6 +61,8 @@
 		A0413CC217EA65B700EBC215 /* star_highlighted@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A0413CBA17EA65B700EBC215 /* star_highlighted@2x.png */; };
 		A0413CC317EA65B700EBC215 /* star.png in Resources */ = {isa = PBXBuildFile; fileRef = A0413CBB17EA65B700EBC215 /* star.png */; };
 		A0413CC417EA65B700EBC215 /* star@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A0413CBC17EA65B700EBC215 /* star@2x.png */; };
+		A05031A7182061250016BEBD /* background.png in Resources */ = {isa = PBXBuildFile; fileRef = A05031A6182061250016BEBD /* background.png */; };
+		A05031AA182076800016BEBD /* MapViewAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = A05031A9182076800016BEBD /* MapViewAnnotation.m */; };
 		A05BFB6F181D3607000DBF40 /* DESelectedEventViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A05BFB6E181D3607000DBF40 /* DESelectedEventViewController.m */; };
 		A0620FF8181E44460023894B /* ILTranslucentView.m in Sources */ = {isa = PBXBuildFile; fileRef = A0620FF7181E44460023894B /* ILTranslucentView.m */; };
 		A06BAAC317F2EEAB0053A9FD /* NWPhotoCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = A06BAAC217F2EEAB0053A9FD /* NWPhotoCellView.m */; };
@@ -204,6 +206,9 @@
 		A0413CBA17EA65B700EBC215 /* star_highlighted@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "star_highlighted@2x.png"; path = "View/ExploreView/RatingHeader/Images/star_highlighted@2x.png"; sourceTree = "<group>"; };
 		A0413CBB17EA65B700EBC215 /* star.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = star.png; path = View/ExploreView/RatingHeader/Images/star.png; sourceTree = "<group>"; };
 		A0413CBC17EA65B700EBC215 /* star@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "star@2x.png"; path = "View/ExploreView/RatingHeader/Images/star@2x.png"; sourceTree = "<group>"; };
+		A05031A6182061250016BEBD /* background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = background.png; path = Images/background.png; sourceTree = "<group>"; };
+		A05031A8182076800016BEBD /* MapViewAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MapViewAnnotation.h; path = Model/MapViewAnnotation.h; sourceTree = "<group>"; };
+		A05031A9182076800016BEBD /* MapViewAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MapViewAnnotation.m; path = Model/MapViewAnnotation.m; sourceTree = "<group>"; };
 		A05BFB6D181D3607000DBF40 /* DESelectedEventViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DESelectedEventViewController.h; path = View/DetailedEventView/DESelectedEventViewController.h; sourceTree = "<group>"; };
 		A05BFB6E181D3607000DBF40 /* DESelectedEventViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DESelectedEventViewController.m; path = View/DetailedEventView/DESelectedEventViewController.m; sourceTree = "<group>"; };
 		A0620FF6181E44460023894B /* ILTranslucentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ILTranslucentView.h; path = Model/ILTranslucentView/ILTranslucentView.h; sourceTree = "<group>"; };
@@ -446,6 +451,7 @@
 		A0A77BAE17E70E6200CF91FF /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				A05031A6182061250016BEBD /* background.png */,
 				A0C3CB22181F726500AEB638 /* Accomodation_Icon.png */,
 				A0C3CB23181F726500AEB638 /* Attractions_Icon.png */,
 				A0C3CB25181F726500AEB638 /* Entertainment_Icon.png */,
@@ -661,6 +667,8 @@
 				A0B2697C1809127000EACCBA /* NWWeatherCell.m */,
 				A0ACF047180CFF24004956C2 /* NWMapViewController.h */,
 				A0ACF048180CFF24004956C2 /* NWMapViewController.m */,
+				A05031A8182076800016BEBD /* MapViewAnnotation.h */,
+				A05031A9182076800016BEBD /* MapViewAnnotation.m */,
 			);
 			name = NowView;
 			sourceTree = "<group>";
@@ -742,6 +750,7 @@
 				A0D23BE817E6E27D0020BB6E /* MainStoryboard.storyboard in Resources */,
 				A0A7AB94181A001400C146BF /* Explore_Attractions.png in Resources */,
 				A0413CC417EA65B700EBC215 /* star@2x.png in Resources */,
+				A05031A7182061250016BEBD /* background.png in Resources */,
 				A0C3CB2A181F726500AEB638 /* Attractions_Icon.png in Resources */,
 				6A1E3CFA180D6D730082D70C /* eventdata.xml in Resources */,
 				A02A30A6181B3B01000D688B /* Distance_Filter_Used.png in Resources */,
@@ -822,6 +831,7 @@
 				A0A77BA617E70D1500CF91FF /* HDScrollView.m in Sources */,
 				A0BB6D62180A39380037BD5F /* WeatherParser.m in Sources */,
 				A0A77BA517E70CFB00CF91FF /* StarRatingControl.m in Sources */,
+				A05031AA182076800016BEBD /* MapViewAnnotation.m in Sources */,
 				A0ACF049180CFF24004956C2 /* NWMapViewController.m in Sources */,
 				A0A77BA417E70C8100CF91FF /* EXViewController.m in Sources */,
 				6A1E3D35180D7AAD0082D70C /* AFURLConnectionOperation.m in Sources */,

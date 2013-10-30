@@ -21,6 +21,11 @@
 @property (weak, nonatomic) IBOutlet UIView *datesView;
 @property (weak, nonatomic) IBOutlet UIView *addressView;
 @property (weak, nonatomic) IBOutlet UIView *additionalInfoView;
+
+
+//@property (nonatomic, retain) NSDictionary* venuesDict;
+
+
 @end
 
 @implementation DEViewController
@@ -146,8 +151,20 @@
             theName.textColor = [UIColor whiteColor];
             [myScroller addSubview:theName];
             
-            myImageView.frame = CGRectMake(0, 0, 320, 168);
-            myImageView.image = [UIImage imageNamed:[NSString stringWithFormat:@"Loading_Variation_One.png"]];
+            NSLog(@"%@", theVenue);
+            
+             NSDictionary *categories = [theVenue objectForKey:@"categories"];
+            NSLog(@"categories %d", categories.count);
+            NSArray *inter = (NSArray*)categories;
+            NSDictionary *inCategories = [inter objectAtIndex:0];
+            NSLog(@"inCategories %d", inCategories.count);
+            NSString *venueId = [inCategories objectForKey:@"icon"];
+            NSURL *photoURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@", [NSString stringWithFormat:@"%@", venueId]]];
+            UIImage* fsqrImage = [UIImage imageWithData:[NSData dataWithContentsOfURL:photoURL]];
+            myImageView.image = fsqrImage;
+            
+            myImageView.frame = CGRectMake(135, 59, 50, 50);
+//            myImageView.image = [UIImage imageNamed:[NSString stringWithFormat:@"Loading_Variation_One.png"]];
 
             NSDictionary *location = [theVenue objectForKey:@"location"];
             NSString *venueAddress = [NSString stringWithFormat:@"%@, %@ %@ %@, %@", [location objectForKey:@"address"], [location objectForKey:@"city"], [location objectForKey:@"state"], [location objectForKey:@"postalCode"], [location objectForKey:@"country"]];

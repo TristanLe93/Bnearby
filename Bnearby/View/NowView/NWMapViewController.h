@@ -9,8 +9,13 @@
 #import <UIKit/UIKit.h>
 #import <CoreLocation/CoreLocation.h>
 #import <MapKit/MapKit.h>
+#import "BnearbyAppDelegate.h"
+#import "BNEvent.h"
 
-@interface NWMapViewController : UIViewController <CLLocationManagerDelegate>
+@interface NWMapViewController : UIViewController <CLLocationManagerDelegate, MKMapViewDelegate> {
+    NSFetchedResultsController *fetchedResultsController;
+    NSManagedObjectContext *context;
+}
 
 @property (weak, nonatomic) IBOutlet UILabel *latLabel;
 @property (weak, nonatomic) IBOutlet UILabel *longLabel;

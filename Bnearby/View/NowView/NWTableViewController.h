@@ -25,5 +25,6 @@
 @property (strong, nonatomic) BnearbyAppDelegate *app;
 @property (strong, nonatomic) Weather *weather;
 //- (IBAction)func:(id)sender;
+//+ (void)bannerTapped:(UIGestureRecognizer *)gestureRecognizer;
 
 @end

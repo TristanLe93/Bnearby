@@ -426,12 +426,12 @@ static NSString *CellIdentifier = @"CellIdentifier";
                     [newTile addSubview:newLabel2];
                     
                     [newTile addTarget:self action:@selector(tileTapped:) forControlEvents:UIControlEventTouchUpInside];
-                    if (self.row1 == nil) {
-                        self.row1 = [[NSMutableArray alloc] init];
+                    if (self.row3 == nil) {
+                        self.row3 = [[NSMutableArray alloc] init];
                     }
                     
                     newTile.tag = indexPath.row;
-                    [self.row1 addObject:event];
+                    [self.row3 addObject:event];
                     [cell.myScrollView.myView addSubview:newTile];
                 }
             }
@@ -476,12 +476,12 @@ static NSString *CellIdentifier = @"CellIdentifier";
                     [newTile addSubview:newLabel2];
                     
                     [newTile addTarget:self action:@selector(tileTapped:) forControlEvents:UIControlEventTouchUpInside];
-                    if (self.row1 == nil) {
-                        self.row1 = [[NSMutableArray alloc] init];
+                    if (self.row4 == nil) {
+                        self.row4 = [[NSMutableArray alloc] init];
                     }
                     
                     newTile.tag = indexPath.row;
-                    [self.row1 addObject:event];
+                    [self.row4 addObject:event];
                     [cell.myScrollView.myView addSubview:newTile];
                 }
             }
@@ -526,12 +526,12 @@ static NSString *CellIdentifier = @"CellIdentifier";
                     [newTile addSubview:newLabel2];
                     
                     [newTile addTarget:self action:@selector(tileTapped:) forControlEvents:UIControlEventTouchUpInside];
-                    if (self.row1 == nil) {
-                        self.row1 = [[NSMutableArray alloc] init];
+                    if (self.row5 == nil) {
+                        self.row5 = [[NSMutableArray alloc] init];
                     }
                     
                     newTile.tag = indexPath.row;
-                    [self.row1 addObject:event];
+                    [self.row5 addObject:event];
                     [cell.myScrollView.myView addSubview:newTile];
                 }
             }
@@ -599,8 +599,7 @@ static NSString *CellIdentifier = @"CellIdentifier";
     [self stopUpdatingCurrentLocation];
 }
 
-- (void)stopUpdatingCurrentLocation
-{
+- (void)stopUpdatingCurrentLocation {
     [self.locationManager stopUpdatingLocation];
 }
 
@@ -669,10 +668,6 @@ static NSString *CellIdentifier = @"CellIdentifier";
     [self.tableView reloadData];
 }
 
-//- (void)starRatingControl:(StarRatingControl *)control willUpdateRating:(NSUInteger)rating {
-//	// Call back to indicate the control has finished being updated
-//}
-
 - (void)timeRatingControl:(TimeController *)control didUpdateRating:(NSUInteger)rating {
     NSInteger numbRows = 0;
     for (int j = 0; j < fetchedResultsController.sections.count; j++) {
@@ -737,9 +732,6 @@ static NSString *CellIdentifier = @"CellIdentifier";
     }
     [self.tableView reloadData];
 }
-
-//- (void)timeRatingControl:(TimeController *)control willUpdateRating:(NSUInteger)rating {
-//}
 
 - (void)costRatingControl:(CostController *)control didUpdateRating:(NSUInteger)rating {
     NSInteger numbRows = 0;

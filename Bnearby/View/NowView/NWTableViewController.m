@@ -22,13 +22,18 @@
 @property (strong, nonatomic) MKMapView *theMap;
 @property (assign, nonatomic) BOOL refresh;
 @property (assign, nonatomic) BOOL once;
+@property (assign, nonatomic) BOOL isFromPlanner;
 @property (strong, nonatomic) NSArray *plannedEvents;
+@property (strong, nonatomic) NSArray *unplannedEvents;
+@property (strong, nonatomic) NSArray *eventsDisplayed;
 @property (strong, nonatomic) NSDateComponents *components;
 @property (strong, nonatomic) UIButton *event1;
 @property (strong, nonatomic) UIButton *event2;
 @property (strong, nonatomic) UIButton *event3;
 @property (strong, nonatomic) UIButton *event4;
 @property (readwrite, nonatomic) NSInteger position;
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *spinner;
+@property (strong, nonatomic) BNEvent *viewThisEvent;
 
 @end
 
@@ -40,6 +45,7 @@
 @synthesize app;
 @synthesize weather;
 @synthesize plannedEvents;
+@synthesize unplannedEvents;
 @synthesize components;
 
 //NSString * temperature;
@@ -57,16 +63,18 @@
 {
     [super viewDidLoad];
     
+    // Background image setup
+    UIImageView *tempImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"background.png"]];
+    [tempImageView setFrame:self.tableView.frame];
+    self.tableView.backgroundView = tempImageView;
+    self.spinner.hidesWhenStopped = YES;
+
+    
     // Pull to Refresh Controls
     UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];
     refreshControl.tintColor = [UIColor orangeColor];
     [refreshControl addTarget:self action:@selector(refreshLocation) forControlEvents:UIControlEventValueChanged];
     self.refreshControl = refreshControl;
-    
-//    // Background image setup
-//    UIImageView *tempImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"background.png"]];
-//    [tempImageView setFrame:self.tableView.frame];
-//    self.tableView.backgroundView = tempImageView;
     
     // setup managedcontext
     BnearbyAppDelegate *delegate = [[UIApplication sharedApplication] delegate];
@@ -148,21 +156,27 @@
 {
 
     // Return the number of rows in the section.
-    return 4;
+    return 5;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier0 = @"weatherCell";
-    static NSString *CellIdentifier2 = @"photoCell";
-    static NSString *CellIdentifier1 = @"plannerCell";
-    static NSString *CellIdentifier3 = @"mapCell";
+    static NSString *CellIdentifier0 = @"backgroundCell";
+    static NSString *CellIdentifier1 = @"weatherCell";
+    static NSString *CellIdentifier3 = @"photoCell";
+    static NSString *CellIdentifier2 = @"plannerCell";
+    static NSString *CellIdentifier4 = @"mapCell";
     UITableViewCell *cell = nil;
 
     switch (indexPath.row) {
-        case 0: {
-            
+        case 0:
             cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier0 forIndexPath:indexPath];
+            cell.contentView.backgroundColor = [UIColor clearColor];
+            cell.backgroundColor = [UIColor clearColor];
+            break;
+        case 1: {
+            
+            cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier1 forIndexPath:indexPath];
             
             if (self.once) {
                 NSArray *array = cell.contentView.subviews;
@@ -190,16 +204,17 @@
             [translucentView addSubview:detailedWeatherLabel];
             
             //optional:
-            translucentView.translucentAlpha = 0.5;
+            translucentView.translucentAlpha = 0.8;
             translucentView.translucentStyle = UIBarStyleDefault;
-            translucentView.translucentTintColor = [UIColor colorWithRed:255/255.0f green:102/255.0f blue:102/255.0f alpha:1.0f];
+//            translucentView.translucentTintColor = [UIColor colorWithRed:255/255.0f green:102/255.0f blue:102/255.0f alpha:1.0f];
+            translucentView.translucentTintColor = [UIColor clearColor];
             translucentView.backgroundColor = [UIColor clearColor];
             
             [cell.contentView addSubview:translucentView];
             cell.backgroundColor = [UIColor clearColor];
             break;}
-        case 1: {
-            cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier1 forIndexPath:indexPath];
+        case 2: {
+            cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier2 forIndexPath:indexPath];
             
             if (self.once) {
                 NSArray *array = cell.contentView.subviews;
@@ -215,9 +230,10 @@
             ILTranslucentView *translucentView = [[ILTranslucentView alloc] initWithFrame:CGRectMake(0, 0, 320, 122)];
             
             //optional:
-            translucentView.translucentAlpha = 0.5;
+            translucentView.translucentAlpha = 0.8;
             translucentView.translucentStyle = UIBarStyleDefault;
-            translucentView.translucentTintColor = [UIColor colorWithRed:255/255.0f green:102/255.0f blue:102/255.0f alpha:1.0f];
+//            translucentView.translucentTintColor = [UIColor colorWithRed:255/255.0f green:102/255.0f blue:102/255.0f alpha:1.0f];
+            translucentView.translucentTintColor = [UIColor clearColor];
             translucentView.backgroundColor = [UIColor clearColor];
             
             if (plannedEvents != nil) {
@@ -268,8 +284,8 @@
             [plannerView addSubview:translucentView];
             cell.backgroundColor = [UIColor clearColor];
             break;}
-        case 2: {
-            cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier2 forIndexPath:indexPath];
+        case 3: {
+            cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier3 forIndexPath:indexPath];
             
             if (self.once) {
                 NSArray *array = cell.contentView.subviews;
@@ -282,7 +298,6 @@
                 }
                 
                 [(ILTranslucentView*)[array2 objectAtIndex:0] removeFromSuperview];
-                
             }
             
             NWPhotoCellScroller *scroller = (NWPhotoCellScroller*)[cell viewWithTag:100];
@@ -290,28 +305,74 @@
             [scroller setScrollEnabled:YES];
             NWPhotoCellView *view = [[NWPhotoCellView alloc] initWithFrame:CGRectMake(0, 0, 1095, 122)];
             NSMutableArray *images = [[NSMutableArray alloc] init];
+            NSMutableArray *imageViews = [[NSMutableArray alloc] init];
+            NSMutableArray *interEventsDisplayed = [[NSMutableArray alloc] init];
+            
+            int lowerBound = 0;
+            int upperBound = (unplannedEvents.count - 1);
+            
             for (int i = 0; i < 5; i++) {
+                int rndValue = lowerBound + arc4random() % (upperBound - lowerBound);
+                BNEvent *selectedEvent = [unplannedEvents objectAtIndex:rndValue];
+                [interEventsDisplayed addObject:selectedEvent];
                 UIImageView *newImageView = [[UIImageView alloc] initWithFrame:CGRectMake(((i+1)*5) + (i*213), 5, 213, 112)];
+                newImageView.image = [UIImage imageNamed:[NSString stringWithFormat:@"%@", selectedEvent.tileBanner]];
+                newImageView.tag = i;
+                UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(imageTapped:)];
+                singleTap.numberOfTapsRequired = 1;
+                singleTap.numberOfTouchesRequired = 1;
+                [newImageView addGestureRecognizer:singleTap];
+                [newImageView setUserInteractionEnabled:YES];
+                
                 [view addSubview:newImageView];
-                [images addObject:newImageView];
+                [imageViews addObject:newImageView];
+                [images addObject:selectedEvent.tileBanner];
             }
             
+            self.eventsDisplayed = [[NSArray alloc] initWithArray:interEventsDisplayed];
             ILTranslucentView *translucentView = [[ILTranslucentView alloc] initWithFrame:CGRectMake(0, 10, 1095, 122)];
             
             //optional:
-            translucentView.translucentAlpha = 0.5;
+            translucentView.translucentAlpha = 0.8;
             translucentView.translucentStyle = UIBarStyleDefault;
-            translucentView.translucentTintColor = [UIColor colorWithRed:255/255.0f green:102/255.0f blue:102/255.0f alpha:1.0f];
+//            translucentView.translucentTintColor = [UIColor colorWithRed:255/255.0f green:102/255.0f blue:102/255.0f alpha:1.0f];
+            translucentView.translucentTintColor = [UIColor clearColor];
             translucentView.backgroundColor = [UIColor clearColor];
             
-            view.imageViews = images;
+            view.imageViews = imageViews;
+            view.images = images;
             [view initWithFrame:view.frame];
+            
+//            int i = 0;
+//            for (UIImageView * aux in view.subviews) {
+//                aux.tag = i;
+//                UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(bannerTapped:)];
+//                singleTap.numberOfTapsRequired = 1;
+//                singleTap.numberOfTouchesRequired = 1;
+//                [aux addGestureRecognizer:singleTap];
+//                [aux setUserInteractionEnabled:YES];
+//                i = i + 1;
+//                [view addSubview:aux];
+//            }
+            
+//            int i = 0;
+//            for (UIImageView *aux in imageViews) {
+//                aux.tag = i;
+//                UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(bannerTapped:)];
+//                singleTap.numberOfTapsRequired = 1;
+//                singleTap.numberOfTouchesRequired = 1;
+//                [aux addGestureRecognizer:singleTap];
+//                [aux setUserInteractionEnabled:YES];
+//                i = i + 1;
+//            }
+            
+            
             [translucentView addSubview:view];
             [scroller addSubview:translucentView];
             cell.backgroundColor = [UIColor clearColor];
             break;}
-        case 3: {
-            cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier3 forIndexPath:indexPath];
+        case 4: {
+            cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier4 forIndexPath:indexPath];
             
 //            if (self.once) {
 //                NSArray *array = cell.contentView.subviews;
@@ -320,6 +381,9 @@
             self.once = YES;
             
             self.theMap = (MKMapView*)[cell viewWithTag:30];
+            self.theMap.zoomEnabled = NO;
+            self.theMap.scrollEnabled = NO;
+            self.theMap.userInteractionEnabled = NO;
             MKCoordinateRegion region = {{-27.4679, 153.0277}, {0.1f, 0.1f}};
             [self.theMap setRegion:region animated:YES];
             cell.backgroundColor = [UIColor clearColor];
@@ -338,15 +402,18 @@
     CGFloat height = 44;
     switch (indexPath.row) {
         case 0:
-            height = 88;
+            height = 142;
             break;
         case 1:
-            height = 132;
+            height = 88;
             break;
         case 2:
             height = 132;
             break;
         case 3:
+            height = 132;
+            break;
+        case 4:
             height = 200;
             break;
         default:
@@ -359,12 +426,33 @@
     UIButton *thisButton = (UIButton*)sender;
     self.position = ((thisButton.frame.origin.y/25) - 1);
     [self performSegueWithIdentifier:@"miniPlannerSegue" sender:self];
+    self.isFromPlanner = YES;
 }
 
-
+- (void)imageTapped: (UIGestureRecognizer *)gestureRecognizer {
+    UIImageView *aux = (UIImageView *)[gestureRecognizer view];
+    if (aux.tag == 0) {
+        self.viewThisEvent = [self.eventsDisplayed objectAtIndex:0];
+    }
+    if (aux.tag == 1) {
+        self.viewThisEvent = [self.eventsDisplayed objectAtIndex:1];
+    }
+    if (aux.tag == 2) {
+        self.viewThisEvent = [self.eventsDisplayed objectAtIndex:2];
+    }
+    if (aux.tag == 3) {
+        self.viewThisEvent = [self.eventsDisplayed objectAtIndex:3];
+    }
+    if (aux.tag == 4) {
+        self.viewThisEvent = [self.eventsDisplayed objectAtIndex:4];
+    }
+    self.isFromPlanner = NO;
+    [self performSegueWithIdentifier:@"miniPlannerSegue" sender:self];
+}
 
 - (void)getPlannedEvents {
     NSMutableArray *planned = [[NSMutableArray alloc] init];
+    NSMutableArray *unplanned = [[NSMutableArray alloc] init];
     NSInteger numbRows = 0;
     for (int j = 0; j < fetchedResultsController.sections.count; j++) {
         id sectionInfo = [[fetchedResultsController sections] objectAtIndex:j];
@@ -384,10 +472,16 @@
                     [planned addObject:event];
                 }
             }
+            else {
+                [unplanned addObject:event];
+            }
         }
         if (planned.count > 0) {
             NSArray* reversedArray = [[planned reverseObjectEnumerator] allObjects];
             plannedEvents = [[NSArray alloc] initWithArray:reversedArray];
+        }
+        if (unplanned.count > 0) {
+            unplannedEvents = [[NSArray alloc] initWithArray:unplanned];
         }
     }
     
@@ -442,6 +536,7 @@
 }
 
 - (void)refreshLocation {
+    [self.spinner startAnimating];
     [app parseWeather];
     _refresh = !_refresh;
     [self performSelector:@selector(updateTable) withObject:nil
@@ -452,6 +547,8 @@
     
     [self.tableView reloadData];
     [self.refreshControl endRefreshing];
+    [self.spinner stopAnimating];
+    self.spinner.hidesWhenStopped = YES;
 }
 
 - (IBAction)revealMenu:(id)sender {
@@ -513,10 +610,16 @@
          DEViewController *vc = [segue destinationViewController];
         
         // Pass any objects to the view controller here, like...
-
-        BNEvent *sendThisEvent = [plannedEvents objectAtIndex:self.position];
-        vc.event = sendThisEvent;
-        vc.type = @1;
+        if (self.isFromPlanner) {
+            BNEvent *sendThisEvent = [plannedEvents objectAtIndex:self.position];
+            vc.event = sendThisEvent;
+            vc.type = @1;
+        }
+        if (!self.isFromPlanner) {
+            vc.event = self.viewThisEvent;
+            vc.type = @1;
+        }
+        
     }
 }
  

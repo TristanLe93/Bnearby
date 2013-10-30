@@ -193,15 +193,22 @@
     UIImageView *imageView = (UIImageView *)[cell viewWithTag:100];
     UIImage *image;
         
-    if ([event.type isEqualToString:@"Hotel"]) {
-        image = [UIImage imageNamed:@"Accomodation_Icons.png"];
+    if ([event.category isEqualToString:@"Accomodation"]) {
+        image = [UIImage imageNamed:@"Accomodation_Icon.png"];
     }
-    else if ([event.type isEqualToString:@"Restaurant"]) {
+    else if ([event.category isEqualToString:@"Restaurant"]) {
         image = [UIImage imageNamed:@"Restaurant_Icon.png"];
     }
-    else if ([event.type isEqualToString:@"Attraction"]) {
+    else if ([event.category isEqualToString:@"Attraction"]) {
         image = [UIImage imageNamed:@"Attractions_Icon.png"];
     }
+    else if ([event.category isEqualToString:@"Free"]) {
+        image = [UIImage imageNamed:@"Free_Icon.png"];
+    }
+    else {
+        image = [UIImage imageNamed:@"Entertainment_Icon.png"];
+    }
+    
     imageView.image = image;
     
     return cell;

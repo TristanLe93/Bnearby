@@ -33,6 +33,12 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+//    UIImageView *backgroundImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"background.png"]];
+//    
+//    [self.view addSubview:backgroundImage];
+//    [self.view sendSubviewToBack:backgroundImage];
+    self.view.backgroundColor = [UIColor lightGrayColor];
+    
     self.alertType = YES;
 //    self.beReminded = NO;
 //    self.doneConfig = NO;
@@ -112,7 +118,7 @@
             thisEvent.latitude = [location objectForKey:@"lat"];
             thisEvent.longitude = [location objectForKey:@"lng"];
             NSLog(@"lat %@ lng %@", event.latitude, event.longitude);
-            
+            self.event = thisEvent;
             
             NSError *error;
             NSString *message;
@@ -225,28 +231,31 @@
 - (void)addAReminderWithAlarm {
     if(!self.eventStoreAccessGranted)
 		return;
-    
-    NSDate *alarmDate = [self.event.date dateByAddingTimeInterval:-3600];
-    EKAlarm *ourAlarm = [EKAlarm alarmWithAbsoluteDate:alarmDate];
-    EKReminder *newReminder = [EKReminder reminderWithEventStore:self.eventStore];
-    
-    unsigned unitFlags = NSYearCalendarUnit | NSMonthCalendarUnit |  NSDayCalendarUnit | NSHourCalendarUnit | NSMinuteCalendarUnit;
-    
-    NSCalendar * cal = [NSCalendar currentCalendar];
-    NSDateComponents *comps = [cal components:unitFlags fromDate:self.event.date];
-    
-    newReminder.title = [NSString stringWithFormat:@"%@", self.event.title];
-    newReminder.dueDateComponents = comps;
-    newReminder.calendar = [_eventStore defaultCalendarForNewReminders];
-    
-    [newReminder addAlarm:ourAlarm];
-    
-    NSError *error = nil;
-    
-    [self.eventStore saveReminder:newReminder
-                           commit:YES
-                            error:&error];
+    if (self.event.date != Nil) {
+        NSDate *alarmDate = [self.event.date dateByAddingTimeInterval:-3600];
+        EKAlarm *ourAlarm = [EKAlarm alarmWithAbsoluteDate:alarmDate];
+        EKReminder *newReminder = [EKReminder reminderWithEventStore:self.eventStore];
+        
+        unsigned unitFlags = NSYearCalendarUnit | NSMonthCalendarUnit |  NSDayCalendarUnit | NSHourCalendarUnit | NSMinuteCalendarUnit;
+        
+        NSCalendar * cal = [NSCalendar currentCalendar];
+        NSDateComponents *comps = [cal components:unitFlags fromDate:self.event.date];
+        
+        newReminder.title = [NSString stringWithFormat:@"%@", self.event.title];
+        newReminder.dueDateComponents = comps;
+        newReminder.calendar = [_eventStore defaultCalendarForNewReminders];
+        
+        [newReminder addAlarm:ourAlarm];
+        
+        NSError *error = nil;
+        
+        [self.eventStore saveReminder:newReminder
+                               commit:YES
+                                error:&error];
 
-
+    }
+    else {
+        NSLog(@"Ooops");
+    }
 }
 @end
