@@ -336,6 +336,9 @@
                 if (selectedEvent.tileBanner != nil) {
                     [images addObject:selectedEvent.tileBanner];
                 }
+                else {
+                    [images addObject:[NSString stringWithFormat:@"Loading_Variation_One.png"]];
+                }
             }
             
             self.eventsDisplayed = [[NSArray alloc] initWithArray:interEventsDisplayed];
