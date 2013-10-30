@@ -317,7 +317,9 @@
             for (int i = 0; i < indexes.count; i++) {
                 int index = [[indexes objectAtIndex:i] integerValue];
                 BNEvent *selectedEvent = [unplannedEvents objectAtIndex:index];
-                [interEventsDisplayed addObject:selectedEvent];
+                if (selectedEvent != nil) {
+                    [interEventsDisplayed addObject:selectedEvent];
+                }
                 UIImageView *newImageView = [[UIImageView alloc] initWithFrame:CGRectMake(((i+1)*5) + (i*213), 5, 213, 112)];
                 newImageView.image = [UIImage imageNamed:[NSString stringWithFormat:@"%@", selectedEvent.tileBanner]];
                 newImageView.tag = i;
@@ -477,7 +479,9 @@
         int lowerBound = 0;
         int upperBound = ((unplannedEvents.count - 1) - i);
         int rndValue = lowerBound + arc4random() % (upperBound - lowerBound);
-        [three addObject:[two objectAtIndex:rndValue]];
+        if ([two objectAtIndex:rndValue] != Nil) {
+            [three addObject:[two objectAtIndex:rndValue]];
+        }
         [two removeObjectAtIndex:rndValue];
         one = [[NSMutableArray alloc] initWithArray:two];
         if (i == 4) {
@@ -515,7 +519,9 @@
                 }
             }
             else {
-                [unplanned addObject:event];
+                if (event != nil) {
+                    [unplanned addObject:event];
+                }
             }
         }
         if (planned.count > 0) {
