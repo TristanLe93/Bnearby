@@ -604,252 +604,267 @@ static NSString *CellIdentifier = @"CellIdentifier";
 }
 
 - (void)starRatingControl:(StarRatingControl *)control didUpdateRating:(NSUInteger)rating {
-    NSInteger numbRows = 0;
-    for (int j = 0; j < fetchedResultsController.sections.count; j++) {
-        id sectionInfo = [[fetchedResultsController sections] objectAtIndex:j];
-        NSInteger count = [sectionInfo numberOfObjects];
-        numbRows = numbRows + count;
-    }
-    self.refinedEvents = [[NSMutableArray alloc] init];
-    for (int i = 0; i < numbRows; i++) {
-        NSIndexPath *indexPath2 = [NSIndexPath indexPathForRow:i inSection:0];
-        BNEvent *event = [fetchedResultsController objectAtIndexPath:indexPath2];
-        // Star Rating
-        float eventRating = [event.rating floatValue];
-        NSInteger starLimit = [[self.ratingLimits objectAtIndex:rating] integerValue];
-        
-        NSInteger costRating = self.costRatingControl.rating;
-        NSInteger timeRating = self.timeRatingControl.rating;
-        
-        if (costRating > 0 || timeRating > 0) {
-            if (costRating > 0 && timeRating <= 0) {
-                // Cost Rating
-                NSInteger max = [event.maxprice integerValue];
-                NSInteger costLimit = [[self.costLimits objectAtIndex:costRating] integerValue];
-                
-                if (eventRating >= (float)starLimit && max < costLimit) {
+    if (rating >= 0 && rating <=5) {
+        NSInteger numbRows = 0;
+        for (int j = 0; j < fetchedResultsController.sections.count; j++) {
+            id sectionInfo = [[fetchedResultsController sections] objectAtIndex:j];
+            NSInteger count = [sectionInfo numberOfObjects];
+            numbRows = numbRows + count;
+        }
+        self.refinedEvents = [[NSMutableArray alloc] init];
+        for (int i = 0; i < numbRows; i++) {
+            NSIndexPath *indexPath2 = [NSIndexPath indexPathForRow:i inSection:0];
+            BNEvent *event = [fetchedResultsController objectAtIndexPath:indexPath2];
+            // Star Rating
+            float eventRating = [event.rating floatValue];
+            NSInteger starLimit = [[self.ratingLimits objectAtIndex:rating] integerValue];
+            
+            NSInteger costRating = self.costRatingControl.rating;
+            NSInteger timeRating = self.timeRatingControl.rating;
+            
+            if (costRating > 0 || timeRating > 0) {
+                if (costRating > 0 && timeRating <= 0) {
+                    // Cost Rating
+                    NSInteger max = [event.maxprice integerValue];
+                    NSInteger costLimit = [[self.costLimits objectAtIndex:costRating] integerValue];
+                    
+                    if (eventRating >= (float)starLimit && max < costLimit) {
+                        [self.refinedEvents addObject:event];
+                    }
+                }
+                if (costRating <=0 && timeRating > 0) {
+                    // Time Rating
+                    float timeRating = [event.duration floatValue];
+                    NSInteger timeLimit = [[self.timeLimits objectAtIndex:timeRating] integerValue];
+                    
+                    if (eventRating >= (float)starLimit && timeRating <= timeLimit) {
+                        [self.refinedEvents addObject:event];
+                    }
+                }
+                if (costRating > 0 && timeRating > 0) {
+                    // Cost Rating
+                    NSInteger max = [event.maxprice integerValue];
+                    NSInteger costLimit = [[self.costLimits objectAtIndex:costRating] integerValue];
+                    // Time Rating
+                    float timeRating = [event.duration floatValue];
+                    NSInteger timeLimit = [[self.timeLimits objectAtIndex:timeRating] integerValue];
+                    
+                    if (eventRating >= (float)starLimit && max < costLimit && timeRating <= timeLimit) {
+                        [self.refinedEvents addObject:event];
+                    }
+                }
+            }
+            else {
+                if (eventRating >= starLimit) {
                     [self.refinedEvents addObject:event];
                 }
             }
-            if (costRating <=0 && timeRating > 0) {
-                // Time Rating
-                float timeRating = [event.duration floatValue];
-                NSInteger timeLimit = [[self.timeLimits objectAtIndex:timeRating] integerValue];
-                
-                if (eventRating >= (float)starLimit && timeRating <= timeLimit) {
-                    [self.refinedEvents addObject:event];
-                }
-            }
-            if (costRating > 0 && timeRating > 0) {
-                // Cost Rating
-                NSInteger max = [event.maxprice integerValue];
-                NSInteger costLimit = [[self.costLimits objectAtIndex:costRating] integerValue];
-                // Time Rating
-                float timeRating = [event.duration floatValue];
-                NSInteger timeLimit = [[self.timeLimits objectAtIndex:timeRating] integerValue];
-                
-                if (eventRating >= (float)starLimit && max < costLimit && timeRating <= timeLimit) {
-                    [self.refinedEvents addObject:event];
-                }
-            }
+        }
+        if (rating == 0) {
+            self.refined = NO;
         }
         else {
-            if (eventRating >= starLimit) {
-                [self.refinedEvents addObject:event];
-            }
+            self.refined = YES;
         }
-    }
-    if (rating == 0) {
-        self.refined = NO;
+        [self.tableView reloadData];
     }
     else {
-        self.refined = YES;
+        NSLog(@"Ooops");
     }
-    [self.tableView reloadData];
 }
 
 - (void)timeRatingControl:(TimeController *)control didUpdateRating:(NSUInteger)rating {
-    NSInteger numbRows = 0;
-    for (int j = 0; j < fetchedResultsController.sections.count; j++) {
-        id sectionInfo = [[fetchedResultsController sections] objectAtIndex:j];
-        NSInteger count = [sectionInfo numberOfObjects];
-        numbRows = numbRows + count;
-    }
-    self.refinedEvents = [[NSMutableArray alloc] init];
-    for (int i = 0; i < numbRows; i++) {
-        NSIndexPath *indexPath2 = [NSIndexPath indexPathForRow:i inSection:0];
-        BNEvent *event = [fetchedResultsController objectAtIndexPath:indexPath2];
-        // Time Rating
-        float timeRating = [event.duration floatValue];
-        NSInteger timeLimit = [[self.timeLimits objectAtIndex:rating] integerValue];
-        
-        NSInteger costRating = self.costRatingControl.rating;
-        NSInteger starRating = self.starRatingControl.rating;
-        
-        if (costRating > 0 || starRating > 0) {
-            if (costRating > 0 && starRating <= 0) {
-                // Cost Rating
-                NSInteger max = [event.maxprice integerValue];
-                NSInteger costLimit = [[self.costLimits objectAtIndex:costRating] integerValue];
-                
-                if (max < costLimit && timeRating <= timeLimit) {
+    if (rating >= 0 && rating <=5) {
+        NSInteger numbRows = 0;
+        for (int j = 0; j < fetchedResultsController.sections.count; j++) {
+            id sectionInfo = [[fetchedResultsController sections] objectAtIndex:j];
+            NSInteger count = [sectionInfo numberOfObjects];
+            numbRows = numbRows + count;
+        }
+        self.refinedEvents = [[NSMutableArray alloc] init];
+        for (int i = 0; i < numbRows; i++) {
+            NSIndexPath *indexPath2 = [NSIndexPath indexPathForRow:i inSection:0];
+            BNEvent *event = [fetchedResultsController objectAtIndexPath:indexPath2];
+            // Time Rating
+            float timeRating = [event.duration floatValue];
+            NSInteger timeLimit = [[self.timeLimits objectAtIndex:rating] integerValue];
+            
+            NSInteger costRating = self.costRatingControl.rating;
+            NSInteger starRating = self.starRatingControl.rating;
+            
+            if (costRating > 0 || starRating > 0) {
+                if (costRating > 0 && starRating <= 0) {
+                    // Cost Rating
+                    NSInteger max = [event.maxprice integerValue];
+                    NSInteger costLimit = [[self.costLimits objectAtIndex:costRating] integerValue];
+                    
+                    if (max < costLimit && timeRating <= timeLimit) {
+                        [self.refinedEvents addObject:event];
+                    }
+                }
+                if (costRating <= 0 && starRating > 0) {
+                    // Star Rating
+                    float eventRating = [event.rating floatValue];
+                    NSInteger starLimit = [[self.ratingLimits objectAtIndex:starRating] integerValue];
+                    
+                    if (eventRating >= (float)starLimit && timeRating <= timeLimit) {
+                        [self.refinedEvents addObject:event];
+                    }
+                }
+                if (costRating > 0 && starRating > 0) {
+                    // Cost Rating
+                    NSInteger max = [event.maxprice integerValue];
+                    NSInteger costLimit = [[self.costLimits objectAtIndex:costRating] integerValue];
+                    // Star Rating
+                    float eventRating = [event.rating floatValue];
+                    NSInteger starLimit = [[self.ratingLimits objectAtIndex:starRating] integerValue];
+                    
+                    if (eventRating >= (float)starLimit && max < costLimit && timeRating <= timeLimit) {
+                        [self.refinedEvents addObject:event];
+                    }
+                }
+            }
+            else {
+                if (timeRating <= timeLimit) {
                     [self.refinedEvents addObject:event];
                 }
             }
-            if (costRating <= 0 && starRating > 0) {
-                // Star Rating
-                float eventRating = [event.rating floatValue];
-                NSInteger starLimit = [[self.ratingLimits objectAtIndex:starRating] integerValue];
-                
-                if (eventRating >= (float)starLimit && timeRating <= timeLimit) {
-                    [self.refinedEvents addObject:event];
-                }
-            }
-            if (costRating > 0 && starRating > 0) {
-                // Cost Rating
-                NSInteger max = [event.maxprice integerValue];
-                NSInteger costLimit = [[self.costLimits objectAtIndex:costRating] integerValue];
-                // Star Rating
-                float eventRating = [event.rating floatValue];
-                NSInteger starLimit = [[self.ratingLimits objectAtIndex:starRating] integerValue];
-                
-                if (eventRating >= (float)starLimit && max < costLimit && timeRating <= timeLimit) {
-                    [self.refinedEvents addObject:event];
-                }
-            }
+        }
+        if (rating == 0) {
+            self.refined = NO;
         }
         else {
-            if (timeRating <= timeLimit) {
-                [self.refinedEvents addObject:event];
-            }
+            self.refined = YES;
         }
-    }
-    if (rating == 0) {
-        self.refined = NO;
+        [self.tableView reloadData];
     }
     else {
-        self.refined = YES;
+        NSLog(@"Ooops");
     }
-    [self.tableView reloadData];
 }
 
 - (void)costRatingControl:(CostController *)control didUpdateRating:(NSUInteger)rating {
-    NSInteger numbRows = 0;
-    for (int j = 0; j < fetchedResultsController.sections.count; j++) {
-        id sectionInfo = [[fetchedResultsController sections] objectAtIndex:j];
-        NSInteger count = [sectionInfo numberOfObjects];
-        numbRows = numbRows + count;
-    }
-    self.refinedEvents = [[NSMutableArray alloc] init];
-    for (int i = 0; i < numbRows; i++) {
-        NSIndexPath *indexPath2 = [NSIndexPath indexPathForRow:i inSection:0];
-        BNEvent *event = [fetchedResultsController objectAtIndexPath:indexPath2];
-        if (rating < 5) {
-            // Cost Rating
-            NSInteger max = [event.maxprice integerValue];
-            NSInteger costLimit = [[self.costLimits objectAtIndex:rating] integerValue];
-
-            NSInteger starRating = self.costRatingControl.rating;
-            NSInteger timeRating = self.timeRatingControl.rating;
-            
-            if (starRating > 0 || timeRating > 0) {
-
+    if (rating >= 0 && rating <= 5) {
+        NSInteger numbRows = 0;
+        for (int j = 0; j < fetchedResultsController.sections.count; j++) {
+            id sectionInfo = [[fetchedResultsController sections] objectAtIndex:j];
+            NSInteger count = [sectionInfo numberOfObjects];
+            numbRows = numbRows + count;
+        }
+        self.refinedEvents = [[NSMutableArray alloc] init];
+        for (int i = 0; i < numbRows; i++) {
+            NSIndexPath *indexPath2 = [NSIndexPath indexPathForRow:i inSection:0];
+            BNEvent *event = [fetchedResultsController objectAtIndexPath:indexPath2];
+            if (rating < 5) {
+                // Cost Rating
+                NSInteger max = [event.maxprice integerValue];
+                NSInteger costLimit = [[self.costLimits objectAtIndex:rating] integerValue];
                 
-                if (starRating > 0 && timeRating <= 0) {
-                    // Star Rating
-                    float eventRating = [event.rating floatValue];
-                    NSInteger starLimit = [[self.ratingLimits objectAtIndex:starRating] integerValue];
-                    
-                    if (max < costLimit && eventRating >= starLimit) {
-                        [self.refinedEvents addObject:event];
-                    }
-                }
-                if (starRating <= 0 && timeRating > 0) {
-                    // Time Rating
-                    float timeRating = [event.duration floatValue];
-                    NSInteger timeLimit = [[self.timeLimits objectAtIndex:timeRating] integerValue];
-                    
-                    if (max < costLimit && timeRating <= timeLimit) {
-                        [self.refinedEvents addObject:event];
-                    }
-                }
-                if (starRating > 0 && timeRating > 0) {
-                    // Star Rating
-                    float eventRating = [event.rating floatValue];
-                    NSInteger starLimit = [[self.ratingLimits objectAtIndex:starRating] integerValue];
-                    // Time Rating
-                    float timeRating = [event.duration floatValue];
-                    NSInteger timeLimit = [[self.timeLimits objectAtIndex:timeRating] integerValue];
-                    
-                    if (max < costLimit && eventRating >= starLimit && timeRating <= timeLimit) {
-                        [self.refinedEvents addObject:event];
-                    }
-                }
+                NSInteger starRating = self.costRatingControl.rating;
+                NSInteger timeRating = self.timeRatingControl.rating;
                 
-
+                if (starRating > 0 || timeRating > 0) {
+                    
+                    
+                    if (starRating > 0 && timeRating <= 0) {
+                        // Star Rating
+                        float eventRating = [event.rating floatValue];
+                        NSInteger starLimit = [[self.ratingLimits objectAtIndex:starRating] integerValue];
+                        
+                        if (max < costLimit && eventRating >= starLimit) {
+                            [self.refinedEvents addObject:event];
+                        }
+                    }
+                    if (starRating <= 0 && timeRating > 0) {
+                        // Time Rating
+                        float timeRating = [event.duration floatValue];
+                        NSInteger timeLimit = [[self.timeLimits objectAtIndex:timeRating] integerValue];
+                        
+                        if (max < costLimit && timeRating <= timeLimit) {
+                            [self.refinedEvents addObject:event];
+                        }
+                    }
+                    if (starRating > 0 && timeRating > 0) {
+                        // Star Rating
+                        float eventRating = [event.rating floatValue];
+                        NSInteger starLimit = [[self.ratingLimits objectAtIndex:starRating] integerValue];
+                        // Time Rating
+                        float timeRating = [event.duration floatValue];
+                        NSInteger timeLimit = [[self.timeLimits objectAtIndex:timeRating] integerValue];
+                        
+                        if (max < costLimit && eventRating >= starLimit && timeRating <= timeLimit) {
+                            [self.refinedEvents addObject:event];
+                        }
+                    }
+                    
+                    
+                }
+                else {
+                    if (starRating > 0 && timeRating <= 0) {
+                        // Star Rating
+                        float eventRating = [event.rating floatValue];
+                        NSInteger starLimit = [[self.ratingLimits objectAtIndex:starRating] integerValue];
+                        
+                        if (max < costLimit && eventRating >= starLimit) {
+                            [self.refinedEvents addObject:event];
+                        }
+                    }
+                    if (starRating <= 0 && timeRating > 0) {
+                        // Time Rating
+                        float timeRating = [event.duration floatValue];
+                        NSInteger timeLimit = [[self.timeLimits objectAtIndex:timeRating] integerValue];
+                        
+                        if (max < costLimit && timeRating <= timeLimit) {
+                            [self.refinedEvents addObject:event];
+                        }
+                    }
+                    if (starRating > 0 && timeRating > 0) {
+                        // Star Rating
+                        float eventRating = [event.rating floatValue];
+                        NSInteger starLimit = [[self.ratingLimits objectAtIndex:starRating] integerValue];
+                        // Time Rating
+                        float timeRating = [event.duration floatValue];
+                        NSInteger timeLimit = [[self.timeLimits objectAtIndex:timeRating] integerValue];
+                        
+                        if (max < costLimit && eventRating >= starLimit && timeRating <= timeLimit) {
+                            [self.refinedEvents addObject:event];
+                        }
+                    }
+                }
             }
             else {
-                if (starRating > 0 && timeRating <= 0) {
+                NSInteger max = [event.maxprice integerValue];
+                NSInteger costLimit = [[self.costLimits objectAtIndex:rating] integerValue];
+                
+                NSInteger starRating = self.starRatingControl.rating;
+                
+                if (starRating > 0) {
                     // Star Rating
                     float eventRating = [event.rating floatValue];
-                    NSInteger starLimit = [[self.ratingLimits objectAtIndex:starRating] integerValue];
+                    NSInteger starLimit = [[self.ratingLimits objectAtIndex:self.starRatingControl.rating] integerValue];
                     
                     if (max < costLimit && eventRating >= starLimit) {
                         [self.refinedEvents addObject:event];
                     }
                 }
-                if (starRating <= 0 && timeRating > 0) {
-                    // Time Rating
-                    float timeRating = [event.duration floatValue];
-                    NSInteger timeLimit = [[self.timeLimits objectAtIndex:timeRating] integerValue];
-                    
-                    if (max < costLimit && timeRating <= timeLimit) {
-                        [self.refinedEvents addObject:event];
-                    }
-                }
-                if (starRating > 0 && timeRating > 0) {
-                    // Star Rating
-                    float eventRating = [event.rating floatValue];
-                    NSInteger starLimit = [[self.ratingLimits objectAtIndex:starRating] integerValue];
-                    // Time Rating
-                    float timeRating = [event.duration floatValue];
-                    NSInteger timeLimit = [[self.timeLimits objectAtIndex:timeRating] integerValue];
-                    
-                    if (max < costLimit && eventRating >= starLimit && timeRating <= timeLimit) {
+                else {
+                    if (max < costLimit) {
                         [self.refinedEvents addObject:event];
                     }
                 }
             }
+        }
+        if (rating == 0) {
+            self.refined = NO;
         }
         else {
-            NSInteger max = [event.maxprice integerValue];
-            NSInteger costLimit = [[self.costLimits objectAtIndex:rating] integerValue];
-            
-            NSInteger starRating = self.starRatingControl.rating;
-            
-            if (starRating > 0) {
-                // Star Rating
-                float eventRating = [event.rating floatValue];
-                NSInteger starLimit = [[self.ratingLimits objectAtIndex:self.starRatingControl.rating] integerValue];
-                
-                if (max < costLimit && eventRating >= starLimit) {
-                    [self.refinedEvents addObject:event];
-                }
-            }
-            else {
-                if (max < costLimit) {
-                    [self.refinedEvents addObject:event];
-                }
-            }
+            self.refined = YES;
         }
-    }
-    if (rating == 0) {
-        self.refined = NO;
+        [self.tableView reloadData];
     }
     else {
-        self.refined = YES;
+        NSLog(@"Ooops");
     }
-    [self.tableView reloadData];
 }
 
 //- (void)costRatingControl:(CostController *)control willUpdateRating:(NSUInteger)rating {
