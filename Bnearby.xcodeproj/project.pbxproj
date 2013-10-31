@@ -42,7 +42,6 @@
 		99AF6CA1181942820080D881 /* Logo.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 99AF6CA0181942820080D881 /* Logo.jpg */; };
 		A0065EF818214FF500B1A797 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A0065EF718214FF500B1A797 /* Social.framework */; };
 		A006CD09181BBF55006782E3 /* BNearby Logo 2_invert.png in Resources */ = {isa = PBXBuildFile; fileRef = A006CD07181BBF55006782E3 /* BNearby Logo 2_invert.png */; };
-		A011BE11181A59000032F8CD /* Explore_Accomodation.png in Resources */ = {isa = PBXBuildFile; fileRef = A011BE10181A59000032F8CD /* Explore_Accomodation.png */; };
 		A011BE24181A60670032F8CD /* Distance_Filter_Unused.png in Resources */ = {isa = PBXBuildFile; fileRef = A011BE22181A60670032F8CD /* Distance_Filter_Unused.png */; };
 		A011BE25181A60670032F8CD /* Distance_Filter_Used.png in Resources */ = {isa = PBXBuildFile; fileRef = A011BE23181A60670032F8CD /* Distance_Filter_Used.png */; };
 		A02A30A3181B3B01000D688B /* Cost_Filter_Unused.png in Resources */ = {isa = PBXBuildFile; fileRef = A02A309B181B3B01000D688B /* Cost_Filter_Unused.png */; };
@@ -54,6 +53,13 @@
 		A02A30A9181B3B01000D688B /* Time_Filter_Unused.png in Resources */ = {isa = PBXBuildFile; fileRef = A02A30A1181B3B01000D688B /* Time_Filter_Unused.png */; };
 		A02A30AA181B3B01000D688B /* Time_Filter_Used.png in Resources */ = {isa = PBXBuildFile; fileRef = A02A30A2181B3B01000D688B /* Time_Filter_Used.png */; };
 		A033A37B1806391A00D768DC /* NWMapCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A033A37A1806391A00D768DC /* NWMapCell.m */; };
+		A0405F161821DAE600A57BA7 /* Explore_Accomodation.png in Resources */ = {isa = PBXBuildFile; fileRef = A0405F0F1821DAE600A57BA7 /* Explore_Accomodation.png */; };
+		A0405F171821DAE600A57BA7 /* Explore_Attractions.png in Resources */ = {isa = PBXBuildFile; fileRef = A0405F101821DAE600A57BA7 /* Explore_Attractions.png */; };
+		A0405F181821DAE600A57BA7 /* Explore_Entertainment.png in Resources */ = {isa = PBXBuildFile; fileRef = A0405F111821DAE600A57BA7 /* Explore_Entertainment.png */; };
+		A0405F191821DAE600A57BA7 /* Explore_FreeFun.png in Resources */ = {isa = PBXBuildFile; fileRef = A0405F121821DAE600A57BA7 /* Explore_FreeFun.png */; };
+		A0405F1A1821DAE600A57BA7 /* Explore_Kids.png in Resources */ = {isa = PBXBuildFile; fileRef = A0405F131821DAE600A57BA7 /* Explore_Kids.png */; };
+		A0405F1B1821DAE600A57BA7 /* Explore_Nearby.png in Resources */ = {isa = PBXBuildFile; fileRef = A0405F141821DAE600A57BA7 /* Explore_Nearby.png */; };
+		A0405F1C1821DAE600A57BA7 /* Explore_Resturants.png in Resources */ = {isa = PBXBuildFile; fileRef = A0405F151821DAE600A57BA7 /* Explore_Resturants.png */; };
 		A0413CBD17EA65B700EBC215 /* 021.png in Resources */ = {isa = PBXBuildFile; fileRef = A0413CB517EA65B700EBC215 /* 021.png */; };
 		A0413CBE17EA65B700EBC215 /* 049.png in Resources */ = {isa = PBXBuildFile; fileRef = A0413CB617EA65B700EBC215 /* 049.png */; };
 		A0413CBF17EA65B700EBC215 /* 155.png in Resources */ = {isa = PBXBuildFile; fileRef = A0413CB717EA65B700EBC215 /* 155.png */; };
@@ -89,8 +95,6 @@
 		A0A77C0217E70F7100CF91FF /* search_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = A0A77BF417E70F7100CF91FF /* search_icon.png */; };
 		A0A77C0317E7132000CF91FF /* EXScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = A0EDCD2317E6FD0E00819F49 /* EXScrollView.m */; };
 		A0A77C0617E7163C00CF91FF /* EXTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A0A77C0517E7163C00CF91FF /* EXTableViewCell.m */; };
-		A0A7AB94181A001400C146BF /* Explore_Attractions.png in Resources */ = {isa = PBXBuildFile; fileRef = A0A7AB82181A001400C146BF /* Explore_Attractions.png */; };
-		A0A7ABA5181A001400C146BF /* Explore_Nearby.png in Resources */ = {isa = PBXBuildFile; fileRef = A0A7AB93181A001400C146BF /* Explore_Nearby.png */; };
 		A0ACF049180CFF24004956C2 /* NWMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A0ACF048180CFF24004956C2 /* NWMapViewController.m */; };
 		A0B2697D1809127000EACCBA /* NWWeatherCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A0B2697C1809127000EACCBA /* NWWeatherCell.m */; };
 		A0BB6D59180A32DC0037BD5F /* Weather.m in Sources */ = {isa = PBXBuildFile; fileRef = A0BB6D58180A32DC0037BD5F /* Weather.m */; };
@@ -187,7 +191,6 @@
 		99AF6CA0181942820080D881 /* Logo.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = Logo.jpg; path = Images/Logo.jpg; sourceTree = "<group>"; };
 		A0065EF718214FF500B1A797 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		A006CD07181BBF55006782E3 /* BNearby Logo 2_invert.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "BNearby Logo 2_invert.png"; path = "Images/BNearby Logo 2_invert.png"; sourceTree = "<group>"; };
-		A011BE10181A59000032F8CD /* Explore_Accomodation.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Explore_Accomodation.png; path = Images/Explore_Accomodation.png; sourceTree = "<group>"; };
 		A011BE22181A60670032F8CD /* Distance_Filter_Unused.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Distance_Filter_Unused.png; path = Images/Distance_Filter_Unused.png; sourceTree = "<group>"; };
 		A011BE23181A60670032F8CD /* Distance_Filter_Used.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Distance_Filter_Used.png; path = Images/Distance_Filter_Used.png; sourceTree = "<group>"; };
 		A02A309B181B3B01000D688B /* Cost_Filter_Unused.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Cost_Filter_Unused.png; path = Images/Cost_Filter_Unused.png; sourceTree = "<group>"; };
@@ -200,6 +203,13 @@
 		A02A30A2181B3B01000D688B /* Time_Filter_Used.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Time_Filter_Used.png; path = Images/Time_Filter_Used.png; sourceTree = "<group>"; };
 		A033A3791806391A00D768DC /* NWMapCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NWMapCell.h; path = View/NowView/NWMapCell.h; sourceTree = "<group>"; };
 		A033A37A1806391A00D768DC /* NWMapCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NWMapCell.m; path = View/NowView/NWMapCell.m; sourceTree = "<group>"; };
+		A0405F0F1821DAE600A57BA7 /* Explore_Accomodation.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Explore_Accomodation.png; path = Images/Explore_Accomodation.png; sourceTree = "<group>"; };
+		A0405F101821DAE600A57BA7 /* Explore_Attractions.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Explore_Attractions.png; path = Images/Explore_Attractions.png; sourceTree = "<group>"; };
+		A0405F111821DAE600A57BA7 /* Explore_Entertainment.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Explore_Entertainment.png; path = Images/Explore_Entertainment.png; sourceTree = "<group>"; };
+		A0405F121821DAE600A57BA7 /* Explore_FreeFun.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Explore_FreeFun.png; path = Images/Explore_FreeFun.png; sourceTree = "<group>"; };
+		A0405F131821DAE600A57BA7 /* Explore_Kids.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Explore_Kids.png; path = Images/Explore_Kids.png; sourceTree = "<group>"; };
+		A0405F141821DAE600A57BA7 /* Explore_Nearby.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Explore_Nearby.png; path = Images/Explore_Nearby.png; sourceTree = "<group>"; };
+		A0405F151821DAE600A57BA7 /* Explore_Resturants.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Explore_Resturants.png; path = Images/Explore_Resturants.png; sourceTree = "<group>"; };
 		A0413CB517EA65B700EBC215 /* 021.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = 021.png; path = View/ExploreView/RatingHeader/Images/021.png; sourceTree = "<group>"; };
 		A0413CB617EA65B700EBC215 /* 049.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = 049.png; path = View/ExploreView/RatingHeader/Images/049.png; sourceTree = "<group>"; };
 		A0413CB717EA65B700EBC215 /* 155.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = 155.png; path = View/ExploreView/RatingHeader/Images/155.png; sourceTree = "<group>"; };
@@ -239,8 +249,6 @@
 		A0A77BF417E70F7100CF91FF /* search_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = search_icon.png; path = Images/search_icon.png; sourceTree = "<group>"; };
 		A0A77C0417E7163C00CF91FF /* EXTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EXTableViewCell.h; path = View/ExploreView/EXTableViewCell.h; sourceTree = "<group>"; };
 		A0A77C0517E7163C00CF91FF /* EXTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EXTableViewCell.m; path = View/ExploreView/EXTableViewCell.m; sourceTree = "<group>"; };
-		A0A7AB82181A001400C146BF /* Explore_Attractions.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Explore_Attractions.png; path = Images/Explore_Attractions.png; sourceTree = "<group>"; };
-		A0A7AB93181A001400C146BF /* Explore_Nearby.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Explore_Nearby.png; path = Images/Explore_Nearby.png; sourceTree = "<group>"; };
 		A0ACF047180CFF24004956C2 /* NWMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NWMapViewController.h; path = View/NowView/NWMapViewController.h; sourceTree = "<group>"; };
 		A0ACF048180CFF24004956C2 /* NWMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NWMapViewController.m; path = View/NowView/NWMapViewController.m; sourceTree = "<group>"; };
 		A0B2697B1809127000EACCBA /* NWWeatherCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NWWeatherCell.h; path = View/NowView/NWWeatherCell.h; sourceTree = "<group>"; };
@@ -455,6 +463,13 @@
 		A0A77BAE17E70E6200CF91FF /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				A0405F0F1821DAE600A57BA7 /* Explore_Accomodation.png */,
+				A0405F101821DAE600A57BA7 /* Explore_Attractions.png */,
+				A0405F111821DAE600A57BA7 /* Explore_Entertainment.png */,
+				A0405F121821DAE600A57BA7 /* Explore_FreeFun.png */,
+				A0405F131821DAE600A57BA7 /* Explore_Kids.png */,
+				A0405F141821DAE600A57BA7 /* Explore_Nearby.png */,
+				A0405F151821DAE600A57BA7 /* Explore_Resturants.png */,
 				A05031A6182061250016BEBD /* background.png */,
 				A0C3CB22181F726500AEB638 /* Accomodation_Icon.png */,
 				A0C3CB23181F726500AEB638 /* Attractions_Icon.png */,
@@ -479,9 +494,6 @@
 				A0BFB9D9181F642D007C9958 /* Explore_Data_Suncorp_Stadium_None.png */,
 				A0BFB9DA181F642D007C9958 /* Explore_Data_Zafron_on_Brunswick_None.png */,
 				A006CD07181BBF55006782E3 /* BNearby Logo 2_invert.png */,
-				A011BE10181A59000032F8CD /* Explore_Accomodation.png */,
-				A0A7AB82181A001400C146BF /* Explore_Attractions.png */,
-				A0A7AB93181A001400C146BF /* Explore_Nearby.png */,
 				99AF6CA0181942820080D881 /* Logo.jpg */,
 				99AF6C8B181942120080D881 /* App Icons */,
 				A0F6B0FB1817889500936156 /* 4 - Thunderstorm.png */,
@@ -734,7 +746,6 @@
 				A0D23BD917E6E27D0020BB6E /* InfoPlist.strings in Resources */,
 				A0F6B1041817889500936156 /* 31 - Clear Night.png in Resources */,
 				99AF6C96181942120080D881 /* Icon-72@2x.png in Resources */,
-				A011BE11181A59000032F8CD /* Explore_Accomodation.png in Resources */,
 				A0F6B1021817889500936156 /* 26 - Cloudy.png in Resources */,
 				A0D23BE117E6E27D0020BB6E /* Default.png in Resources */,
 				A0D23BE317E6E27D0020BB6E /* Default@2x.png in Resources */,
@@ -746,25 +757,28 @@
 				99AF6C9A181942120080D881 /* Icon.png in Resources */,
 				A0BFB9EA181F642D007C9958 /* Explore_Data_Zafron_on_Brunswick_None.png in Resources */,
 				99AF6C98181942120080D881 /* Icon-Small.png in Resources */,
+				A0405F181821DAE600A57BA7 /* Explore_Entertainment.png in Resources */,
 				A0D23BE517E6E27D0020BB6E /* Default-568h@2x.png in Resources */,
 				A0BFB9DF181F642D007C9958 /* Explore_Data_Meriton_Apartments_None.png in Resources */,
 				A0BFB9E1181F642D007C9958 /* Explore_Data_Queensland_Art_Gallery_None.png in Resources */,
 				A006CD09181BBF55006782E3 /* BNearby Logo 2_invert.png in Resources */,
 				A02A30A8181B3B01000D688B /* Fun_Filter_Used.png in Resources */,
 				A0D23BE817E6E27D0020BB6E /* MainStoryboard.storyboard in Resources */,
-				A0A7AB94181A001400C146BF /* Explore_Attractions.png in Resources */,
+				A0405F191821DAE600A57BA7 /* Explore_FreeFun.png in Resources */,
 				A0413CC417EA65B700EBC215 /* star@2x.png in Resources */,
 				A05031A7182061250016BEBD /* background.png in Resources */,
 				A0C3CB2A181F726500AEB638 /* Attractions_Icon.png in Resources */,
+				A0405F1B1821DAE600A57BA7 /* Explore_Nearby.png in Resources */,
 				6A1E3CFA180D6D730082D70C /* eventdata.xml in Resources */,
+				A0405F161821DAE600A57BA7 /* Explore_Accomodation.png in Resources */,
 				A02A30A6181B3B01000D688B /* Distance_Filter_Used.png in Resources */,
 				A0413CBD17EA65B700EBC215 /* 021.png in Resources */,
-				A0A7ABA5181A001400C146BF /* Explore_Nearby.png in Resources */,
 				A0C3CB2D181F726500AEB638 /* Free_Icon.png in Resources */,
 				A02A30AA181B3B01000D688B /* Time_Filter_Used.png in Resources */,
 				A0BFB9DD181F642D007C9958 /* Explore_Data_Gallery_of_Modern_Art_None.png in Resources */,
 				A0BFB9E0181F642D007C9958 /* Explore_Data_Punthill_Brisbane_None.png in Resources */,
 				A0413CC317EA65B700EBC215 /* star.png in Resources */,
+				A0405F1A1821DAE600A57BA7 /* Explore_Kids.png in Resources */,
 				99AF6C9B181942120080D881 /* Icon@2x.png in Resources */,
 				A0F6B1061817889500936156 /* Rainy.png in Resources */,
 				A0413CC117EA65B700EBC215 /* star_highlighted.png in Resources */,
@@ -782,12 +796,14 @@
 				A011BE25181A60670032F8CD /* Distance_Filter_Used.png in Resources */,
 				A0F6B1011817889500936156 /* 4 - Thunderstorm.png in Resources */,
 				A0A77BFB17E70F7100CF91FF /* Loading_Variation_One.png in Resources */,
+				A0405F171821DAE600A57BA7 /* Explore_Attractions.png in Resources */,
 				A0C3CB29181F726500AEB638 /* Accomodation_Icon.png in Resources */,
 				99AF6C9C181942120080D881 /* iTunesArtwork.png in Resources */,
 				99AF6C9F1819421A0080D881 /* Images.xcassets in Resources */,
 				A02A30A5181B3B01000D688B /* Distance_Filter_Unused.png in Resources */,
 				A0A77BFC17E70F7100CF91FF /* menuButton@2x.png in Resources */,
 				A0C3CB2C181F726500AEB638 /* Entertainment_Icon.png in Resources */,
+				A0405F1C1821DAE600A57BA7 /* Explore_Resturants.png in Resources */,
 				A0BFB9E4181F642D007C9958 /* Explore_Data_Royal_On_The_Park_None.png in Resources */,
 				A0BFB9E5181F642D007C9958 /* Explore_Data_Sofitel_Brisbane_Central_None.png in Resources */,
 				A0C3CB2E181F726500AEB638 /* kids_Icon.png in Resources */,
